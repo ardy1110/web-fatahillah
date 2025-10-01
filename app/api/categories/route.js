@@ -9,3 +9,14 @@ export async function GET() {
     })
     return NextResponse.json(categories)
 }
+
+export async function POST(req){
+    const {name, description} = await req.json()
+    const newCategory = await prisma.category.create({
+        data: {
+            name,
+            description
+        }
+    })
+    return NextResponse.json(newCategory)
+}
