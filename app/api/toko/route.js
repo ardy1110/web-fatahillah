@@ -4,19 +4,19 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function GET() {
-    const categories = await prisma.category.findMany({
+    const toko = await prisma.toko.findMany({
         include: {products: true}
     })
-    return NextResponse.json(categories)
+    return NextResponse.json(toko)
 }
 
 export async function POST(req){
-    const {name, description} = await req.json()
-    const newCategory = await prisma.category.create({
+    const {name, categories} = await req.json()
+    const newToko = await prisma.toko.create({
         data: {
             name,
-            description
+            categories
         }
     })
-    return NextResponse.json(newCategory)
+    return NextResponse.json(newToko)
 }

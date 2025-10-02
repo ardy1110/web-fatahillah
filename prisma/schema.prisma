@@ -13,11 +13,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Category {
+model Toko {
   id Int @id @default(autoincrement())
   name String
-  description String?
+  categories Categories
   products Product[]
+}
+
+enum Categories {
+  Minuman
+  Makanan
+  Snack
 }
 
 model Product {
@@ -25,7 +31,8 @@ model Product {
   name String
   description String?
   price Float
-  categoryId Int
-  category Category @relation(fields: [categoryId], references: [id])
-  
+  tokoId Int
+  toko Toko @relation(fields: [tokoId], references: [id])
 }
+
+
