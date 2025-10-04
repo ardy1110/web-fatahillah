@@ -7,7 +7,7 @@ export default function mainLayout({
 }) {
   return (
     <main>
-      <nav className="flex items-center justify-between p-6 border-b border-gray-300 bg-white">
+      <nav className="flex items-center justify-between p-6 m-2 rounded-2xl bg-white ">
         {/* Bagian kiri */}
         <div className="flex items-center space-x-4">
           <h1 className="text-xl font-bold">☕ LOGO</h1>
