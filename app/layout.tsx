@@ -25,13 +25,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${fontSans.variable} ${fontMono.variable} antialiased`}>
-        {/* <nav className="fixed top-0 left-0 w-full bg-white/10 backdrop-blur-md p-4 flex justify-between items-center">
-        <div className="bg-black rounded-lg">
-          <h1 className="text-white text-2xl font-bold m-4">Logo Warkop</h1>
-
-        </div>
-      </nav> */}
-
         {children}
       </body>
     </html>

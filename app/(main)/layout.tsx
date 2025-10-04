@@ -21,6 +21,9 @@ export default function mainLayout({
         </div>
       </nav>
       {children}
+      <footer className="flex items-center justify-center h-[50dvh] bg-black text-white text-3xl">
+        Footer Content
+      </footer>
     </main>
   );
 }
