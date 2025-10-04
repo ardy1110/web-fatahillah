@@ -7,6 +7,7 @@ export default function mainLayout({
 }) {
   return (
     <main>
+      {/* Navbar  */}
       <nav className="flex items-center justify-between p-6 m-2 rounded-2xl bg-white ">
         {/* Bagian kiri */}
         <div className="flex items-center space-x-4">
@@ -21,6 +22,7 @@ export default function mainLayout({
         </div>
       </nav>
       {children}
+      {/* Footer  */}
       <footer className="flex items-center justify-center h-[50dvh] bg-black text-white text-3xl">
         Footer Content
       </footer>
