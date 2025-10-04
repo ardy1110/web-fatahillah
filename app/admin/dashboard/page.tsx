@@ -1,118 +1,55 @@
 "use client";
-
-import { useState } from "react";
-import { Button } from "../../../components/button";
-import { Card, CardContent } from "../../../components/card";
-import { Plus, Store, Package } from "lucide-react";
+import Link from "next/link";
+import { LayoutDashboard, Store, Package, LogOut } from "lucide-react";
 
 export default function AdminPage() {
-  const [section, setSection] = useState<"dashboard" | "toko" | "produk">(
-    "dashboard"
-  );
-
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
       <aside className="w-64 bg-white shadow-md flex flex-col">
-        <div className="p-6 border-b">
-          <h1 className="text-2xl font-bold text-blue-600">Admin Panel</h1>
-          <p className="text-sm text-gray-500">Warkop Fatihillah</p>
+        <div className="px-6 py-4 border-b">
+          <h2 className="text-xl font-bold text-gray-800">Admin Panel</h2>
         </div>
-        <nav className="flex-1 p-4 space-y-2">
-          <button
-            className={`flex items-center gap-2 w-full px-3 py-2 rounded-md text-left ${
-              section === "dashboard"
-                ? "bg-blue-600 text-white"
-                : "text-gray-700 hover:bg-gray-100"
-            }`}
-            onClick={() => setSection("dashboard")}
+
+        <nav className="flex-1 px-4 py-4">
+          <Link
+            href="/admin"
+            className="flex items-center gap-3 p-3 rounded-md mb-2 bg-blue-600 text-white"
           >
-            📊 Dashboard
-          </button>
-          <button
-            className={`flex items-center gap-2 w-full px-3 py-2 rounded-md text-left ${
-              section === "toko"
-                ? "bg-blue-600 text-white"
-                : "text-gray-700 hover:bg-gray-100"
-            }`}
-            onClick={() => setSection("toko")}
+            <LayoutDashboard size={20} />
+            Dashboard
+          </Link>
+
+          <Link
+            href="/admin/toko"
+            className="flex items-center gap-3 p-3 rounded-md mb-2 text-gray-700 hover:bg-gray-100"
           >
-            <Store size={18} /> Toko
-          </button>
-          <button
-            className={`flex items-center gap-2 w-full px-3 py-2 rounded-md text-left ${
-              section === "produk"
-                ? "bg-blue-600 text-white"
-                : "text-gray-700 hover:bg-gray-100"
-            }`}
-            onClick={() => setSection("produk")}
-          >
-            <Package size={18} /> Produk
-          </button>
+            <Store size={20} />
+            Toko
+          </Link>
         </nav>
+
+        <div className="p-4 border-t">
+          <button className="flex items-center gap-2 text-red-500 hover:text-red-600">
+            <LogOut size={20} />
+            Logout
+          </button>
+        </div>
       </aside>
 
-      {/* Main Content */}
-      <main className="flex-1 p-6 overflow-y-auto">
-        {section === "dashboard" && (
-          <div>
-            <h2 className="text-2xl font-semibold mb-4">📊 Dashboard</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Card>
-                <CardContent className="p-4">
-                  <p className="text-gray-500">Total Produk</p>
-                  <h3 className="text-2xl font-bold">120</h3>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <p className="text-gray-500">Total Toko</p>
-                  <h3 className="text-2xl font-bold">3</h3>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <p className="text-gray-500">User Login</p>
-                  <h3 className="text-2xl font-bold">Admin</h3>
-                </CardContent>
-              </Card>
-            </div>
+      {/* Main content */}
+      <main className="flex-1 p-6">
+        <h1 className="text-2xl font-bold mb-4">Dashboard Admin</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white p-6 rounded-xl shadow">
+            <h2 className="text-gray-500 text-sm">Total Toko</h2>
+            <p className="text-3xl font-bold mt-2">6</p>
           </div>
-        )}
-
-        {section === "toko" && (
-          <div>
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-semibold">🏪 Kelola Toko</h2>
-              <Button className="flex items-center gap-2">
-                <Plus size={16} /> Tambah Toko
-              </Button>
-            </div>
-            {/* List toko nanti dari API */}
-            <Card>
-              <CardContent className="p-4">
-                <p>Daftar toko akan tampil di sini...</p>
-              </CardContent>
-            </Card>
+          <div className="bg-white p-6 rounded-xl shadow">
+            <h2 className="text-gray-500 text-sm">Total Produk</h2>
+            <p className="text-3xl font-bold mt-2">24</p>
           </div>
-        )}
-
-        {section === "produk" && (
-          <div>
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-semibold">📦 Kelola Produk</h2>
-              <Button className="flex items-center gap-2">
-                <Plus size={16} /> Tambah Produk
-              </Button>
-            </div>
-            {/* List produk nanti dari API */}
-            <Card>
-              <CardContent className="p-4">
-                <p>Daftar produk akan tampil di sini...</p>
-              </CardContent>
-            </Card>
-          </div>
-        )}
+        </div>
       </main>
     </div>
   );

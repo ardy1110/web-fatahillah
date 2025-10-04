@@ -17,6 +17,7 @@ model Toko {
   id Int @id @default(autoincrement())
   name String
   categories Categories
+  image String?
   products Product[]
 }
 
@@ -31,6 +32,7 @@ model Product {
   name String
   description String?
   price Float
+  image String?
   tokoId Int
   toko Toko @relation(fields: [tokoId], references: [id])
 }
