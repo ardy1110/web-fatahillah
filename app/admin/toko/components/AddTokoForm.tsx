@@ -62,26 +62,27 @@ export default function AddTokoButton() {
       >
         Tambah Toko
       </button>
-
       {/* ----------------- Modal ----------------- */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-200 bg-opacity-70 backdrop-blur-sm transition-opacity">
-          
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/40" onClick={() => setIsOpen(false)} />
+
           {/* Konten Modal */}
-          <div className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-md mx-4 transform transition-all duration-300 scale-100">
+          <div className="relative z-10 bg-white rounded-xl shadow-2xl p-6 w-full max-w-md mx-4 transform transition-all duration-300">
             <div className="flex justify-between items-center mb-4 border-b pb-3">
               <h3 className="text-2xl font-bold text-gray-800">Form Toko Baru</h3>
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-gray-400 hover:text-gray-600 text-3xl font-light"
+                aria-label="Tutup"
               >
-                &times; 
+                &times;
               </button>
             </div>
-            
+
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
-              
+
               {/* Input Nama Toko */}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nama Toko</label>
@@ -102,7 +103,7 @@ export default function AddTokoButton() {
                   id="categories"
                   value={categories}
                   // Perhatikan cara menangani perubahan nilai enum
-                  onChange={(e) => setCategories(e.target.value as Categories)} 
+                  onChange={(e) => setCategories(e.target.value as Categories)}
                   required
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500 sm:text-sm"
                 >
@@ -133,3 +134,5 @@ export default function AddTokoButton() {
     </>
   );
 }
+
+// (Escape key handling is implemented inside the component through browser default or can be added if needed)

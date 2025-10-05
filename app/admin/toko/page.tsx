@@ -1,11 +1,20 @@
 // Definisikan tipe data untuk kejelasan
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  description?: string | null;
+}
+
 interface Toko {
   id: number;
   name: string;
   categories: string;
+  products?: Product[];
 }
 
 import AddTokoForm from './components/AddTokoForm'
+import TokoItem from './components/TokoMenu'
 
 // Komponen ini adalah Server Component, jadi boleh pakai async/await
 export default async function TokoPage() {
@@ -31,28 +40,7 @@ export default async function TokoPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* DataToko sekarang tersedia dari hasil fetch server */}
           {dataToko.map((toko) => (
-            <div 
-              key={toko.id} 
-              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out p-6 border border-gray-100"
-            >
-              {/* Nama Toko */}
-              <h2 className="text-xl font-bold mb-2 text-gray-900">{toko.name}</h2>
-              
-              {/* Kategori */}
-              <p className="text-sm text-amber-600 font-semibold mb-4">
-                {toko.categories}
-              </p>
-              
-              {/* Deskripsi/Info Tambahan (Opsional) */}
-              <p className="text-gray-600 mb-4">
-                Lihat detail menu dan produk yang ditawarkan oleh **{toko.name}**.
-              </p>
-              
-              {/* Tombol Lihat Menu */}
-              <button className="mt-2 w-full py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition duration-150 ease-in-out font-medium">
-                Lihat Menu
-              </button>
-            </div>
+            <TokoItem key={toko.id} toko={toko} />
           ))}
         </div>
         
