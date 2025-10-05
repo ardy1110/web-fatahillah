@@ -1,8 +1,5 @@
 // HAPUSKAN: "use client";
 
-import Link from "next/link";
-import { LayoutDashboard, Store, LogOut } from "lucide-react";
-
 // Definisikan tipe data untuk kejelasan
 interface Toko {
   id: number;
@@ -12,18 +9,16 @@ interface Toko {
 
 // Komponen ini adalah Server Component, jadi boleh pakai async/await
 export default async function TokoPage() {
-
   // Data fetching terjadi di sisi server sebelum rendering
-  const res = await fetch('http://localhost:3000/api/toko');
-  
+  const res = await fetch("http://localhost:3000/api/toko");
+
   // Ambil data JSON
   const dataToko: Toko[] = await res.json();
 
-
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <>
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md flex flex-col">
+      {/* <aside className="w-64 bg-white shadow-md flex flex-col">
         <div className="px-6 py-4 border-b">
           <h2 className="text-xl font-bold text-gray-800">Admin Panel</h2>
         </div>
@@ -51,7 +46,7 @@ export default async function TokoPage() {
             Logout
           </button>
         </div>
-      </aside>
+      </aside> */}
 
       {/* Main content */}
       <main className="flex-1 p-6">
@@ -61,9 +56,15 @@ export default async function TokoPage() {
           <table className="w-full border-collapse">
             <thead className="bg-gray-50 border-b">
               <tr>
-                <th className="text-left p-3 font-medium text-gray-600">Nama Toko</th>
-                <th className="text-left p-3 font-medium text-gray-600">Kategori</th>
-                <th className="text-left p-3 font-medium text-gray-600">Lihat Menu</th>
+                <th className="text-left p-3 font-medium text-gray-600">
+                  Nama Toko
+                </th>
+                <th className="text-left p-3 font-medium text-gray-600">
+                  Kategori
+                </th>
+                <th className="text-left p-3 font-medium text-gray-600">
+                  Lihat Menu
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -72,14 +73,15 @@ export default async function TokoPage() {
                 <tr key={toko.id} className="border-b hover:bg-gray-50">
                   <td className="p-3">{toko.name}</td>
                   <td className="p-3 text-gray-600">{toko.categories}</td>
-                  <button className="p-1 text-gray-600 bg-amber-300 m-1 rounded-sm hover:bg-amber-500">Menu</button>
-
+                  <button className="p-1 text-gray-600 bg-amber-300 m-1 rounded-sm hover:bg-amber-500">
+                    Menu
+                  </button>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </main>
-    </div>
+    </>
   );
 }
