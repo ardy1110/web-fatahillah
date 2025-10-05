@@ -5,7 +5,7 @@ interface Toko {
   categories: string;
 }
 
-import AddTokoForm from './AddTokoForm'
+import AddTokoForm from './components/AddTokoForm'
 
 // Komponen ini adalah Server Component, jadi boleh pakai async/await
 export default async function TokoPage() {
