@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { LayoutDashboard, Store, Package, LogOut } from "lucide-react";
+import { LayoutDashboard, Store, LogOut } from "lucide-react";
 
 export default function AdminPage() {
   return (

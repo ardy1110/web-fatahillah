@@ -1,20 +1,24 @@
-"use client";
-import Link from "next/link";
-import { LayoutDashboard, Store, Package, LogOut } from "lucide-react";
+// HAPUSKAN: "use client";
 
-export default function TokoPage() {
-  const dataToko = [
-    {
-      id: 1,
-      name: "Warkop Fatahillah",
-      kategori: "Minuman & Makanan",
-    },
-    {
-      id: 2,
-      name: "Fatahillah Snack",
-      kategori: "Snack Ringan",
-    },
-  ];
+import Link from "next/link";
+import { LayoutDashboard, Store, LogOut } from "lucide-react";
+
+// Definisikan tipe data untuk kejelasan
+interface Toko {
+  id: number;
+  name: string;
+  categories: string;
+}
+
+// Komponen ini adalah Server Component, jadi boleh pakai async/await
+export default async function TokoPage() {
+
+  // Data fetching terjadi di sisi server sebelum rendering
+  const res = await fetch('http://localhost:3000/api/toko');
+  
+  // Ambil data JSON
+  const dataToko: Toko[] = await res.json();
+
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -59,13 +63,17 @@ export default function TokoPage() {
               <tr>
                 <th className="text-left p-3 font-medium text-gray-600">Nama Toko</th>
                 <th className="text-left p-3 font-medium text-gray-600">Kategori</th>
+                <th className="text-left p-3 font-medium text-gray-600">Lihat Menu</th>
               </tr>
             </thead>
             <tbody>
+              {/* DataToko sekarang tersedia dari hasil fetch server */}
               {dataToko.map((toko) => (
                 <tr key={toko.id} className="border-b hover:bg-gray-50">
                   <td className="p-3">{toko.name}</td>
-                  <td className="p-3 text-gray-600">{toko.kategori}</td>
+                  <td className="p-3 text-gray-600">{toko.categories}</td>
+                  <button className="p-1 text-gray-600 bg-amber-300 m-1 rounded-sm hover:bg-amber-500">Menu</button>
+
                 </tr>
               ))}
             </tbody>
