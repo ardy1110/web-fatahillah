@@ -8,7 +8,6 @@ export default function adminLayout({
 }) {
   return (
     <div className="flex min-h-screen bg-gray-100">
-      {/* SideBar  */}
       <Sidebar />
       {children}
     </div>

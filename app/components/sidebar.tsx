@@ -36,26 +36,10 @@ const Sidebar = () => {
             </Link>
           );
         })}
-
-        {/* <Link
-          href="/admin/dashboard"
-          className="flex items-center gap-3 p-3 rounded-md mb-2 bg-blue-600 text-white"
-        >
-          <LayoutDashboard size={20} />
-          Dashboard
-        </Link>
-
-        <Link
-          href="/admin/toko"
-          className="flex items-center gap-3 p-3 rounded-md mb-2 text-gray-700 hover:bg-gray-100"
-        >
-          <Store size={20} />
-          Toko
-        </Link> */}
       </nav>
 
       <div className="p-4 border-t">
-        <button className="flex items-center gap-2 text-red-500 hover:text-red-600">
+        <button className="flex items-center gap-2 text-red-500 hover:text-red-800">
           <LogOut size={20} />
           Logout
         </button>
