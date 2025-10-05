@@ -1,5 +1,3 @@
-// HAPUSKAN: "use client";
-
 // Definisikan tipe data untuk kejelasan
 interface Toko {
   id: number;
@@ -10,77 +8,62 @@ interface Toko {
 // Komponen ini adalah Server Component, jadi boleh pakai async/await
 export default async function TokoPage() {
   // Data fetching terjadi di sisi server sebelum rendering
-  const res = await fetch("http://localhost:3000/api/toko");
+  const res = await fetch("http://localhost:3000/api/toko", {
+    // Tambahkan opsi ini jika Anda ingin memastikan data di-cache (atau tidak di-cache)
+    // cache: "no-store",
+  });
 
   // Ambil data JSON
   const dataToko: Toko[] = await res.json();
 
   return (
     <>
-      {/* Sidebar */}
-      {/* <aside className="w-64 bg-white shadow-md flex flex-col">
-        <div className="px-6 py-4 border-b">
-          <h2 className="text-xl font-bold text-gray-800">Admin Panel</h2>
-        </div>
-
-        <nav className="flex-1 px-4 py-4">
-          <Link
-            href="/admin/dashboard"
-            className="flex items-center gap-3 p-3 rounded-md mb-2 text-gray-700 hover:bg-gray-100"
-          >
-            <LayoutDashboard size={20} />
-            Dashboard
-          </Link>
-          <Link
-            href="/admin/toko"
-            className="flex items-center gap-3 p-3 rounded-md mb-2 bg-blue-600 text-white"
-          >
-            <Store size={20} />
-            Toko
-          </Link>
-        </nav>
-
-        <div className="p-4 border-t">
-          <button className="flex items-center gap-2 text-red-500 hover:text-red-600">
-            <LogOut size={20} />
-            Logout
-          </button>
-        </div>
-      </aside> */}
-
       {/* Main content */}
       <main className="flex-1 p-6">
-        <h1 className="text-2xl font-bold mb-4">Daftar Toko</h1>
-
-        <div className="bg-white rounded-xl shadow overflow-hidden">
-          <table className="w-full border-collapse">
-            <thead className="bg-gray-50 border-b">
-              <tr>
-                <th className="text-left p-3 font-medium text-gray-600">
-                  Nama Toko
-                </th>
-                <th className="text-left p-3 font-medium text-gray-600">
-                  Kategori
-                </th>
-                <th className="text-left p-3 font-medium text-gray-600">
-                  Lihat Menu
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* DataToko sekarang tersedia dari hasil fetch server */}
-              {dataToko.map((toko) => (
-                <tr key={toko.id} className="border-b hover:bg-gray-50">
-                  <td className="p-3">{toko.name}</td>
-                  <td className="p-3 text-gray-600">{toko.categories}</td>
-                  <button className="p-1 text-gray-600 bg-amber-300 m-1 rounded-sm hover:bg-amber-500">
-                    Menu
-                  </button>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <h1 className="text-3xl font-extrabold mb-6 text-gray-800">Daftar Toko</h1>
+        
+        {/* Tombol Tambah Toko */}
+        <button className="px-4 py-2 mb-6 text-white bg-amber-600 rounded-lg shadow-md hover:bg-amber-700 transition duration-150 ease-in-out font-medium">
+          Tambah Toko
+        </button>
+        
+        {/* Grid untuk Card Toko */}
+        {/* Grid akan menampilkan 1 kolom di layar kecil, 2 di medium, dan 3 di large */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* DataToko sekarang tersedia dari hasil fetch server */}
+          {dataToko.map((toko) => (
+            <div 
+              key={toko.id} 
+              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out p-6 border border-gray-100"
+            >
+              {/* Nama Toko */}
+              <h2 className="text-xl font-bold mb-2 text-gray-900">{toko.name}</h2>
+              
+              {/* Kategori */}
+              <p className="text-sm text-amber-600 font-semibold mb-4">
+                {toko.categories}
+              </p>
+              
+              {/* Deskripsi/Info Tambahan (Opsional) */}
+              <p className="text-gray-600 mb-4">
+                Lihat detail menu dan produk yang ditawarkan oleh **{toko.name}**.
+              </p>
+              
+              {/* Tombol Lihat Menu */}
+              <button className="mt-2 w-full py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition duration-150 ease-in-out font-medium">
+                Lihat Menu
+              </button>
+            </div>
+          ))}
         </div>
+        
+        {/* Tampilan alternatif untuk "Tidak ada Toko" */}
+        {dataToko.length === 0 && (
+          <div className="mt-8 p-4 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700 rounded-md">
+            <p className="font-bold">Tidak ada Toko ditemukan.</p>
+            <p>Silakan klik Tambah Toko untuk memulai.</p>
+          </div>
+        )}
       </main>
     </>
   );
