@@ -5,6 +5,8 @@ interface Toko {
   categories: string;
 }
 
+import AddTokoForm from './AddTokoForm'
+
 // Komponen ini adalah Server Component, jadi boleh pakai async/await
 export default async function TokoPage() {
   // Data fetching terjadi di sisi server sebelum rendering
@@ -22,10 +24,7 @@ export default async function TokoPage() {
       <main className="flex-1 p-6">
         <h1 className="text-3xl font-extrabold mb-6 text-gray-800">Daftar Toko</h1>
         
-        {/* Tombol Tambah Toko */}
-        <button className="px-4 py-2 mb-6 text-white bg-amber-600 rounded-lg shadow-md hover:bg-amber-700 transition duration-150 ease-in-out font-medium">
-          Tambah Toko
-        </button>
+      <AddTokoForm/>
         
         {/* Grid untuk Card Toko */}
         {/* Grid akan menampilkan 1 kolom di layar kecil, 2 di medium, dan 3 di large */}
