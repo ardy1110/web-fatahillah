@@ -28,7 +28,7 @@ export default function LoginPage() {
       }
 
       // kalau sukses redirect ke /admin
-      router.push("/admin/dashboard");
+      router.push("/admin");
     } catch (err) {
       setError("Terjadi error pada server"+ err);
     }

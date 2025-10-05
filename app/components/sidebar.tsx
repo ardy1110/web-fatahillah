@@ -9,7 +9,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   const menuItems = [
-    { name: "Dashboard", href: "/admin/dashboard", icon: <LayoutDashboard /> },
+    { name: "Dashboard", href: "/admin", icon: <LayoutDashboard /> },
     { name: "Toko", href: "/admin/toko", icon: <Store /> },
   ];
 
