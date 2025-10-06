@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonMenu from "./components/ButtonMenu";
 
 export default function mainLayout({
   children,
@@ -6,19 +7,14 @@ export default function mainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main>
+    <main className="relative min-h-screen">
       {/* Navbar  */}
-      <nav className="flex items-center justify-between p-6 m-2 rounded-2xl bg-white ">
-        {/* Bagian kiri */}
-        <div className="flex items-center space-x-4">
-          <h1 className="text-xl font-bold">☕ LOGO</h1>
-        </div>
-
-        {/* Bagian kanan */}
-        <div className="flex items-center space-x-4">
-          <button className="px-4 py-1 border rounded-lg bg-[tomato] text-white">
-            Menu
-          </button>
+      <nav className="fixed p-10 top-0 left-0 w-full z-50 bg-transparent text-white">
+        <div className="flex justify-between">
+          {/* Bagian kiri */}
+          <h1 className="text-2xl font-bold">☕ LOGO</h1>
+          {/* Bagian kanan */}
+          <ButtonMenu />
         </div>
       </nav>
       {children}
