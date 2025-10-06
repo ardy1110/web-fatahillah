@@ -7,9 +7,9 @@ export default function mainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="relative min-h-screen">
+    <main className="flex flex-col gap-12">
       {/* Navbar  */}
-      <nav className="fixed p-5 top-0 left-0 w-full z-50 bg-transparent text-white backdrop-blur-sm">
+      <nav className="fixed py-5 px-10 top-0 left-0 w-full z-50 bg-transparent text-white">
         <div className="flex justify-between">
           {/* Bagian kiri */}
           <h1 className="text-2xl font-bold">☕ LOGO</h1>

@@ -4,11 +4,11 @@ import Landing from "./components/Landing";
 export default function Home() {
   return (
     <>
-    <div>
-      <Landing/>
-    </div>
       <div>
-        <About/>
+        <Landing />
+      </div>
+      <div>
+        <About />
       </div>
       {/* Isi Halaman About  */}
       <div className="flex items-center justify-center h-dvh bg-blue-900 m-2 rounded-2xl">
