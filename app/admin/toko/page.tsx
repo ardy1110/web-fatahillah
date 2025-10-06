@@ -13,8 +13,8 @@ interface Toko {
   products?: Product[];
 }
 
-import AddTokoForm from './components/AddTokoForm'
-import TokoItem from './components/TokoMenu'
+import AddTokoForm from "./components/AddTokoForm";
+import TokoItem from "./components/TokoMenu";
 
 // Komponen ini adalah Server Component, jadi boleh pakai async/await
 export default async function TokoPage() {
@@ -31,10 +31,12 @@ export default async function TokoPage() {
     <>
       {/* Main content */}
       <main className="flex-1 p-6">
-        <h1 className="text-3xl font-extrabold mb-6 text-gray-800">Daftar Toko</h1>
-        
-      <AddTokoForm/>
-        
+        <h1 className="text-3xl font-extrabold mb-6 text-gray-800">
+          Daftar Toko
+        </h1>
+
+        <AddTokoForm />
+
         {/* Grid untuk Card Toko */}
         {/* Grid akan menampilkan 1 kolom di layar kecil, 2 di medium, dan 3 di large */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -43,7 +45,7 @@ export default async function TokoPage() {
             <TokoItem key={toko.id} toko={toko} />
           ))}
         </div>
-        
+
         {/* Tampilan alternatif untuk "Tidak ada Toko" */}
         {dataToko.length === 0 && (
           <div className="mt-8 p-4 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700 rounded-md">

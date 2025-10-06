@@ -39,7 +39,7 @@ const Sidebar = () => {
       </nav>
 
       <div className="p-4 border-t">
-        <button className="flex items-center gap-2 text-red-500 hover:text-red-800">
+        <button className="flex items-center gap-2 text-red-500 hover:text-red-800 cursor-pointer">
           <LogOut size={20} />
           Logout
         </button>
