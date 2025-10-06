@@ -35,6 +35,7 @@ export default function TokoItem({ toko }: { toko: Toko }) {
   return (
     <>
       <div className="flex flex-col justify-between bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 ease-in-out p-6 border border-gray-100">
+      <div className="flex flex-col justify-between bg-white rounded-sm shadow-lg hover:shadow-2xl transition duration-300 ease-in-out p-6 border border-gray-100">
         <div>
           <h2 className="text-xl font-bold mb-2 text-gray-900">{toko.name}</h2>
           <p className="text-sm text-amber-600 font-semibold mb-4">
