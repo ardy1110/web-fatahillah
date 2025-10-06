@@ -9,7 +9,7 @@ export default function mainLayout({
   return (
     <main className="relative min-h-screen">
       {/* Navbar  */}
-      <nav className="fixed p-10 top-0 left-0 w-full z-50 bg-transparent text-white">
+      <nav className="fixed p-5 top-0 left-0 w-full z-50 bg-transparent text-white backdrop-blur-sm">
         <div className="flex justify-between">
           {/* Bagian kiri */}
           <h1 className="text-2xl font-bold">☕ LOGO</h1>
