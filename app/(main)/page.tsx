@@ -1,3 +1,4 @@
+import About from "./components/About";
 import Landing from "./components/Landing";
 
 export default function Home() {
@@ -6,9 +7,9 @@ export default function Home() {
     <div>
       <Landing/>
     </div>
-      <h1 className="flex items-center justify-center text-3xl font-bold mt-4">
-        TENTANG KAMI
-      </h1>
+      <div>
+        <About/>
+      </div>
       {/* Isi Halaman About  */}
       <div className="flex items-center justify-center h-dvh bg-blue-900 m-2 rounded-2xl">
         <h1 className="text-3xl">About Content</h1>
