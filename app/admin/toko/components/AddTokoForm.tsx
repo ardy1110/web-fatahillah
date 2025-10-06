@@ -78,7 +78,7 @@ export default function AddTokoButton() {
               </h3>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-gray-400 hover:text-gray-600 text-3xl font-light"
+                className="text-gray-400 hover:text-gray-600 text-3xl font-light cursor-pointer"
                 aria-label="Tutup"
               >
                 &times;
@@ -134,7 +134,7 @@ export default function AddTokoButton() {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition duration-150 ease-in-out ${
+                className={`w-full py-2 px-4 border border-transparent rounded-md cursor-pointer shadow-sm text-sm font-medium text-white transition duration-150 ease-in-out ${
                   loading
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-amber-600 hover:bg-amber-700"

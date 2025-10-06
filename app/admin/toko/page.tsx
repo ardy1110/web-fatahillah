@@ -39,7 +39,7 @@ export default async function TokoPage() {
 
         {/* Grid untuk Card Toko */}
         {/* Grid akan menampilkan 1 kolom di layar kecil, 2 di medium, dan 3 di large */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           {/* DataToko sekarang tersedia dari hasil fetch server */}
           {dataToko.map((toko) => (
             <TokoItem key={toko.id} toko={toko} />

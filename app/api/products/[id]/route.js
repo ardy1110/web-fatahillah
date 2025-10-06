@@ -25,6 +25,7 @@ export async function PUT(req, { params }) {
   try {
     const { id } = await params;
     const body = await req.json();
+
     const updateProduct = await prisma.product.update({
       where: { id: parseInt(id) },
       data: {

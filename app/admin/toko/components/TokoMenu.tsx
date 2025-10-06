@@ -33,16 +33,18 @@ export default function TokoItem({ toko }: { toko: Toko }) {
   }, [open]);
 
   return (
-    <div className="p-0">
-      <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out p-6 border border-gray-100">
-        <h2 className="text-xl font-bold mb-2 text-gray-900">{toko.name}</h2>
-        <p className="text-sm text-amber-600 font-semibold mb-4">
-          {toko.categories}
-        </p>
-        <p className="text-gray-600 mb-4">
-          Lihat detail menu dan produk yang ditawarkan oleh{" "}
-          <strong>{toko.name}</strong>.
-        </p>
+    <>
+      <div className="flex flex-col justify-between bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out p-6 border border-gray-100">
+        <div>
+          <h2 className="text-xl font-bold mb-2 text-gray-900">{toko.name}</h2>
+          <p className="text-sm text-amber-600 font-semibold mb-4">
+            {toko.categories}
+          </p>
+          <p className="text-gray-600 mb-4">
+            Lihat detail menu dan produk yang ditawarkan oleh{" "}
+            <strong>{toko.name}</strong>.
+          </p>
+        </div>
 
         <button
           onClick={() => setOpen(true)}
@@ -64,9 +66,10 @@ export default function TokoItem({ toko }: { toko: Toko }) {
                 <h3 className="text-lg font-semibold">Menu - {toko.name}</h3>
                 <button
                   onClick={() => setOpen(false)}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-gray-400 hover:text-gray-600 text-3xl font-light cursor-pointer"
+                  aria-label="Tutup"
                 >
-                  Tutup
+                  &times;
                 </button>
               </div>
               <div className="p-4">
@@ -116,6 +119,6 @@ export default function TokoItem({ toko }: { toko: Toko }) {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
