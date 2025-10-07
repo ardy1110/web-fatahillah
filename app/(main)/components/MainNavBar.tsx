@@ -32,6 +32,7 @@ const MainNavBar = () => {
           ☕ LOGO
         </h1>
         {/* Bagian kanan */}
+        
         <ButtonMenu />
       </div>
     </nav>
