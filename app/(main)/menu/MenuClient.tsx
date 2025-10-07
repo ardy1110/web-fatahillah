@@ -24,18 +24,18 @@ export default function MenuClient({ tokoList }: { tokoList: Toko[] }) {
   );
 
   return (
-    <section className="flex flex-col md:flex-row min-h-screen bg-[#faf6f2]">
+    <section className="flex flex-col md:flex-row min-h-screen">
       {/* Sidebar */}
-      <aside className="w-full md:w-1/4 bg-white border-r border-gray-200 pt-28 px-6">
+      <aside className="w-full md:w-1/4 bg-[#faf7f3] border-r border-gray-200 pt-22 px-6 shadow-md">
         <ul className="space-y-3">
           {tokoList.map((toko) => (
             <li key={toko.id}>
               <button
                 onClick={() => setSelectedToko(toko)}
-                className={`w-full text-left px-4 py-3 rounded-lg transition cursor-pointer ${
+                className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 font-medium cursor-pointer ${
                   selectedToko?.id === toko.id
-                    ? "bg-amber-600 text-white font-semibold"
-                    : "hover:bg-[#f1e7dd] text-gray-600"
+                    ? "bg-amber-600 text-white shadow-sm"
+                    : "bg-white hover:bg-amber-50 text-gray-700 hover:text-amber-700 border border-gray-100"
                 }`}
               >
                 {toko.name}
@@ -46,7 +46,7 @@ export default function MenuClient({ tokoList }: { tokoList: Toko[] }) {
       </aside>
 
       {/* Konten */}
-      <main className="flex-1 p-8">
+      <main className="flex-1 px-8 py-2">
         <h2 className="text-3xl font-bold text-gray-900 mb-6 py-3">
           {selectedToko?.name ?? "Pilih toko"}
         </h2>
