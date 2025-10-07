@@ -53,10 +53,8 @@ export default function Menu() {
   return (
     <section className="flex flex-col md:flex-row min-h-screen bg-[#faf6f2]">
       {/* Sidebar */}
-      <aside className="w-full md:w-1/4 bg-white border-r border-gray-200 p-6">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center md:text-left">
-          Pilih Toko
-        </h2>
+      <aside className="w-full md:w-1/4 bg-white border-r border-gray-200 py-18 px-6">
+   
         <ul className="space-y-3">
           {tokoList.map((toko) => (
             <li key={toko.id}>
@@ -77,7 +75,7 @@ export default function Menu() {
 
       {/* Konten Menu */}
       <main className="flex-1 p-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">
+        <h2 className="text-3xl font-bold text-gray-900 mb-6 py-3">
           {selectedToko?.name ?? 'Pilih toko'}
         </h2>
 
