@@ -2,8 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import ButtonMenu from "./ButtonMenu";
+import { usePathname } from "next/navigation";
 
 const MainNavBar = () => {
+  const pathname = usePathname();
   const [isSolid, setIsSolid] = useState(false);
 
   useEffect(() => {
@@ -26,13 +28,13 @@ const MainNavBar = () => {
         {/* Bagian kiri */}
         <h1
           className={`text-2xl font-bold ${
-            !isSolid ? "text-white" : "text-black"
+            !isSolid && pathname !== "/menu" ? "text-white" : "text-black"
           }`}
         >
           ☕ LOGO
         </h1>
         {/* Bagian kanan */}
-        
+
         <ButtonMenu />
       </div>
     </nav>
