@@ -30,7 +30,7 @@ export default function LoginPage() {
       // kalau sukses redirect ke /admin
       router.push("/admin");
     } catch (err) {
-      setError("Terjadi error pada server"+ err);
+      setError("Terjadi error pada server" + err);
     }
   };
 
@@ -77,7 +77,7 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+            className="w-full bg-amber-500 text-white py-2 rounded-lg hover:bg-amber-600 transition"
           >
             Login
           </button>

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import ButtonMenu from "./ButtonMenu";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const MainNavBar = () => {
   const pathname = usePathname();
@@ -26,13 +27,14 @@ const MainNavBar = () => {
     >
       <div className="flex items-center justify-between">
         {/* Bagian kiri */}
-        <h1
+        <Link
+          href={"/"}
           className={`text-2xl font-bold ${
             !isSolid && pathname !== "/menu" ? "text-white" : "text-black"
           }`}
         >
           ☕ LOGO
-        </h1>
+        </Link>
         {/* Bagian kanan */}
 
         <ButtonMenu />

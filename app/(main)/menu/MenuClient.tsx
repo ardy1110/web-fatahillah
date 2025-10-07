@@ -26,7 +26,7 @@ export default function MenuClient({ tokoList }: { tokoList: Toko[] }) {
   return (
     <section className="flex flex-col md:flex-row min-h-screen">
       {/* Sidebar */}
-      <aside className="w-full md:w-1/4 bg-[#faf7f3] border-r border-gray-200 pt-22 px-6 shadow-md">
+      <aside className="w-full md:w-1/4 bg-[#faf7f3] border-r rounded-xl border-gray-200 pt-22 px-6 shadow-md">
         <ul className="space-y-3">
           {tokoList.map((toko) => (
             <li key={toko.id}>
@@ -47,11 +47,11 @@ export default function MenuClient({ tokoList }: { tokoList: Toko[] }) {
 
       {/* Konten */}
       <main className="flex-1 px-8 py-2">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6 py-3">
-          {selectedToko?.name ?? "Pilih toko"}
+        <h2 className="flex justify-center text-3xl font-bold text-gray-900 mb-6 py-3">
+          {selectedToko?.name ?? "Pilih Toko"}
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-8">
           {selectedToko?.products?.map((p) => (
             <div
               key={p.id}

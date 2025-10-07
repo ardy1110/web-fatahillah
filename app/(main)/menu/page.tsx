@@ -1,6 +1,6 @@
 import MenuClient from "./MenuClient";
 
-export default async function Page() {
+export default async function PageMenu() {
   // ✅ Fetch data di server
   const res = await fetch("http://localhost:3000/api/toko");
 
