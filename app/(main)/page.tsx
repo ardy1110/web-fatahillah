@@ -5,17 +5,11 @@ import Landing from "./components/Landing";
 export default function Home() {
   return (
     <>
-      <div>
-        <Landing />
-      </div>
+      <Landing />
 
-      <div>
-        <About />
-      </div>
+      <About />
 
-      <div>
-        <ContactMap />
-      </div>
+      <ContactMap />
     </>
   );
 }
