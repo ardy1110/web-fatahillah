@@ -37,7 +37,7 @@ const MainNavBar = () => {
         </Link>
         {/* Bagian kanan */}
 
-        <ButtonMenu />
+        {pathname === "/" && <ButtonMenu />}
       </div>
     </nav>
   );
