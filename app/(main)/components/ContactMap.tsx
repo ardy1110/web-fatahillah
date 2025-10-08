@@ -21,6 +21,8 @@ const ContactMap = () => {
         <div>
           <h2 className="pb-4 font-bold text-2xl">Lokasi Kami</h2>
           <iframe
+          width={600}
+          height={250}
             className=" rounded-2xl"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.2351077229428!2d95.30465977420894!3d5.532101994448091!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30403b0003db853d%3A0x180858a4a9d2d4fa!2sWarkop%20Fatahillah!5e0!3m2!1sid!2sid!4v1759661072583!5m2!1sid!2sid"
             loading="lazy"
