@@ -12,7 +12,7 @@ const MainNavBar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const halfScreen = window.innerHeight; // full dvh
+      const halfScreen = window.innerHeight * 0.5; // Setengah Layar
       setIsSolid(window.scrollY > halfScreen);
     };
 
@@ -28,9 +28,9 @@ const MainNavBar = () => {
     >
       <div className="flex items-start justify-between">
         <Link href="/" className="flex items-center space-x-4">
-          <div className="relative w-12 h-12">
+          <div className="relative w-[168] h-[52]">
             <Image
-              src="/favicon.ico"
+              src="/wf.png"
               alt="Logo Fatahillah"
               fill
               className={`transition-all duration-200 ${
@@ -45,8 +45,8 @@ const MainNavBar = () => {
               !isSolid && pathname !== "/menu" ? "text-white" : "text-black"
             }`}
           >
-            <h1>Warkop</h1>
-            <h1>Fatahillah</h1>
+            {/* <h1>Warkop</h1>
+            <h1>Fatahillah</h1> */}
           </div>
         </Link>
         {pathname === "/" && <ButtonMenu />}
