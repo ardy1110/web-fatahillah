@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { SiFacebook, SiInstagram, SiTiktok } from "react-icons/si";
 
@@ -10,9 +11,9 @@ const MainFooter = () => {
         {/* Kolom 1  */}
         <div>
           {/* Ganti jadi logo kita  */}
-          <h2 className="text-lg font-bold flex items-center gap-2">
-            <span>☕</span> Warkop Fatahillah
-          </h2>
+          <div className="relative w-[126] h-[39] text-lg font-bold flex items-center gap-2">
+            <Image src="/wf.png" alt="Logo Footer" fill />
+          </div>
           <p className="mt-3 text-sm text-gray-100">
             Your neighborhood coffee stall, serving the best coffee and snacks
             since 2005.
