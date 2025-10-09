@@ -39,7 +39,7 @@ export default function TokoItem({ toko }: { toko: Toko }) {
       <div className="flex flex-col justify-between bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 ease-in-out p-6 border border-gray-100">
         <div>
           <div>
-            <div className="flex justify-end">
+            <div className="flex justify-end space-x-2">
               <EditToko toko={toko} />
               <DeleteToko tokoId={toko.id} />
             </div>
@@ -60,7 +60,7 @@ export default function TokoItem({ toko }: { toko: Toko }) {
 
         <button
           onClick={() => setOpen(true)}
-          className="mt-2 w-full py-2 text-white bg-blue-500 rounded-lg cursor-pointer hover:bg-blue-600 transition duration-150 ease-in-out font-medium"
+          className="mt-2 w-full py-2 text-white bg-amber-600 rounded-lg cursor-pointer hover:bg-amber-700 transition duration-150 ease-in-out font-medium"
         >
           Lihat Menu
         </button>
