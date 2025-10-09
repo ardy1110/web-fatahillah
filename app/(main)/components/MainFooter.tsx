@@ -1,25 +1,63 @@
 import React from "react";
+import { SiFacebook, SiInstagram, SiTiktok } from "react-icons/si";
 
 const MainFooter = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="h-[50dvh] bg-amber-600 text-white p-2">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-1.5">
+    <footer className="h-[50dvh] bg-amber-600 text-white p-10">
+      <div className="mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        {/* Kolom 1  */}
         <div>
-          <h1>Fatahillah Warkop</h1>
-          <p>Kopi nikmat, makanan enak, harga bersahabat</p>
-          
+          {/* Ganti jadi logo kita  */}
+          <h2 className="text-lg font-bold flex items-center gap-2">
+            <span>☕</span> Warkop Fatahillah
+          </h2>
+          <p className="mt-3 text-sm text-gray-100">
+            Your neighborhood coffee stall, serving the best coffee and snacks
+            since 2005.
+          </p>
+          {/* Brand/Sponsor  */}
+          <div className="flex gap-4 mt-4">
+            <SiFacebook size={25} />
+            <SiInstagram size={25} />
+            <SiTiktok size={25} />
+          </div>
         </div>
+
+        {/* Kolom 2: Toko-toko Penjual*/}
         <div>
-          <h1>Toko</h1>
+          <h3 className="text-lg font-semibold mb-3">Penjual Makanan</h3>
+          <ul className="space-y-1 text-sm">
+            {/* Suseaikan lagi  */}
+            <li>Mie Bangladesh Costa</li>
+            <li>Soto Dapur Rini</li>
+            <li>Lala Kitchen</li>
+            <li>Martabak Durian</li>
+            <li>Minang saiyo</li>
+          </ul>
         </div>
+
+        {/* Kolom 3: Contact */}
         <div>
-          <h1>Contact Us</h1>
+          <h3 className="text-lg font-semibold mb-3">Hubungi Kami</h3>
+          <p className="text-sm">Jl. Merdeka No. 123, Jakarta</p>
+          <p className="text-sm">warkopjaya@email.com</p>
+          <p className="text-sm">+62 812 3456 7890</p>
         </div>
+
+        {/* Kolom 4: Jam Buka */}
         <div>
-          <h1>Buka Saat</h1>
+          <h3 className="text-lg font-semibold mb-3">Buka pada jam</h3>
+          <p className="text-sm">Monday - Friday: 7 AM - 10 PM</p>
+          <p className="text-sm">Saturday - Sunday: 8 AM - 11 PM</p>
         </div>
       </div>
-      <div className="border-t-2"></div>
+
+      {/* Garis Bawah */}
+      <div className="border-t mt-10 pt-4 text-center text-sm text-gray-200">
+        &copy; {currentYear} Warkop Fatahillah. All rights reserved.
+      </div>
     </footer>
   );
 };
