@@ -12,7 +12,7 @@ const MainNavBar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const halfScreen = window.innerHeight; // full dvh
+      const halfScreen = window.innerHeight * 0.5; // Setengah Layar
       setIsSolid(window.scrollY > halfScreen);
     };
 

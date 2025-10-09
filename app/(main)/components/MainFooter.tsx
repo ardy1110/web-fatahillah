@@ -6,8 +6,8 @@ const MainFooter = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="h-[50dvh] bg-amber-600 text-white p-10">
-      <div className="mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="min-h-[50dvh] bg-amber-600 text-white p-10">
+      <div className="mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
         {/* Kolom 1  */}
         <div>
           {/* Ganti jadi logo kita  */}
