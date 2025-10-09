@@ -22,13 +22,13 @@ const MainNavBar = () => {
 
   return (
     <nav
-      className={`fixed p-10 top-0 left-0 w-full z-50 duration-500 bg-transparent ${
+      className={`fixed py-5 px-10 top-0 left-0 w-full z-50 duration-500 bg-transparent ${
         isSolid ? "bg-white/90 shadow-md backdrop-blur-sm" : "bg-transparent"
       }`}
     >
       <div className="flex items-start justify-between">
         <Link href="/" className="flex items-center space-x-4">
-          <div className="relative w-16 h-16">
+          <div className="relative w-12 h-12">
             <Image
               src="/favicon.ico"
               alt="Logo Fatahillah"
@@ -41,7 +41,7 @@ const MainNavBar = () => {
             />
           </div>
           <div
-            className={`flex flex-col items-center text-2xl font-bold transition-all duration-200 ${
+            className={`flex flex-col items-center text-xl font-bold transition-all duration-200 ${
               !isSolid && pathname !== "/menu" ? "text-white" : "text-black"
             }`}
           >

@@ -27,7 +27,7 @@ export default function About() {
         <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-xl transition duration-300">
           <div className="relative w-full h-56">
             <Image
-              src="/beans.jpg" // ganti sesuai gambar di /public
+              src="/iconBgWhite.jpeg" // ganti sesuai gambar di /public
               alt="Biji Kopi Pilihan"
               fill
               className="object-cover"
@@ -46,7 +46,7 @@ export default function About() {
         <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-xl transition duration-300">
           <div className="relative w-full h-56">
             <Image
-              src="/beans.jpg" // ganti sesuai gambar di /public
+              src="/iconBgWhite.jpeg" // ganti sesuai gambar di /public
               alt="Biji Kopi Pilihan"
               fill
               className="object-cover"
@@ -65,7 +65,7 @@ export default function About() {
         <div className="bg-white shadow-lg rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-xl transition duration-300">
           <div className="relative w-full h-56">
             <Image
-              src="/beans.jpg" // ganti sesuai gambar di /public
+              src="/iconBgWhite.jpeg"// ganti sesuai gambar di /public
               alt="Biji Kopi Pilihan"
               fill
               className="object-cover"
