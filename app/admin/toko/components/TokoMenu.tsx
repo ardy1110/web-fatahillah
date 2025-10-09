@@ -3,6 +3,8 @@
 import React from "react";
 import AddProductForm from "./AddProductForm";
 import ProductActions from "./ProductActions";
+import EditToko from "./EditToko";
+import DeleteToko from "./DeleteToko";
 
 type Product = {
   id: number;
@@ -36,7 +38,17 @@ export default function TokoItem({ toko }: { toko: Toko }) {
     <>
       <div className="flex flex-col justify-between bg-white rounded-xl shadow-sm hover:shadow-xl transition duration-300 ease-in-out p-6 border border-gray-100">
         <div>
-          <h2 className="text-xl font-bold mb-2 text-gray-900">{toko.name}</h2>
+          <div>
+            <div className="flex justify-end">
+              <EditToko toko={toko} />
+              <DeleteToko tokoId={toko.id} />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold mb-2 text-gray-900 ">
+                {toko.name}
+              </h2>
+            </div>
+          </div>
           <p className="text-sm text-amber-600 font-semibold mb-4">
             {toko.categories}
           </p>

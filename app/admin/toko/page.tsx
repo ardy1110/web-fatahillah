@@ -34,6 +34,7 @@ export default async function TokoPage() {
         <h1 className="text-3xl font-extrabold mb-6 text-gray-800">
           Daftar Toko
         </h1>
+          
 
         <AddTokoForm />
 

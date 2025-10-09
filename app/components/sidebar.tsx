@@ -27,8 +27,8 @@ const Sidebar = () => {
             <Link
               key={menu.href}
               href={menu.href}
-              className={`flex items-center gap-3 p-3 rounded-md mb-2 ${
-                isActive ? "bg-[tomato] text-white" : "bg-white text-black"
+              className={`flex items-center gap-3 p-3 rounded-md mb-2 hover:bg-amber-200 ${
+                isActive ? "bg-amber-600 text-white hover:bg-amber-600" : "bg-white text-black"
               }`}
             >
               {menu.icon}
