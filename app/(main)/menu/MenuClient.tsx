@@ -1,5 +1,7 @@
 // "use client";
 
+import Image from "next/image";
+
 interface Product {
   id: number;
   name: string;
@@ -19,11 +21,11 @@ export default function MenuClient({ tokoList }: { tokoList: Toko[] }) {
   // const [selectedToko, setSelectedToko] = useState<Toko | null>(
   //   tokoList[0] ?? null
   // );
-  console.log(tokoList);
+  console.log(tokoList[0].products);
 
   return (
-    // Tambah scroll 
-    <main className="flex flex-col h-dvh py-12"> 
+    // Tambah scroll
+    <main className="flex flex-col h-dvh py-12">
       {/* Header */}
       <header className="text-center py-6">
         <h1 className="text-3xl font-bold text-black">{tokoList[0].name}</h1>
@@ -65,18 +67,21 @@ export default function MenuClient({ tokoList }: { tokoList: Toko[] }) {
       </section>
 
       {/* Navbar Bawah */}
-      <footer className="absolute bottom-0 w-full">
-        <div className="bg-amber-600 m-4 p-2 rounded-xl shadow-md">
-          <div className="flex items-center justify-center gap-4 px-4">
-            {tokoList.map((product) => (
-              <div
-                key={product.id}
-                className="flex items-center justify-center w-16 h-16 bg-white rounded-full"
-              >
-                {product.categories}
-              </div>
-            ))}
-          </div>
+      <footer className="absolute bottom-0 left-0 w-full flex justify-center">
+        <div className="bg-amber-600 p-2 m-4 rounded-xl shadow-md inline-flex items-center justify-center gap-4 px-10">
+          {tokoList.map((product) => (
+            <div
+              key={product.id}
+              className="relative bg-white w-16 h-16 rounded-full text-sm"
+            >
+              <Image
+                src={`/${product.name}.jpg`}
+                alt="Logo Toko"
+                fill
+                className="object-cover rounded-full"
+              />
+            </div>
+          ))}
         </div>
       </footer>
     </main>
