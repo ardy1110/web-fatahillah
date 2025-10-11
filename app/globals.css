@@ -16,3 +16,11 @@ body {
   --font-mono: var(--font-mono), ui-monospace;
 } */
 
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
