@@ -1,4 +1,4 @@
-import Sidebar from "@/app/admin/components/sidebar";
+import Sidebar from "@/app/admin/components/Sidebar";
 import React from "react";
 
 export default function adminLayout({
