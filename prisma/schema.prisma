@@ -1,8 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// This is your Prisma schema file
+// Learn more: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -13,42 +10,58 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Toko {
-  id                 Int @id @default(autoincrement())
-  name               String
-  categories         Categories
-  image              String?
-  products           Product[]
+model User { 
+  id       String @id @default(uuid())
+  username String @unique
+  password String 
 }
 
-enum Categories {
-  Minuman
-  Makanan
-  Snack
+model Store {
+  id          Int        @id @default(autoincrement())
+  name        String     @unique
+  description String?
+  address     String?
+  phoneNumber String?
+  // Relasi: Satu toko memiliki banyak kategori
+  categories  Category[]
+  // Relasi: Satu toko memiliki banyak produk (jika produk tidak harus terikat kategori)
+  products    Product[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 }
 
-model ProductCategory {
-  id       Int @id @default(autoincrement())
-  name     String @unique
-  products Product[]
+model Category {
+  id        Int        @id @default(autoincrement())
+  name      String
+  // Kategori terikat pada satu Toko
+  storeId   Int
+  store     Store      @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  // Relasi: Satu kategori memiliki banyak produk
+  products  Product[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  // Memastikan kombinasi nama kategori dan storeId unik
+  @@unique([name, storeId])
 }
 
 model Product {
-  id                Int @id @default(autoincrement())
-  name              String
-  description       String?
-  price             Float
-  image             String?
-  tokoId            Int
-  toko              Toko @relation(fields: [tokoId], references: [id])
-  categoryId        Int?
-  category          ProductCategory? @relation(fields: [categoryId], references: [id])
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String?
+  // Menggunakan Decimal untuk presisi harga yang lebih baik
+  price       Int
+  imageUrl    String? 
+  isAvailable Boolean    @default(true)
+
+  // Relasi ke kategori (opsional, jika produk boleh tanpa kategori)
+  categoryId  Int?
+  category    Category?  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  
+  // Relasi ke toko
+  storeId     Int
+  store       Store      @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 }
-
-model User {
-  id                Int    @id @default(autoincrement())
-  username          String @unique
-  password          String
-}
-
-

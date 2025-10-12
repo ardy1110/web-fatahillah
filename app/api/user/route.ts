@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "../../lib/prisma"; // pastikan file ini sudah ada
 
 // GET /api/users → ambil semua user
@@ -23,4 +23,22 @@ export async function GET() {
       { status: 500 }
     );
   }
+}
+
+export async function POST(req: NextRequest) {
+  const body = await req.json();
+  const { username, password } = body;
+
+  const user = await prisma.user.findUnique({
+    where: { username },
+  });
+
+  if (!user || user.password !== password) {
+    return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+  }
+
+  // Simpel: simpan session di cookie
+  const res = NextResponse.json({ message: "Login success" });
+  res.cookies.set("admin_token", "logged_in", { httpOnly: true });
+  return res;
 }
