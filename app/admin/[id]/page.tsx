@@ -45,7 +45,8 @@ async function DetailStore({ params }: DetailStoreProps) {
       <h1>Detail Store</h1>
       <p>ID: {store.id}</p>
       <p>Store Name: {store.name}</p>
-      <p>Product : {}</p>
+      
+      <p>Category : {}</p>
       <p>Product : {}</p>
 
     </div>
