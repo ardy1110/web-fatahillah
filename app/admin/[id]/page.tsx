@@ -1,21 +1,5 @@
 import React from 'react'
-
-interface Store {
-  id: number
-  name: string
-  categories: Categories[]
-}
-
-interface Categories {
-    id: number
-    name: string
-    product: Product[]
-}
-
-interface Product {
-    id: number
-    name: string
-}
+import { TableDemo } from './Table'
 
 interface DetailStoreProps {
   params: {
@@ -23,11 +7,10 @@ interface DetailStoreProps {
   }
 }
 
-async function DetailStore({ params }: DetailStoreProps) {
-  const { id } = params
-  
-  // Fetch data berdasarkan ID
-  const res = await fetch(`http://localhost:3000/api/store/${id}`, {
+async function DetailStore({params}: DetailStoreProps) {
+    const {id} = params
+
+    const res = await fetch(`http://localhost:3000/api/store/${id}`, {
     cache: 'no-store'
   })
   
@@ -35,20 +18,10 @@ async function DetailStore({ params }: DetailStoreProps) {
     return <div>Store not found</div>
   }
   
-  const store: Store = await res.json()
-
-  console.log(store);
-  
-  
+  const stores = await res.json()
   return (
     <div>
-      <h1>Detail Store</h1>
-      <p>ID: {store.id}</p>
-      <p>Store Name: {store.name}</p>
-      
-      <p>Category : {}</p>
-      <p>Product : {}</p>
-
+      <TableDemo stores={[stores]}/>
     </div>
   )
 }
