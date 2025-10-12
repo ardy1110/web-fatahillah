@@ -8,7 +8,7 @@ interface Store {
 
 export default async function Admin() {
   const res = await fetch("http://localhost:3000/api/store", {
-    // cache: "no-store", 
+    // cache: "no-store",
   });
 
   if (!res.ok) {
@@ -16,6 +16,7 @@ export default async function Admin() {
   }
 
   const datas: Store[] = await res.json();
+  console.log(datas);
 
   return (
     <>
