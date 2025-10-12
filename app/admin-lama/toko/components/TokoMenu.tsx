@@ -12,6 +12,7 @@ type Product = {
   price: number;
   description?: string | null;
   image?: string | null;
+  category?: { id: number; name: string } | null;
 };
 
 type Toko = {
@@ -102,6 +103,12 @@ export default function TokoItem({ toko }: { toko: Toko }) {
                             {p.description && (
                               <div className="text-sm text-gray-500">
                                 {p.description}
+                              </div>
+                            )}
+                            {/** show product category if present */}
+                            {p.category && (
+                              <div className="text-xs text-gray-400 mt-1">
+                                Kategori: {p.category.name}
                               </div>
                             )}
                           </div>

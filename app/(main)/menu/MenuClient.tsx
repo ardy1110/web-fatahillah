@@ -69,7 +69,7 @@ export default function MenuClient({ tokoList }: { tokoList: Toko[] }) {
       {/* Navbar Bawah */}
       <footer className="absolute bottom-0 left-0 w-full flex justify-center">
         <div className="relative p-3 m-4 rounded-2xl shadow-lg inline-flex items-center justify-center gap-4 px-10 overflow-hidden backdrop-blur-md bg-amber-500/30 border border-white/20">
-          <div className="flex gap-4 overflow-x-auto max-w-full scrollbar-none">
+          <div className="flex gap-4 overflow-x-auto sm:overflow-visible max-w-full scrollbar-none">
             {tokoList.map((product) => (
               <div
                 key={product.id}
