@@ -11,7 +11,7 @@ async function DetailStore({params}: DetailStoreProps) {
     const {id} = params
 
     const res = await fetch(`http://localhost:3000/api/store/${id}`, {
-    cache: 'no-store'
+    // cache: 'no-store'
   })
   
   if (!res.ok) {
@@ -20,9 +20,9 @@ async function DetailStore({params}: DetailStoreProps) {
   
   const stores = await res.json()
   return (
-    <div>
+    <main className='flex-1'>
       <TableDemo stores={[stores]}/>
-    </div>
+    </main>
   )
 }
 

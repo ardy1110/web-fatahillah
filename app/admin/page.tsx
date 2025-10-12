@@ -19,7 +19,7 @@ export default async function Admin() {
   const datas: Store[] = await res.json();
 
   return (
-    <main className="px-36 py-12">
+    <main className="flex-1 px-36 py-12">
       <h1 className="flex justify-center font-bold text-2xl pb-12">
         Dashboard
       </h1>

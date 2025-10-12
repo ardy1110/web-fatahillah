@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
-import {prisma} from '../../../lib/prisma'
-
-
-
+import { prisma } from "../../../lib/prisma";
 
 export async function GET() {
   try {
@@ -11,9 +8,6 @@ export async function GET() {
       include: {
         categories: true,
         products: true,
-      },
-      orderBy: {
-        createdAt: "desc",
       },
     });
 
@@ -29,23 +23,21 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json()
-    const {name, description} = body;
+    const body = await req.json();
+    const { name, description } = body;
 
     const newStore = await prisma.store.create({
       data: {
         name,
-        description
-      }
-    })
+        description,
+      },
+    });
     return NextResponse.json({
-      message: "Toko berhasil ditambahkan", store: newStore
-    })
+      message: "Toko berhasil ditambahkan",
+      store: newStore,
+    });
   } catch (error) {
     console.log(error);
-    return NextResponse.json(
-      { error: "Gagal menambah toko" },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: "Gagal menambah toko" }, { status: 500 });
   }
 }
