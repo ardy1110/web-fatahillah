@@ -14,6 +14,7 @@ import { Store } from "@/lib/types";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import AddButton from "./AddButton";
 
 export async function TableDemo({ stores }: { stores: Store[] }) {
   return (
