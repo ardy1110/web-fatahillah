@@ -45,7 +45,7 @@ export async function TableDemo({ stores }: { stores: Store[] }) {
       </div>
       {/* Right Section: Button */}
       <div className="flex justify-end ">
-        <AddButton />
+        <AddButton stores={stores} />
       </div>
 
       <div className="overflow-x-auto border border-gray-200 rounded-xl shadow-sm">
