@@ -62,7 +62,7 @@ export default function AddProductModal({
         className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
         onClick={onClose}
       >
-        <div className="bg-white rounded-2xl w-96 p-6 shadow-xl relative">
+        <div className="bg-white rounded-2xl w-96 p-6 shadow-xl relative" onClick={(e)=>e.stopPropagation()}>
           <button
             onClick={onClose}
             className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"

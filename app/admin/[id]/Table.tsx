@@ -15,6 +15,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import AddButton from "./AddButton";
+// import EditProduct from "./EditProduct";
 
 export async function TableDemo({ stores }: { stores: Store }) {
   return (
@@ -90,6 +91,7 @@ export async function TableDemo({ stores }: { stores: Store }) {
                       className="hover:bg-amber-100 text-amber-600 cursor-pointer"
                     >
                       <Edit2Icon size={18} />
+                      {/* <EditProduct store={stores}/> */}
                     </Button>
                     <Button
                       variant="ghost"
