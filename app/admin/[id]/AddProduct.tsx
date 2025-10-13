@@ -32,8 +32,7 @@ export default function AddProductModal({
       const res = await fetch(`/api/category?storeId=${storeId}`);
       if (res.ok) {
         const data = await res.json();
-        
-        
+
         setCategories(data);
       }
     };
@@ -101,7 +100,6 @@ export default function AddProductModal({
             <div>
               <label className="block text-sm mb-1">Kategori</label>
               <div className="flex items-center gap-2">
-              
                 <select
                   value={categoryId}
                   onChange={(e) => setCategoryId(Number(e.target.value))}
@@ -110,8 +108,6 @@ export default function AddProductModal({
                 >
                   <option value="">Pilih kategori</option>
                   {categories.map((cat) => (
-                    
-                    
                     <option key={cat.id} value={cat.id}>
                       {cat.name}
                     </option>

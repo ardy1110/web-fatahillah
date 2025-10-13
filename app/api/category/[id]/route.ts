@@ -1,17 +1,22 @@
 import { NextResponse } from "next/server";
-import {prisma} from '@/lib/prisma'
+import { prisma } from "@/lib/prisma";
 
 // ✅ PUT - update kategori
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const categoryId = parseInt(params.id);
+    const { id } = await params;
+
+    const categoryId = parseInt(id);
     const { name } = await req.json();
 
     if (!name) {
-      return NextResponse.json({ error: "Nama kategori wajib diisi" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Nama kategori wajib diisi" },
+        { status: 400 }
+      );
     }
 
     const updatedCategory = await prisma.category.update({
@@ -25,17 +30,21 @@ export async function PUT(
     });
   } catch (error) {
     console.error("❌ Error update category:", error);
-    return NextResponse.json({ error: "Gagal memperbarui kategori" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Gagal memperbarui kategori" },
+      { status: 500 }
+    );
   }
 }
 
 // ✅ DELETE - hapus kategori
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const categoryId = parseInt(params.id);
+    const { id } = await params;
+    const categoryId = parseInt(id);
 
     await prisma.category.delete({
       where: { id: categoryId },
@@ -44,6 +53,9 @@ export async function DELETE(
     return NextResponse.json({ message: "Kategori berhasil dihapus" });
   } catch (error) {
     console.error("❌ Error delete category:", error);
-    return NextResponse.json({ error: "Gagal menghapus kategori" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Gagal menghapus kategori" },
+      { status: 500 }
+    );
   }
 }

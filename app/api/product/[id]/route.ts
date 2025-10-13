@@ -1,15 +1,16 @@
-import {prisma} from '@/lib/prisma'
+import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
-
-
 
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const productId = parseInt(params.id);
-    const { name, price, description, imageUrl, categoryId, isAvailable } = await req.json();
+    const { id } = await params;
+
+    const productId = parseInt(id);
+    const { name, price, description, imageUrl, categoryId, isAvailable } =
+      await req.json();
 
     const updatedProduct = await prisma.product.update({
       where: { id: productId },
@@ -29,17 +30,20 @@ export async function PUT(
     });
   } catch (error) {
     console.error("❌ Error update product:", error);
-    return NextResponse.json({ error: "Gagal memperbarui produk" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Gagal memperbarui produk" },
+      { status: 500 }
+    );
   }
 }
 
-
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const productId = parseInt(params.id);
+    const { id } = await params;
+    const productId = parseInt(id);
 
     await prisma.product.delete({
       where: { id: productId },
@@ -48,6 +52,9 @@ export async function DELETE(
     return NextResponse.json({ message: "Produk berhasil dihapus" });
   } catch (error) {
     console.error("❌ Error delete product:", error);
-    return NextResponse.json({ error: "Gagal menghapus produk" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Gagal menghapus produk" },
+      { status: 500 }
+    );
   }
 }
