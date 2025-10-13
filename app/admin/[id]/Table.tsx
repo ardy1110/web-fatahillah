@@ -14,6 +14,7 @@ import { Store } from "@/lib/types";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import AddButton from "./AddButton";
 
 export async function TableDemo({ stores }: { stores: Store[] }) {
   return (
@@ -44,9 +45,7 @@ export async function TableDemo({ stores }: { stores: Store[] }) {
       </div>
       {/* Right Section: Button */}
       <div className="flex justify-end ">
-        <div className="inline-block m-4 p-2 px-4 bg-amber-600 rounded">
-          Tambah
-        </div>
+        <AddButton stores={stores} />
       </div>
 
       <div className="overflow-x-auto border border-gray-200 rounded-xl shadow-sm">
