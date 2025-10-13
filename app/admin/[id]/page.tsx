@@ -1,5 +1,5 @@
 import React from "react";
-import { TableDemo } from "./Table";
+import { TableDemo } from "./components/Table";
 
 // interface DetailStoreProps {
 //   params: {

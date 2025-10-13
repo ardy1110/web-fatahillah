@@ -8,14 +8,12 @@ import {
 } from "@/components/ui/table";
 import Image from "next/image";
 
-import { Edit2Icon } from "lucide-react";
-
 import { Store } from "@/lib/types";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import AddButton from "./AddButton";
-// import EditProduct from "./EditProduct";
+import EditButton from "./EditButton";
 
 export async function TableDemo({ stores }: { stores: Store }) {
   return (
@@ -85,14 +83,7 @@ export async function TableDemo({ stores }: { stores: Store }) {
                     Rp {product.price.toLocaleString("id-ID")}
                   </TableCell>
                   <TableCell className="px-6 py-3 flex justify-center space-x-4">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="hover:bg-amber-100 text-amber-600 cursor-pointer"
-                    >
-                      <Edit2Icon size={18} />
-                      {/* <EditProduct store={stores}/> */}
-                    </Button>
+                    <EditButton store={stores} />
                     <Button
                       variant="ghost"
                       size="icon"

@@ -1,13 +1,14 @@
 "use client";
+
 import { useState } from "react";
 import { X, PlusCircle } from "lucide-react";
-import AddCategoryModal from "./AddCategory";
 import { Categories, Store } from "@/lib/types";
+import AddCategoryModal from "./AddCategory";
 
 export default function AddProductModal({
   open,
   onClose,
-  store, // 👈 hanya 1 store, bukan array
+  store, 
 }: {
   open: boolean;
   onClose: () => void;
@@ -36,7 +37,7 @@ export default function AddProductModal({
         name,
         price: Number(price),
         categoryId,
-        storeId: store.id, // ✅ langsung pakai store.id
+        storeId: store.id,
       }),
     });
 
@@ -59,18 +60,21 @@ export default function AddProductModal({
   return (
     <>
       <div
-        className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+        className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 transition-opacity duration-200"
         onClick={onClose}
       >
-        <div className="bg-white rounded-2xl w-96 p-6 shadow-xl relative" onClick={(e)=>e.stopPropagation()}>
+        <div
+          className="bg-white rounded-2xl w-96 p-6 shadow-xl relative"
+          onClick={(e) => e.stopPropagation()}
+        >
           <button
             onClick={onClose}
-            className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
+            className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 cursor-pointer"
           >
             <X size={20} />
           </button>
 
-          <h2 className="text-lg font-semibold mb-4 text-gray-800">
+          <h2 className="text-lg text-center font-semibold mb-4 text-gray-800">
             Tambah Produk
           </h2>
 
@@ -97,7 +101,7 @@ export default function AddProductModal({
                   className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
                   required
                 >
-                  <option value="">Pilih kategori</option>
+                  <option>Pilih kategori</option>
                   {categories.map((cat) => (
                     <option key={cat.id} value={cat.id}>
                       {cat.name}
