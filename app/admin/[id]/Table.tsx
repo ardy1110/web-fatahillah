@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/table";
 import Image from "next/image";
 import {Store} from '@/lib/types'
+import { Edit2Icon } from "lucide-react";
 
 
 export async function TableDemo({ stores }: { stores: Store[] }) {
@@ -74,7 +75,8 @@ export async function TableDemo({ stores }: { stores: Store[] }) {
                     {product.price}
                   </TableCell>
                   <TableCell className="border border-gray-300 px-4 py-2 text-right">
-                    {/* tombol aksi di sini */}
+                    <Edit2Icon/>
+            
                   </TableCell>
                 </TableRow>
               ))
