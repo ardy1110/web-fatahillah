@@ -10,7 +10,6 @@ import Image from "next/image";
 
 import { Store } from "@/lib/types";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import AddButton from "./AddButton";
 import EditButton from "./EditButton";
@@ -18,7 +17,7 @@ import EditButton from "./EditButton";
 export async function TableDemo({ stores }: { stores: Store }) {
   return (
     <main className="p-12">
-      <div className="flex items-start justify-between p-4 mb-4">
+      <div className="flex items-start justify-between p-4">
         {/* Left Section: Image + Checkbox + Info */}
         <div className="flex items-start gap-4">
           {/* Image with Checkbox overlay */}
@@ -52,7 +51,7 @@ export async function TableDemo({ stores }: { stores: Store }) {
       <div className="overflow-x-auto border border-gray-200 rounded-xl shadow-sm">
         <Table>
           <TableHeader>
-            <TableRow className="bg-muted/50 text-sm">
+            <TableRow className="bg-muted/50 text-md">
               <TableHead className="text-left px-6 py-3 font-semibold">
                 Category
               </TableHead>
@@ -73,18 +72,19 @@ export async function TableDemo({ stores }: { stores: Store }) {
               category.products?.map((product) => (
                 <TableRow
                   key={`${stores.id}-${category.id}-${product.id}`}
-                  className="hover:bg-muted/30 transition-colors"
+                  className="hover:bg-muted/30 transition-colors text-sm"
                 >
-                  <TableCell className="px-6 py-3">
-                    <Badge variant="secondary">{category.name}</Badge>
-                  </TableCell>
+                  <TableCell className="px-6 py-3">{category.name}</TableCell>
                   <TableCell className="px-6 py-3">{product.name}</TableCell>
                   <TableCell className="px-6 py-3 font-medium text-foreground">
                     Rp {product.price.toLocaleString("id-ID")}
                   </TableCell>
                   <TableCell className="px-6 py-3 flex justify-center space-x-4">
                     {/* Tambah Pros Stores  */}
-                    <EditButton categories={[category]} product={product} />
+                    <EditButton
+                      categories={stores.categories}
+                      product={product}
+                    />
                     <Button
                       variant="ghost"
                       size="icon"

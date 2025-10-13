@@ -46,11 +46,17 @@ export default function AddCategoryModal({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50" onClick={onClose}>
-      <div className="bg-white rounded-2xl w-80 p-6 shadow-xl relative" onClick={(e)=>e.stopPropagation()}>
+    <div
+      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-2xl w-80 p-6 shadow-xl relative"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
+          className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 cursor-pointer"
         >
           <X size={20} />
         </button>
@@ -74,7 +80,7 @@ export default function AddCategoryModal({
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-amber-600 text-white py-2 rounded-md hover:bg-amber-700"
+            className="w-full bg-amber-600 text-white py-2 rounded-md hover:bg-amber-700 cursor-pointer"
           >
             {loading ? "Menyimpan..." : "Simpan"}
           </button>

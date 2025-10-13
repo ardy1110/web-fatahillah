@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Categories, Product } from "@/lib/types";
 import { PlusCircle, X } from "lucide-react";
 import React, { useState } from "react";
@@ -22,6 +23,7 @@ const EditProductModal = ({
 
   // Ambil storeId dari kategori pertama (anggap semua kategori dari store yang sama)
   const storeId = categories[0]?.storeId;
+  console.log(categories);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,7 +60,7 @@ const EditProductModal = ({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl w-96 p-6 shadow-xl relative"
+        className="bg-white rounded-2xl w-96 p-6 shadow-xl relative text-sm"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Tombol close */}
@@ -105,8 +107,8 @@ const EditProductModal = ({
               </select>
               <button
                 type="button"
-                className="p-2 bg-amber-600 text-white rounded-md hover:bg-amber-700"
                 title="Tambah kategori baru"
+                className="p-2 bg-amber-600 text-white rounded-md hover:bg-amber-700 cursor-pointer"
               >
                 <PlusCircle size={18} />
               </button>
@@ -125,12 +127,12 @@ const EditProductModal = ({
             />
           </div>
 
-          <button
+          <Button
             type="submit"
-            className="w-full bg-amber-600 text-white py-2 rounded-md hover:bg-amber-700"
+            className="w-full bg-amber-600 text-white py-2 rounded-md hover:bg-amber-700 cursor-pointer"
           >
             Simpan
-          </button>
+          </Button>
         </form>
       </div>
     </div>

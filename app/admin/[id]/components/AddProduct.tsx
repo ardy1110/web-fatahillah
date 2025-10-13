@@ -4,11 +4,12 @@ import { useState } from "react";
 import { X, PlusCircle } from "lucide-react";
 import { Categories, Store } from "@/lib/types";
 import AddCategoryModal from "./AddCategory";
+import { Button } from "@/components/ui/button";
 
 export default function AddProductModal({
   open,
   onClose,
-  store, 
+  store,
 }: {
   open: boolean;
   onClose: () => void;
@@ -64,7 +65,7 @@ export default function AddProductModal({
         onClick={onClose}
       >
         <div
-          className="bg-white rounded-2xl w-96 p-6 shadow-xl relative"
+          className="bg-white rounded-2xl w-96 p-6 shadow-xl relative text-sm"
           onClick={(e) => e.stopPropagation()}
         >
           <button
@@ -111,8 +112,8 @@ export default function AddProductModal({
                 <button
                   type="button"
                   onClick={() => setOpenCategoryModal(true)}
-                  className="p-2 bg-amber-600 text-white rounded-md hover:bg-amber-700"
                   title="Tambah kategori baru"
+                  className="p-2 bg-amber-600 text-white rounded-md hover:bg-amber-700 cursor-pointer"
                 >
                   <PlusCircle size={18} />
                 </button>
@@ -131,12 +132,12 @@ export default function AddProductModal({
               />
             </div>
 
-            <button
+            <Button
               type="submit"
-              className="w-full bg-amber-600 text-white py-2 rounded-md hover:bg-amber-700"
+              className="w-full bg-amber-600 text-white py-2 rounded-md hover:bg-amber-700 cursor-pointer"
             >
               Simpan
-            </button>
+            </Button>
           </form>
         </div>
       </div>
@@ -146,7 +147,7 @@ export default function AddProductModal({
         open={openCategoryModal}
         onClose={() => setOpenCategoryModal(false)}
         onAdd={handleAddCategory}
-        storeId={store.id} 
+        storeId={store.id}
       />
     </>
   );
