@@ -4,10 +4,12 @@ import { prisma } from "../../../../lib/prisma";
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const storeId = parseInt(params.id);
+    const { id } = await params;
+
+    const storeId = parseInt(id);
     const deleteStore = await prisma.store.delete({
       where: { id: storeId },
     });
@@ -26,10 +28,12 @@ export async function DELETE(
 
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const storeId = parseInt(params.id);
+    const { id } = await params;
+
+    const storeId = parseInt(id);
     const body = await req.json();
     const { name, description } = body;
 
@@ -76,10 +80,11 @@ export async function PUT(
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const storeId = parseInt(params.id);
+    const { id } = await params;
+    const storeId = parseInt(id);
 
     if (isNaN(storeId)) {
       return NextResponse.json(
@@ -116,4 +121,3 @@ export async function GET(
     );
   }
 }
-

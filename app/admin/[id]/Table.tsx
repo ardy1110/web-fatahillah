@@ -11,7 +11,7 @@ import Image from "next/image";
 import { Edit2Icon } from "lucide-react";
 
 import { Store } from "@/lib/types";
-import { Delete } from "lucide-react";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 export async function TableDemo({ stores }: { stores: Store[] }) {
   return (
@@ -76,11 +76,11 @@ export async function TableDemo({ stores }: { stores: Store[] }) {
                   <TableCell className="border border-gray-300 px-4 py-2">
                     {product.price}
                   </TableCell>
-                  <TableCell className="border border-gray-300 px-4 py-2 text-right">
+                  <TableCell className="flex justify-center border border-gray-300 py-2 text-right space-x-4">
                     {/* tombol aksi di sini */}
-                    <Edit2Icon/>
-            
-                    <Delete />
+                    <Edit2Icon size={20} />
+
+                    <RiDeleteBin5Line size={20} className="text-red-600" />
                   </TableCell>
                 </TableRow>
               ))
