@@ -8,7 +8,7 @@ import { TableDemo } from "./Table";
 // }
 
 async function DetailStore({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params
+  const { id } = await params;
 
   const res = await fetch(`http://localhost:3000/api/store/${id}`, {
     // cache: 'no-store'
@@ -19,9 +19,10 @@ async function DetailStore({ params }: { params: Promise<{ id: string }> }) {
   }
 
   const stores = await res.json();
+
   return (
     <main className="flex-1">
-      <TableDemo stores={[stores]} />
+      <TableDemo stores={stores} />
     </main>
   );
 }

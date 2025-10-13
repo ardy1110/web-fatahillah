@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { X } from "lucide-react";
+import { Categories } from "@/lib/types";
 
 export default function AddCategoryModal({
   open,
@@ -11,7 +12,7 @@ export default function AddCategoryModal({
 }: {
   open: boolean;
   onClose: () => void;
-  onAdd: (newCategory: { id: number; name: string }) => void;
+  onAdd: (newCategory: Categories) => void;
   storeId: number;
 }) {
   const [newCategory, setNewCategory] = useState("");

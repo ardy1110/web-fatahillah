@@ -1,48 +1,34 @@
 "use client";
-
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { X, PlusCircle } from "lucide-react";
 import AddCategoryModal from "./AddCategory";
-
-interface Category {
-  id: number;
-  name: string;
-}
+import { Categories, Store } from "@/lib/types";
 
 export default function AddProductModal({
   open,
   onClose,
-  storeId,
+  store, // 👈 hanya 1 store, bukan array
 }: {
   open: boolean;
   onClose: () => void;
-  storeId: number; // toko aktif
+  store: Store;
 }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [categoryId, setCategoryId] = useState<number | "">("");
-  const [categories, setCategories] = useState<Category[]>([]);
   const [openCategoryModal, setOpenCategoryModal] = useState(false);
-
-  // ambil kategori dari toko
-  useEffect(() => {
-    if (!open || !storeId) return;
-
-    const fetchCategories = async () => {
-      const res = await fetch(`/api/category?storeId=${storeId}`);
-      if (res.ok) {
-        const data = await res.json();
-
-        setCategories(data);
-      }
-    };
-
-    fetchCategories();
-  }, [open, storeId]);
+  const [categories, setCategories] = useState<Categories[]>(
+    store.categories || []
+  );
 
   // submit produk
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!categoryId) {
+      alert("Pilih kategori terlebih dahulu");
+      return;
+    }
+
     const res = await fetch("/api/product", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -50,7 +36,7 @@ export default function AddProductModal({
         name,
         price: Number(price),
         categoryId,
-        storeId,
+        storeId: store.id, // ✅ langsung pakai store.id
       }),
     });
 
@@ -63,7 +49,7 @@ export default function AddProductModal({
   };
 
   // handler ketika kategori baru ditambah
-  const handleAddCategory = (newCategory: Category) => {
+  const handleAddCategory = (newCategory: Categories) => {
     setCategories((prev) => [...prev, newCategory]);
     setCategoryId(newCategory.id);
   };
@@ -72,7 +58,10 @@ export default function AddProductModal({
 
   return (
     <>
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div
+        className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+        onClick={onClose}
+      >
         <div className="bg-white rounded-2xl w-96 p-6 shadow-xl relative">
           <button
             onClick={onClose}
@@ -86,6 +75,7 @@ export default function AddProductModal({
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Nama Produk */}
             <div>
               <label className="block text-sm mb-1">Nama Produk</label>
               <input
@@ -97,6 +87,7 @@ export default function AddProductModal({
               />
             </div>
 
+            {/* Kategori */}
             <div>
               <label className="block text-sm mb-1">Kategori</label>
               <div className="flex items-center gap-2">
@@ -124,6 +115,7 @@ export default function AddProductModal({
               </div>
             </div>
 
+            {/* Harga */}
             <div>
               <label className="block text-sm mb-1">Harga</label>
               <input
@@ -150,7 +142,7 @@ export default function AddProductModal({
         open={openCategoryModal}
         onClose={() => setOpenCategoryModal(false)}
         onAdd={handleAddCategory}
-        storeId={storeId}
+        storeId={store.id} // ✅ langsung kirim id toko aktif
       />
     </>
   );

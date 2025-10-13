@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import AddButton from "./AddButton";
 
-export async function TableDemo({ stores }: { stores: Store[] }) {
+export async function TableDemo({ stores }: { stores: Store }) {
   return (
     <main className="p-12">
       <div className="flex items-start justify-between p-4 mb-4">
@@ -36,7 +36,9 @@ export async function TableDemo({ stores }: { stores: Store[] }) {
 
           {/* Store Info */}
           <div className="flex flex-col justify-center">
-            <h2 className="font-semibold text-lg text-foreground">Nama Toko</h2>
+            <h2 className="font-semibold text-lg text-foreground">
+              {stores.name}
+            </h2>
             <p className="text-sm text-muted-foreground">
               Deskripsi singkat toko
             </p>
@@ -68,39 +70,37 @@ export async function TableDemo({ stores }: { stores: Store[] }) {
           </TableHeader>
 
           <TableBody>
-            {stores.map((store) =>
-              store.categories?.map((category) =>
-                category.products?.map((product) => (
-                  <TableRow
-                    key={`${store.id}-${category.id}-${product.id}`}
-                    className="hover:bg-muted/30 transition-colors"
-                  >
-                    <TableCell className="px-6 py-3">
-                      <Badge variant="secondary">{category.name}</Badge>
-                    </TableCell>
-                    <TableCell className="px-6 py-3">{product.name}</TableCell>
-                    <TableCell className="px-6 py-3 font-medium text-foreground">
-                      Rp {product.price.toLocaleString("id-ID")}
-                    </TableCell>
-                    <TableCell className="px-6 py-3 flex justify-center space-x-4">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="hover:bg-amber-100 text-amber-600 cursor-pointer"
-                      >
-                        <Edit2Icon size={18} />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="hover:bg-red-100 text-red-600 cursor-pointer"
-                      >
-                        <RiDeleteBin5Line size={18} />
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))
-              )
+            {stores.categories?.map((category) =>
+              category.products?.map((product) => (
+                <TableRow
+                  key={`${stores.id}-${category.id}-${product.id}`}
+                  className="hover:bg-muted/30 transition-colors"
+                >
+                  <TableCell className="px-6 py-3">
+                    <Badge variant="secondary">{category.name}</Badge>
+                  </TableCell>
+                  <TableCell className="px-6 py-3">{product.name}</TableCell>
+                  <TableCell className="px-6 py-3 font-medium text-foreground">
+                    Rp {product.price.toLocaleString("id-ID")}
+                  </TableCell>
+                  <TableCell className="px-6 py-3 flex justify-center space-x-4">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="hover:bg-amber-100 text-amber-600 cursor-pointer"
+                    >
+                      <Edit2Icon size={18} />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="hover:bg-red-100 text-red-600 cursor-pointer"
+                    >
+                      <RiDeleteBin5Line size={18} />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))
             )}
           </TableBody>
         </Table>

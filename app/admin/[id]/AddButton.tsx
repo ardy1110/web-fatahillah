@@ -3,26 +3,27 @@ import React from "react";
 import { useState } from "react";
 import AddProductModal from "./AddProduct";
 import { Store } from "@/lib/types";
+import { Button } from "@/components/ui/button";
 
-function AddButton({ stores }: { stores: Store[] }) {
+function AddButton({ stores }: { stores: Store }) {
   const [openModal, setOpenModal] = useState(false);
-  const [selectedStoreId, setSelectedStoreId] = useState<number | null>(null);
+  // const [selectedStoreId, setSelectedStoreId] = useState<number | null>(null);
 
   return (
     <div>
-      <button
+      <Button
         onClick={() => {
-          setSelectedStoreId(stores[0].id); // contoh, ambil toko pertama
+          // setSelectedStoreId(stores[0].id);
           setOpenModal(true);
         }}
-        className="inline-block m-4 p-2 px-4 bg-amber-600 rounded"
+        className="inline-block m-4 p-2 px-4 bg-amber-600 hover:bg-amber-700 text-white rounded cursor-pointer"
       >
         Tambah
-      </button>
+      </Button>
       <AddProductModal
         open={openModal}
         onClose={() => setOpenModal(false)}
-        storeId={selectedStoreId || 0}
+        store={stores}
       />
     </div>
   );
