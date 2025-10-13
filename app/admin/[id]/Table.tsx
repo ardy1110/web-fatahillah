@@ -13,7 +13,9 @@ import { Edit2Icon } from "lucide-react";
 import { Store } from "@/lib/types";
 import { Delete } from "lucide-react";
 
-export async function TableDemo({ stores }: { stores: Store[] }) {
+import AddButton from "./AddButton";
+
+export function TableDemo({ stores }: { stores: Store[] }) {
   return (
     <main className="p-12">
       <div className="flex items-start justify-between p-4 mb-4">
@@ -42,9 +44,7 @@ export async function TableDemo({ stores }: { stores: Store[] }) {
       </div>
       {/* Right Section: Button */}
       <div className="flex justify-end ">
-        <div className="inline-block m-4 p-2 px-4 bg-amber-600 rounded">
-          Tambah
-        </div>
+        <AddButton />
       </div>
       <Table>
         <TableHeader className="border border-gray-300 bg-gray-400">
@@ -78,8 +78,8 @@ export async function TableDemo({ stores }: { stores: Store[] }) {
                   </TableCell>
                   <TableCell className="border border-gray-300 px-4 py-2 text-right">
                     {/* tombol aksi di sini */}
-                    <Edit2Icon/>
-            
+                    <Edit2Icon />
+
                     <Delete />
                   </TableCell>
                 </TableRow>
