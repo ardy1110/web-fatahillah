@@ -7,24 +7,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Image from "next/image";
+import {Store} from '@/lib/types'
 
-interface Store {
-  id: number;
-  name: string;
-  categories: Categories[];
-}
-
-interface Categories {
-  id: number;
-  name: string;
-  products: Product[];
-}
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-}
 
 export async function TableDemo({ stores }: { stores: Store[] }) {
   return (
@@ -74,8 +58,8 @@ export async function TableDemo({ stores }: { stores: Store[] }) {
         </TableHeader>
         <TableBody>
           {stores.map((store) =>
-            store.categories.map((category) =>
-              category.products.map((product) => (
+            store.categories?.map((category) =>
+              category.products?.map((product) => (
                 <TableRow
                   key={`${store.id}-${category.id}-${product.id}`}
                   className="hover:bg-gray-50"

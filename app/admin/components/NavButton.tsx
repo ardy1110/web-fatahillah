@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import {Store} from '@/lib/types'
 
-const NavButton = ({ stores }: any) => {
+const NavButton = ({ stores }: { stores: Store[] }) => {
   const pathname = usePathname();
 
   return (
     <nav className="flex-1 px-4 py-4">
-      {stores.map((store: any) => {
+      {stores.map((store) => {
         const isActive = pathname === `/admin/${store.id}`;
 
         return (
