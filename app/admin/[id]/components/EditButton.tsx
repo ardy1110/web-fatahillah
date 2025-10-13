@@ -4,9 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Edit2Icon } from "lucide-react";
 import React, { useState } from "react";
 import EditProductModal from "./EditProductModal";
-import { Store } from "@/lib/types";
+import { Categories, Product } from "@/lib/types";
 
-const EditButton = ({ store }: { store: Store }) => {
+const EditButton = ({
+  categories,
+  product,
+}: {
+  categories: Categories[];
+  product: Product;
+}) => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -22,7 +28,8 @@ const EditButton = ({ store }: { store: Store }) => {
       <EditProductModal
         open={openModal}
         onClose={() => setOpenModal(false)}
-        store={store}
+        categories={categories}
+        product={product}
       />
     </>
   );

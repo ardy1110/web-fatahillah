@@ -101,7 +101,7 @@ export default function AddProductModal({
                   className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
                   required
                 >
-                  <option>Pilih kategori</option>
+                  <option value="">Pilih kategori</option>
                   {categories.map((cat) => (
                     <option key={cat.id} value={cat.id}>
                       {cat.name}
@@ -146,7 +146,7 @@ export default function AddProductModal({
         open={openCategoryModal}
         onClose={() => setOpenCategoryModal(false)}
         onAdd={handleAddCategory}
-        storeId={store.id} // ✅ langsung kirim id toko aktif
+        storeId={store.id} 
       />
     </>
   );

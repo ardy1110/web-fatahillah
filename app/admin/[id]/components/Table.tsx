@@ -83,7 +83,8 @@ export async function TableDemo({ stores }: { stores: Store }) {
                     Rp {product.price.toLocaleString("id-ID")}
                   </TableCell>
                   <TableCell className="px-6 py-3 flex justify-center space-x-4">
-                    <EditButton store={stores} />
+                    {/* Tambah Pros Stores  */}
+                    <EditButton categories={[category]} product={product} />
                     <Button
                       variant="ghost"
                       size="icon"

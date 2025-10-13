@@ -10,7 +10,7 @@ export async function PUT(
     const { id } = await params;
 
     const categoryId = parseInt(id);
-    const { name } = await req.json();
+    const { name, storeId } = await req.json();
 
     if (!name) {
       return NextResponse.json(
@@ -21,7 +21,7 @@ export async function PUT(
 
     const updatedCategory = await prisma.category.update({
       where: { id: categoryId },
-      data: { name },
+      data: { name, storeId },
     });
 
     return NextResponse.json({
