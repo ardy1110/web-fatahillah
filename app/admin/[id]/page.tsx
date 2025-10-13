@@ -1,14 +1,14 @@
 import React from "react";
 import { TableDemo } from "./Table";
 
-interface DetailStoreProps {
-  params: {
-    id: string;
-  };
-}
+// interface DetailStoreProps {
+//   params: {
+//     id: string
+//   }
+// }
 
-async function DetailStore({ params }: DetailStoreProps) {
-  const { id } = params;
+async function DetailStore({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
 
   const res = await fetch(`http://localhost:3000/api/store/${id}`, {
     // cache: 'no-store'

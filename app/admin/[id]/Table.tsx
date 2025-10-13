@@ -11,11 +11,11 @@ import Image from "next/image";
 import { Edit2Icon } from "lucide-react";
 
 import { Store } from "@/lib/types";
-import { Delete } from "lucide-react";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
-import AddButton from "./AddButton";
-
-export function TableDemo({ stores }: { stores: Store[] }) {
+export async function TableDemo({ stores }: { stores: Store[] }) {
   return (
     <main className="p-12">
       <div className="flex items-start justify-between p-4 mb-4">
@@ -26,8 +26,8 @@ export function TableDemo({ stores }: { stores: Store[] }) {
             <Image
               src="/IconBlack.jpeg"
               alt="Store image"
-              width={80}
-              height={80}
+              width={120}
+              height={120}
               className="rounded-lg object-cover"
             />
             {/* <Checkbox className="absolute top-1 right-1" /> */}
@@ -46,48 +46,64 @@ export function TableDemo({ stores }: { stores: Store[] }) {
       <div className="flex justify-end ">
         <AddButton />
       </div>
-      <Table>
-        <TableHeader className="border border-gray-300 bg-gray-400">
-          <TableRow className="text-center">
-            <TableHead className="border border-gray-300 px-4">
-              Category
-            </TableHead>
-            <TableHead className="border border-gray-300 px-4">
-              Product
-            </TableHead>
-            <TableHead className="border border-gray-300 px-4">Price</TableHead>
-            <TableHead className="text-center">Action</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {stores.map((store) =>
-            store.categories?.map((category) =>
-              category.products?.map((product) => (
-                <TableRow
-                  key={`${store.id}-${category.id}-${product.id}`}
-                  className="hover:bg-gray-50"
-                >
-                  <TableCell className="border border-gray-300 px-4 py-2">
-                    {category.name}
-                  </TableCell>
-                  <TableCell className="border border-gray-300 px-4 py-2">
-                    {product.name}
-                  </TableCell>
-                  <TableCell className="border border-gray-300 px-4 py-2">
-                    {product.price}
-                  </TableCell>
-                  <TableCell className="border border-gray-300 px-4 py-2 text-right">
-                    {/* tombol aksi di sini */}
-                    <Edit2Icon />
 
-                    <Delete />
-                  </TableCell>
-                </TableRow>
-              ))
-            )
-          )}
-        </TableBody>
-      </Table>
+      <div className="overflow-x-auto border border-gray-200 rounded-xl shadow-sm">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-muted/50 text-sm">
+              <TableHead className="text-left px-6 py-3 font-semibold">
+                Category
+              </TableHead>
+              <TableHead className="text-left px-6 py-3 font-semibold">
+                Product
+              </TableHead>
+              <TableHead className="text-left px-6 py-3 font-semibold">
+                Price
+              </TableHead>
+              <TableHead className="text-center px-6 py-3 font-semibold">
+                Action
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+
+          <TableBody>
+            {stores.map((store) =>
+              store.categories?.map((category) =>
+                category.products?.map((product) => (
+                  <TableRow
+                    key={`${store.id}-${category.id}-${product.id}`}
+                    className="hover:bg-muted/30 transition-colors"
+                  >
+                    <TableCell className="px-6 py-3">
+                      <Badge variant="secondary">{category.name}</Badge>
+                    </TableCell>
+                    <TableCell className="px-6 py-3">{product.name}</TableCell>
+                    <TableCell className="px-6 py-3 font-medium text-foreground">
+                      Rp {product.price.toLocaleString("id-ID")}
+                    </TableCell>
+                    <TableCell className="px-6 py-3 flex justify-center space-x-4">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="hover:bg-amber-100 text-amber-600 cursor-pointer"
+                      >
+                        <Edit2Icon size={18} />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="hover:bg-red-100 text-red-600 cursor-pointer"
+                      >
+                        <RiDeleteBin5Line size={18} />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )
+            )}
+          </TableBody>
+        </Table>
+      </div>
     </main>
   );
 }
