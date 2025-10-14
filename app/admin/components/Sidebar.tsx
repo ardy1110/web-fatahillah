@@ -12,7 +12,7 @@ const SidebarAdmin = async () => {
     <aside className="fixed top-0 left-0 w-64 h-dvh bg-white shadow-md flex flex-col">
       <div className="px-6 py-4 border-b flex justify-between items-center">
         <h2 className="text-xl font-bold text-amber-600">Admin Panel</h2>
-        <AddStore />
+        <AddStore stores={stores}/>
       </div>
 
       <ListStores stores={stores} />
