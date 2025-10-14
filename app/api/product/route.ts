@@ -1,7 +1,6 @@
-'use server'
+"use server";
 import { NextResponse } from "next/server";
-import {prisma} from '@/lib/prisma'
-import { revalidatePath } from "next/cache";
+import { prisma } from "@/lib/prisma";
 
 // ✅ GET semua produk
 export async function GET() {
@@ -16,14 +15,18 @@ export async function GET() {
     return NextResponse.json(products);
   } catch (error) {
     console.error("❌ Error get products:", error);
-    return NextResponse.json({ error: "Gagal mengambil produk" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Gagal mengambil produk" },
+      { status: 500 }
+    );
   }
 }
 
 // ✅ POST tambah produk baru
 export async function POST(req: Request) {
   try {
-    const { name, price, storeId, categoryId, description, imageUrl } = await req.json();
+    const { name, price, storeId, categoryId, description, imageUrl } =
+      await req.json();
 
     if (!name || !price || !storeId)
       return NextResponse.json(
@@ -41,11 +44,13 @@ export async function POST(req: Request) {
         categoryId: categoryId || null,
       },
     });
-    revalidatePath(`admin`)
+    // revalidatePath(`admin`)
     return NextResponse.json(newProduct);
-    
   } catch (error) {
     console.error("❌ Error create product:", error);
-    return NextResponse.json({ error: "Gagal membuat produk" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Gagal membuat produk" },
+      { status: 500 }
+    );
   }
 }
