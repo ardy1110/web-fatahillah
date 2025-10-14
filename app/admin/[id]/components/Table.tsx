@@ -84,7 +84,7 @@ export async function TableDemo({ stores }: { stores: Store }) {
                       categories={stores.categories}
                       product={product}
                     />
-                    {/* <DeleteButton product={product}/> */}
+                    <DeleteButton product={product}/>
                   </TableCell>
                 </TableRow>
               ))
