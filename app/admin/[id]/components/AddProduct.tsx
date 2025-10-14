@@ -46,6 +46,9 @@ export default function AddProductModal({
 
     if (res.ok) {
       alert("Produk berhasil ditambahkan!");
+      setName("");
+      setPrice("");
+      setCategoryId("");
       onClose();
       router.refresh();
     } else {

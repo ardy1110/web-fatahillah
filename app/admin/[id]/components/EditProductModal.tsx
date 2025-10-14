@@ -21,10 +21,10 @@ const EditProductModal = ({
   const [categoryId, setCategoryId] = useState<number>(product.categoryId);
   const [name, setName] = useState(product.name);
   const [price, setPrice] = useState(String(product.price));
-  const router = useRouter()
+  const router = useRouter();
 
   // Ambil storeId dari kategori pertama (anggap semua kategori dari store yang sama)
-  const storeId = categories[0]?.storeId;
+  // const storeId = categories[0]?.storeId;
   // console.log(categories);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,21 +35,21 @@ const EditProductModal = ({
       return;
     }
 
-    const res = await fetch(`/api/product/${storeId}`, {
+    const res = await fetch(`/api/product/${product.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name,
         price: Number(price),
         categoryId,
-        storeId,
+        // storeId,
       }),
     });
 
     if (res.ok) {
       alert("Produk berhasil diperbarui!");
       onClose();
-      router.refresh()
+      router.refresh();
     } else {
       alert("Gagal memperbarui produk");
     }
