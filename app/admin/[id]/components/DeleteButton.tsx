@@ -34,7 +34,6 @@ const DeleteButton = ({ product }: { product: Product }) => {
   return (
     <div>
       <Button
-        // onClick={handelDelete}
         variant="ghost"
         size="icon"
         onClick={() => setOpen(true)}

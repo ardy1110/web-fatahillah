@@ -26,6 +26,7 @@ export async function TableDemo({ stores }: { stores: Store }) {
               alt="Store image"
               width={120}
               height={120}
+              priority
               className="rounded-lg object-cover"
             />
             {/* <Checkbox className="absolute top-1 right-1" /> */}
