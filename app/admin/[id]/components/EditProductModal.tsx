@@ -25,7 +25,7 @@ const EditProductModal = ({
 
   // Ambil storeId dari kategori pertama (anggap semua kategori dari store yang sama)
   const storeId = categories[0]?.storeId;
-  console.log(categories);
+  // console.log(categories);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
