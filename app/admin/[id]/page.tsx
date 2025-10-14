@@ -21,7 +21,7 @@ async function DetailStore({ params }: { params: Promise<{ id: string }> }) {
   const stores = await res.json();
 
   return (
-    <main className="flex-1">
+    <main className="flex-1 ml-64">
       <TableDemo stores={stores} />
     </main>
   );
