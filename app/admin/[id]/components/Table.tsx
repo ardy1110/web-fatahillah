@@ -9,10 +9,9 @@ import {
 import Image from "next/image";
 
 import { Store } from "@/lib/types";
-import { RiDeleteBin5Line } from "react-icons/ri";
-import { Button } from "@/components/ui/button";
 import AddButton from "./AddButton";
 import EditButton from "./EditButton";
+import DeleteButton from "./DeleteButton";
 
 export async function TableDemo({ stores }: { stores: Store }) {
   return (
@@ -48,7 +47,7 @@ export async function TableDemo({ stores }: { stores: Store }) {
         <AddButton stores={stores} />
       </div>
 
-      <div className="overflow-y-auto border border-gray-200 rounded-xl shadow-sm ">
+      <div className=" border border-gray-200 rounded-xl shadow-sm ">
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/50 text-md">
@@ -85,13 +84,7 @@ export async function TableDemo({ stores }: { stores: Store }) {
                       categories={stores.categories}
                       product={product}
                     />
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="hover:bg-red-100 text-red-600 cursor-pointer"
-                    >
-                      <RiDeleteBin5Line size={18} />
-                    </Button>
+                    {/* <DeleteButton product={product}/> */}
                   </TableCell>
                 </TableRow>
               ))
