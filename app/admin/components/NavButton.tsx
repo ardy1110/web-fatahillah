@@ -14,7 +14,7 @@ const ListStores = ({ stores }: { stores: Store[] }) => {
   return (
     <nav className="flex-1 px-4 py-4">
       {stores.map((store) => {
-        const isActive = pathname === `/admin/${store.id}`;
+        const isActive = pathname.startsWith(`/admin/${store.id}`);
 
         return (
           <Link

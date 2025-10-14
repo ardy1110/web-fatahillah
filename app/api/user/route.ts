@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import { prisma } from "../../../lib/prisma"; // pastikan file ini sudah ada
+import { prisma } from "../../../lib/prisma"; 
 
 // GET /api/users → ambil semua user
 export async function GET() {
