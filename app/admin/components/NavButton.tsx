@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Edit2Icon } from "lucide-react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-const NavButton = ({ stores }: { stores: Store[] }) => {
+const ListStores = ({ stores }: { stores: Store[] }) => {
   const pathname = usePathname();
 
   return (
@@ -17,42 +17,49 @@ const NavButton = ({ stores }: { stores: Store[] }) => {
         const isActive = pathname === `/admin/${store.id}`;
 
         return (
-          <>
-            <Link
-              key={store.id}
-              href={`/admin/${store.id}`}
-              className={`flex items-center justify-between gap-3 p-3 rounded-md mb-2 hover:bg-amber-200 ${
-                isActive
-                  ? "bg-amber-600 text-white hover:bg-amber-600"
-                  : "bg-white text-black"
-              }`}
-            >
+          <Link
+            key={store.id}
+            href={`/admin/${store.id}`}
+            className={`group flex items-center justify-between gap-2 p-3 rounded-md mb-2 transition-all duration-150 ${
+              isActive
+                ? "bg-amber-600 text-white"
+                : "bg-white hover:bg-amber-100 text-black"
+            }`}
+          >
+            <span className="flex-1 text-sm font-medium leading-tight break-words">
               {store.name}
-              <div className="">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  // onClick={() => setOpenModal(true)}
-                  className="hover:bg-amber-100 text-amber-600 cursor-pointer"
-                >
-                  <Edit2Icon size={18} />
-                </Button>
-                <Button
-                  // onClick={handelDelete}
-                  variant="ghost"
-                  size="icon"
-                  // onClick={() => setOpen(true)}
-                  className="hover:bg-red-100 text-red-600 cursor-pointer"
-                >
-                  <RiDeleteBin5Line size={18} />
-                </Button>
-              </div>
-            </Link>
-          </>
+            </span>
+
+            <div className="flex items-center shrink-0">
+              <Button
+                variant="ghost"
+                size="icon"
+                className={`${
+                  isActive
+                    ? "text-white hover:bg-amber-700"
+                    : "text-amber-600 hover:bg-amber-50"
+                } cursor-pointer`}
+              >
+                <Edit2Icon size={16} />
+              </Button>
+
+              <Button
+                variant="ghost"
+                size="icon"
+                className={`${
+                  isActive
+                    ? "text-white hover:bg-amber-700"
+                    : "text-red-600 hover:bg-red-50"
+                } cursor-pointer`}
+              >
+                <RiDeleteBin5Line size={16} />
+              </Button>
+            </div>
+          </Link>
         );
       })}
     </nav>
   );
 };
 
-export default NavButton;
+export default ListStores;
