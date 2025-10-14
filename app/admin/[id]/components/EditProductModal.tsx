@@ -5,6 +5,7 @@ import { Categories, Product } from "@/lib/types";
 import { PlusCircle, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import SubmitButton from "./SubmitButton";
 
 const EditProductModal = ({
   open,
@@ -67,12 +68,13 @@ const EditProductModal = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Tombol close */}
-        <button
+        <Button
+          variant="ghost"
           onClick={onClose}
           className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 cursor-pointer"
         >
           <X size={20} />
-        </button>
+        </Button>
 
         <h2 className="text-lg text-center font-semibold mb-4 text-gray-800">
           Edit Produk
@@ -130,12 +132,7 @@ const EditProductModal = ({
             />
           </div>
 
-          <Button
-            type="submit"
-            className="w-full bg-amber-600 text-white py-2 rounded-md hover:bg-amber-700 cursor-pointer"
-          >
-            Simpan
-          </Button>
+          <SubmitButton />
         </form>
       </div>
     </div>

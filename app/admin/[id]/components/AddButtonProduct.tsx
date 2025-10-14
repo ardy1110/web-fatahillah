@@ -1,10 +1,11 @@
 "use client";
+
 import React from "react";
 import { useState } from "react";
 import { Store } from "@/lib/types";
 import { Button } from "@/components/ui/button";
-import AddProductModal from "./AddProduct";
 import { ClipboardPlus } from "lucide-react";
+import AddProductModal from "./AddProduct";
 
 function AddButtonProduct({ stores }: { stores: Store }) {
   const [openModal, setOpenModal] = useState(false);
@@ -21,6 +22,7 @@ function AddButtonProduct({ stores }: { stores: Store }) {
         <ClipboardPlus />
         Tambah
       </Button>
+
       <AddProductModal
         open={openModal}
         onClose={() => setOpenModal(false)}

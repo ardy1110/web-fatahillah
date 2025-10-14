@@ -4,16 +4,33 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
 // CREATE
-export async function createProductAction(
-  storeId: number,
-  data: { name: string; price: number; categoryId: number; storeId: number }
-) {
+export async function addProduct(formData: FormData) {
   try {
-    await prisma.product.create({ data });
+    const name = formData.get("name") as string;
+    const price = Number(formData.get("price"));
+    const categoryId = Number(formData.get("categoryId"));
+    const storeId = Number(formData.get("storeId"));
+
+    if (!name || !price || !categoryId || !storeId) {
+      throw new Error("Data tidak lengkap");
+    }
+
+    await prisma.product.create({
+      data: {
+        name,
+        price,
+        categoryId,
+        storeId,
+      },
+    });
+
+    // Refresh data tanpa reload page
     revalidatePath(`/admin/${storeId}`);
+
+    return { success: true, message: "Produk berhasil ditambahkan!" };
   } catch (error) {
-    console.error("❌ Gagal Menampahkan produk:", error);
-    throw new Error("Gagal menambah produk");
+    console.error("❌ Error addProduct:", error);
+    return { success: false, message: "Gagal menambah produk" };
   }
 }
 
