@@ -5,6 +5,8 @@ import { X, PlusCircle } from "lucide-react";
 import { Categories, Store } from "@/lib/types";
 import AddCategoryModal from "./AddCategory";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+
 
 export default function AddProductModal({
   open,
@@ -22,6 +24,7 @@ export default function AddProductModal({
   const [categories, setCategories] = useState<Categories[]>(
     store.categories || []
   );
+  const router = useRouter()
 
   // submit produk
   const handleSubmit = async (e: React.FormEvent) => {
@@ -45,6 +48,7 @@ export default function AddProductModal({
     if (res.ok) {
       alert("Produk berhasil ditambahkan!");
       onClose();
+      router.refresh()
     } else {
       alert("Gagal menambah produk");
     }

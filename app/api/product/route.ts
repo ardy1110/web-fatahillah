@@ -1,5 +1,7 @@
+'use server'
 import { NextResponse } from "next/server";
 import {prisma} from '@/lib/prisma'
+import { revalidatePath } from "next/cache";
 
 // ✅ GET semua produk
 export async function GET() {
@@ -39,8 +41,9 @@ export async function POST(req: Request) {
         categoryId: categoryId || null,
       },
     });
-
+    revalidatePath(`admin`)
     return NextResponse.json(newProduct);
+    
   } catch (error) {
     console.error("❌ Error create product:", error);
     return NextResponse.json({ error: "Gagal membuat produk" }, { status: 500 });

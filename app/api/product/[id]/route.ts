@@ -1,5 +1,7 @@
+'use server'
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 export async function PUT(
   req: Request,
@@ -23,7 +25,7 @@ export async function PUT(
         isAvailable,
       },
     });
-
+    revalidatePath(`/admin${id}`)
     return NextResponse.json({
       message: "Produk berhasil diperbarui",
       product: updatedProduct,
@@ -35,6 +37,8 @@ export async function PUT(
       { status: 500 }
     );
   }
+  
+  
 }
 
 export async function DELETE(

@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Categories, Product } from "@/lib/types";
 import { PlusCircle, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const EditProductModal = ({
@@ -20,6 +21,7 @@ const EditProductModal = ({
   const [categoryId, setCategoryId] = useState<number>(product.categoryId);
   const [name, setName] = useState(product.name);
   const [price, setPrice] = useState(String(product.price));
+  const router = useRouter()
 
   // Ambil storeId dari kategori pertama (anggap semua kategori dari store yang sama)
   const storeId = categories[0]?.storeId;
@@ -47,6 +49,7 @@ const EditProductModal = ({
     if (res.ok) {
       alert("Produk berhasil diperbarui!");
       onClose();
+      router.refresh()
     } else {
       alert("Gagal memperbarui produk");
     }
