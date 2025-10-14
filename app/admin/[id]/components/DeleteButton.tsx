@@ -34,6 +34,7 @@ const DeleteButton = ({ product }: { product: Product }) => {
   return (
     <div>
       <Button
+        title="Hapus Menu"
         variant="ghost"
         size="icon"
         onClick={() => setOpen(true)}

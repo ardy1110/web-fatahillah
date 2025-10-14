@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
 import { useState } from "react";
@@ -12,15 +12,11 @@ const AddButton = () => {
       <Button
         onClick={() => setOpenModal(true)}
         title="Tambah Toko Baru"
-        className="p-2 bg-amber-600 text-white rounded-md hover:bg-amber-700 cursor-pointer"
+        className="bg-amber-600 text-white rounded-md hover:bg-amber-700 cursor-pointer"
       >
-        <PlusCircle size={18} />
+        <PlusCircle />
       </Button>
-      <AddStore
-        open={openModal}
-        onClose={() => setOpenModal(false)}
-        
-      />
+      <AddStore open={openModal} onClose={() => setOpenModal(false)} />
     </div>
   );
 };

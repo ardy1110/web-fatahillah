@@ -18,6 +18,7 @@ const EditButton = ({
   return (
     <>
       <Button
+        title="Edit Menu"
         variant="ghost"
         size="icon"
         onClick={() => setOpenModal(true)}

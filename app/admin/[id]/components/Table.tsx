@@ -38,7 +38,7 @@ export async function TableDemo({ stores }: { stores: Store }) {
               {stores.name}
             </h2>
             <p className="text-sm text-muted-foreground">
-              Deskripsi singkat toko
+              {stores.description}
             </p>
           </div>
         </div>
@@ -48,21 +48,21 @@ export async function TableDemo({ stores }: { stores: Store }) {
         <AddButton stores={stores} />
       </div>
 
-      <div className=" border border-gray-200 rounded-xl shadow-sm ">
+      <div className="border border-gray-200 rounded-xl shadow-sm">
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/50 text-md">
               <TableHead className="text-left px-6 py-3 font-semibold">
-                Category
+                Kategori
               </TableHead>
               <TableHead className="text-left px-6 py-3 font-semibold">
-                Product
+                Menu
               </TableHead>
               <TableHead className="text-left px-6 py-3 font-semibold">
-                Price
+                Harga
               </TableHead>
               <TableHead className="text-center px-6 py-3 font-semibold">
-                Action
+                Aksi
               </TableHead>
             </TableRow>
           </TableHeader>
