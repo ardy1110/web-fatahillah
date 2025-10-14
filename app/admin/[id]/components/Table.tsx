@@ -15,8 +15,8 @@ import DeleteButton from "./DeleteButton";
 
 export async function TableDemo({ stores }: { stores: Store }) {
   return (
-    <main className="p-12 ">
-      <div className="flex items-start justify-between p-4 overflow-y-auto">
+    <main className="p-12 overflow-y-auto">
+      <div className="flex items-start justify-between p-4">
         {/* Left Section: Image + Checkbox + Info */}
         <div className="flex items-start gap-4">
           {/* Image with Checkbox overlay */}
