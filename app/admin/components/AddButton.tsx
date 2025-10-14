@@ -1,11 +1,10 @@
 'use client'
 import { Button } from "@/components/ui/button";
-import { Store } from "@/lib/types";
 import { PlusCircle } from "lucide-react";
 import { useState } from "react";
 import AddStore from "./AddStore";
 
-const AddButton = ({ stores }: { stores: Store }) => {
+const AddButton = () => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -20,7 +19,7 @@ const AddButton = ({ stores }: { stores: Store }) => {
       <AddStore
         open={openModal}
         onClose={() => setOpenModal(false)}
-        stores={stores}
+        
       />
     </div>
   );

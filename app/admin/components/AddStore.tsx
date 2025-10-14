@@ -1,19 +1,20 @@
 import { Button } from "@/components/ui/button";
-import { Store } from "@/lib/types";
 import { X } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const AddStore = ({
   open,
   onClose,
-  stores,
 }: {
   open: boolean;
   onClose: () => void;
-  stores: Store;
 }) => {
   const [name, setName] = useState("");
-  const handleAddStore = async () => {
+  const router = useRouter()
+
+  const handleAddStore = async (e: React.FormEvent) => {
+    e.preventDefault();
     const res = await fetch("/api/store", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -21,13 +22,19 @@ const AddStore = ({
         name,
       }),
     });
+    if (res.ok) {
+      alert("Produk berhasil ditambahkan!");
+      setName("");
+      onClose();
+      router.refresh()
+    } else {
+      alert("Gagal menambah produk");
+    }
   };
+  if (!open) return null;
+  
   return (
-    <>
-      <div
-        className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 transition-opacity duration-200"
-        onClick={onClose}
-      >
+      
         <div
           className="bg-white rounded-2xl w-96 p-6 shadow-xl relative text-sm"
           onClick={(e) => e.stopPropagation()}
@@ -64,8 +71,7 @@ const AddStore = ({
             </Button>
           </form>
         </div>
-      </div>
-    </>
+  
   );
 };
 
