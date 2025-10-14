@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import AddProductModal from "./AddProduct";
 import { ClipboardPlus } from "lucide-react";
 
-function AddButton({ stores }: { stores: Store }) {
+function AddButtonProduct({ stores }: { stores: Store }) {
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -30,4 +30,4 @@ function AddButton({ stores }: { stores: Store }) {
   );
 }
 
-export default AddButton;
+export default AddButtonProduct;

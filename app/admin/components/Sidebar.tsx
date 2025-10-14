@@ -1,7 +1,7 @@
 import React from "react";
 import { LogOut } from "lucide-react";
 import ListStores from "./NavButton";
-import AddButton from "./AddButton";
+import AddButtonStore from "./AddButtonStore";
 
 const SidebarAdmin = async () => {
   const res = await fetch("http://localhost:3000/api/store");
@@ -12,7 +12,7 @@ const SidebarAdmin = async () => {
     <aside className="fixed top-0 left-0 w-64 h-dvh bg-white shadow-md flex flex-col">
       <div className="text-xl px-6 py-4 border-b flex justify-between items-center">
         <h2 className="font-bold text-amber-600">Admin Panel</h2>
-        <AddButton />
+        <AddButtonStore />
       </div>
 
       <ListStores stores={stores} />

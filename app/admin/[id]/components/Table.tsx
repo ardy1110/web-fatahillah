@@ -9,9 +9,9 @@ import {
 import Image from "next/image";
 
 import { Store } from "@/lib/types";
-import AddButton from "./AddButton";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
+import AddButtonProduct from "./AddButtonProduct";
 
 export async function TableDemo({ stores }: { stores: Store }) {
   return (
@@ -45,7 +45,7 @@ export async function TableDemo({ stores }: { stores: Store }) {
       </div>
       {/* Right Section: Button */}
       <div className="flex justify-end  ">
-        <AddButton stores={stores} />
+        <AddButtonProduct stores={stores} />
       </div>
 
       <div className="border border-gray-200 rounded-xl shadow-sm">

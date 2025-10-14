@@ -4,7 +4,7 @@ import { PlusCircle } from "lucide-react";
 import { useState } from "react";
 import AddStore from "./AddStore";
 
-const AddButton = () => {
+const AddButtonStore = () => {
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -21,4 +21,4 @@ const AddButton = () => {
   );
 };
 
-export default AddButton;
+export default AddButtonStore;
