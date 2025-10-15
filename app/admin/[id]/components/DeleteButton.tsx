@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Product } from "@/lib/types";
 import React, { useState, useTransition } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { deleteProductAction } from "./actions";
+import { deleteProductAction } from "../../components/actions";
 import { Loader2 } from "lucide-react";
 
 const DeleteButton = ({ product }: { product: Product }) => {

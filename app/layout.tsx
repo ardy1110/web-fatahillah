@@ -30,8 +30,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${fontSans.variable} ${fontMono.variable} antialiased`}>
+    <html lang="en" className="scrollbar-none">
+      <body
+        className={`${fontSans.variable} ${fontMono.variable} antialiased scrollbar-none`}
+      >
         {children}
       </body>
     </html>

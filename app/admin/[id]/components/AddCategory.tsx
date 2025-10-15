@@ -1,9 +1,9 @@
 // "use client";
 
 import { X } from "lucide-react";
-import { addCategory } from "./actions";
+import { addCategory } from "../../components/actions";
 import { Button } from "@/components/ui/button";
-import SubmitButton from "./SubmitButton";
+import SubmitButton from "../../components/SubmitButton";
 import { toast } from "sonner";
 import { Categories } from "@/lib/types";
 
@@ -37,7 +37,7 @@ export default function AddCategoryModal({
           <X size={20} />
         </Button>
 
-        <h2 className="text-lg font-semibold mb-4 text-gray-800">
+        <h2 className="text-lg text-center font-semibold mb-4 text-gray-800">
           Tambah Kategori
         </h2>
 
@@ -64,7 +64,7 @@ export default function AddCategoryModal({
               type="text"
               name="name"
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
-              required
+              
             />
           </div>
 

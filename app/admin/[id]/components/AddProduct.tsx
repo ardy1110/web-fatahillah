@@ -4,8 +4,8 @@ import { useState } from "react";
 import { X, PlusCircle } from "lucide-react";
 import { Categories, Store } from "@/lib/types";
 import AddCategoryModal from "./AddCategory";
-import { addProduct } from "./actions";
-import SubmitButton from "./SubmitButton";
+import { addProduct } from "../../components/actions";
+import SubmitButton from "../../components/SubmitButton";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 

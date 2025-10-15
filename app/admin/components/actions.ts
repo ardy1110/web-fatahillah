@@ -3,6 +3,39 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
+// CREATE STORE
+export async function addStore(formData: FormData) {
+  try {
+    const name = formData.get("name") as string;
+    const description = formData.get("description") as string;
+
+    if (!name || !description) {
+      return { success: false, message: "Data tidak Lengkap" };
+    }
+
+    const newStore = await prisma.store.create({
+      data: {
+        name,
+        description,
+      },
+    });
+
+    revalidatePath("/admin");
+
+    return {
+      success: true,
+      data: newStore,
+      message: "Toko berhasil di tambah!",
+    };
+  } catch (error) {
+    console.error("❌ Gagal menambah toko:", error);
+    return {
+      success: false,
+      message: "Terjadi kesalahan saat menambah toko",
+    };
+  }
+}
+
 // CREATE PRODUCT
 export async function addProduct(formData: FormData) {
   try {

@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Categories, Product } from "@/lib/types";
 import { PlusCircle, X } from "lucide-react";
 import React from "react";
-import SubmitButton from "./SubmitButton";
-import { editProduct } from "./actions";
+import SubmitButton from "../../components/SubmitButton";
+import { editProduct } from "../../components/actions";
 import { toast } from "sonner";
 
 const EditProductModal = ({
@@ -69,7 +69,7 @@ const EditProductModal = ({
               name="name"
               defaultValue={product.name}
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
-              required
+              
             />
           </div>
 
@@ -81,7 +81,7 @@ const EditProductModal = ({
                 name="categoryId"
                 defaultValue={product.categoryId}
                 className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
-                required
+                
               >
                 <option value="">Pilih kategori</option>
                 {categories.map((cat) => (
@@ -109,7 +109,7 @@ const EditProductModal = ({
               name="price"
               defaultValue={product.price}
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
-              required
+              
             />
           </div>
 

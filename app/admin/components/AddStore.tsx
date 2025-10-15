@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
+import { toast } from "sonner";
+import SubmitButton from "./SubmitButton";
+import { addStore } from "./actions";
 
 const AddStore = ({
   open,
@@ -10,72 +12,65 @@ const AddStore = ({
   open: boolean;
   onClose: () => void;
 }) => {
-  const [name, setName] = useState("");
-  const router = useRouter();
-
-  const handleAddStore = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const res = await fetch("/api/store", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-      }),
-    });
-    if (res.ok) {
-      alert("Produk berhasil ditambahkan!");
-      setName("");
-      onClose();
-      router.refresh();
-    } else {
-      alert("Gagal menambah produk");
-    }
-  };
   if (!open) return null;
 
   return (
-    <>
-  <div
-    className="fixed inset-0 bg-black/50 flex items-center justify-center z-[50] transition-opacity duration-200"
-    onClick={onClose}
-  >
     <div
-      className="bg-white rounded-2xl w-96 p-6 shadow-xl relative text-sm"
-      onClick={(e) => e.stopPropagation()}
+      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+      onClick={onClose}
     >
-      <button
-        onClick={onClose}
-        className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 cursor-pointer"
+      <div
+        className="bg-white rounded-2xl w-80 p-6 shadow-xl relative"
+        onClick={(e) => e.stopPropagation()}
       >
-        <X size={20} />
-      </button>
-
-      <h2 className="text-lg text-center font-semibold mb-4 text-gray-800">
-        Tambah Toko
-      </h2>
-
-      <form onSubmit={handleAddStore} className="space-y-4">
-        <div>
-          <label className="block text-sm mb-1">Nama Toko</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
-            required
-          />
-        </div>
         <Button
-          type="submit"
-          className="w-full bg-amber-600 text-white py-2 rounded-md hover:bg-amber-700 cursor-pointer"
+          variant="ghost"
+          onClick={onClose}
+          className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 cursor-pointer"
         >
-          Simpan
+          <X size={20} />
         </Button>
-      </form>
-    </div>
-  </div>
-</>
 
+        <h2 className="text-lg text-center font-semibold mb-4 text-gray-800">
+          Tambah Toko
+        </h2>
+
+        <form
+          action={async (formData) => {
+            const result = await addStore(formData);
+
+            if (result.success) {
+              toast.success(result.message);
+
+              onClose();
+            } else {
+              toast.error(result.message);
+            }
+          }}
+          className="space-y-4"
+        >
+          <div>
+            <label className="block text-sm mb-1">Nama Toko</label>
+            <input
+              type="text"
+              name="name"
+              className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1">Deskripsi</label>
+            <input
+              type="text"
+              name="description"
+              className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
+              
+            />
+          </div>
+
+          <SubmitButton />
+        </form>
+      </div>
+    </div>
   );
 };
 

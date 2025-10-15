@@ -12,7 +12,7 @@ const ListStores = ({ stores }: { stores: Store[] }) => {
   const pathname = usePathname();
 
   return (
-    <nav className="flex-1 px-4 py-4">
+    <nav className="flex-1 px-4 py-4 overflow-auto scrollbar-none">
       {stores.map((store) => {
         const isActive = pathname.startsWith(`/admin/${store.id}`);
 

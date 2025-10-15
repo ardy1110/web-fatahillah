@@ -8,7 +8,7 @@ export default function Landing() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/bg.jpg" // ganti dengan path gambar kamu
+          src="/bg.jpg" 
           alt="Warkop Background"
           fill
           priority

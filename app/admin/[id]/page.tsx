@@ -1,12 +1,6 @@
 import React from "react";
 import { TableDemo } from "./components/Table";
 
-// interface DetailStoreProps {
-//   params: {
-//     id: string
-//   }
-// }
-
 async function DetailStore({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 

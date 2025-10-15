@@ -68,28 +68,47 @@ export async function TableDemo({ stores }: { stores: Store }) {
           </TableHeader>
 
           <TableBody>
-            {stores.categories?.map((category) =>
-              category.products?.map((product) => (
-                <TableRow
-                  key={`${stores.id}-${category.id}-${product.id}`}
-                  className="hover:bg-muted/30 transition-colors text-sm"
-                >
-                  <TableCell className="px-6 py-3">{category.name}</TableCell>
-                  <TableCell className="px-6 py-3">{product.name}</TableCell>
-                  <TableCell className="px-6 py-3 font-medium text-foreground">
-                    Rp {product.price.toLocaleString("id-ID")}
-                  </TableCell>
-                  <TableCell className="px-6 py-3 flex justify-center space-x-4">
-                    {/* Tambah Pros Stores  */}
-                    <EditButton
-                      categories={stores.categories}
-                      product={product}
-                    />
-                    <DeleteButton product={product} />
-                  </TableCell>
-                </TableRow>
-              ))
-            )}
+            {(() => {
+              const categories = stores.categories || [];
+              const hasCategories = categories.length > 0;
+              const hasProducts = categories.some((c) => c.products?.length);
+              const isEmpty = !hasCategories || !hasProducts;
+
+              if (isEmpty) {
+                return (
+                  <TableRow key="empty-row">
+                    <TableCell
+                      colSpan={4}
+                      className="text-center py-6 text-muted-foreground italic"
+                    >
+                      Belum ada Menu yang ditambahkan!
+                    </TableCell>
+                  </TableRow>
+                );
+              }
+
+              return categories.flatMap((category) =>
+                category.products?.map((product) => (
+                  <TableRow
+                    key={`${stores.id}-${category.id}-${product.id}`}
+                    className="hover:bg-muted/30 transition-colors text-sm"
+                  >
+                    <TableCell className="px-6 py-3">{category.name}</TableCell>
+                    <TableCell className="px-6 py-3">{product.name}</TableCell>
+                    <TableCell className="px-6 py-3 font-medium text-foreground">
+                      Rp {product.price.toLocaleString("id-ID")}
+                    </TableCell>
+                    <TableCell className="px-6 py-3 flex justify-center space-x-4">
+                      <EditButton
+                        categories={stores.categories}
+                        product={product}
+                      />
+                      <DeleteButton product={product} />
+                    </TableCell>
+                  </TableRow>
+                ))
+              );
+            })()}
           </TableBody>
         </Table>
       </div>
