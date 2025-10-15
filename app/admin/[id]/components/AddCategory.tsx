@@ -1,7 +1,10 @@
-"use client";
+// "use client";
 
-import { useState } from "react";
 import { X } from "lucide-react";
+import { addCategory } from "./actions";
+import { Button } from "@/components/ui/button";
+import SubmitButton from "./SubmitButton";
+import { toast } from "sonner";
 import { Categories } from "@/lib/types";
 
 export default function AddCategoryModal({
@@ -15,34 +18,6 @@ export default function AddCategoryModal({
   onAdd: (newCategory: Categories) => void;
   storeId: number;
 }) {
-  const [newCategory, setNewCategory] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-
-    const res = await fetch("/api/category", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: newCategory,
-        storeId,
-      }),
-    });
-
-    setLoading(false);
-
-    if (res.ok) {
-      const data = await res.json();
-      onAdd(data); // kirim balik kategori baru ke parent modal
-      setNewCategory("");
-      onClose();
-    } else {
-      alert("Gagal menambah kategori");
-    }
-  };
-
   if (!open) return null;
 
   return (
@@ -54,36 +29,46 @@ export default function AddCategoryModal({
         className="bg-white rounded-2xl w-80 p-6 shadow-xl relative"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
+        <Button
+          variant="ghost"
           onClick={onClose}
           className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 cursor-pointer"
         >
           <X size={20} />
-        </button>
+        </Button>
 
         <h2 className="text-lg font-semibold mb-4 text-gray-800">
           Tambah Kategori
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form
+          action={async (formData) => {
+            const result = await addCategory(formData);
+
+            if (result.success && result.data) {
+              toast.success(result.message);
+              onAdd(result.data);
+
+              onClose();
+            } else {
+              toast.error(result.message);
+            }
+          }}
+          className="space-y-4"
+        >
+          <input type="hidden" name="storeId" value={storeId} />
+
           <div>
             <label className="block text-sm mb-1">Nama Kategori</label>
             <input
               type="text"
-              value={newCategory}
-              onChange={(e) => setNewCategory(e.target.value)}
+              name="name"
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
               required
             />
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-amber-600 text-white py-2 rounded-md hover:bg-amber-700 cursor-pointer"
-          >
-            {loading ? "Menyimpan..." : "Simpan"}
-          </button>
+          <SubmitButton />
         </form>
       </div>
     </div>

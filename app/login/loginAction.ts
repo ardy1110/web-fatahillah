@@ -1,5 +1,6 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function loginAction(formData: FormData) {
@@ -19,12 +20,12 @@ export async function loginAction(formData: FormData) {
     throw new Error("Login gagal");
   }
 
-  // const cookieStore = await cookies();
-  // cookieStore.set("admin_token", "your-secure-token", {
-  //   path: "/",
-  //   httpOnly: true,
-  //   sameSite: "lax",
-  // });
+  const cookieStore = await cookies();
+  cookieStore.set("admin_token", "your-secure-token", {
+    path: "/",
+    httpOnly: true,
+    sameSite: "lax",
+  });
   const storeRes = await fetch("http://localhost:3000/api/store", {});
 
   const stores = await storeRes.json();

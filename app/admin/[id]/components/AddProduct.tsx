@@ -74,7 +74,6 @@ export default function AddProductModal({
                 type="text"
                 name="name"
                 className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
-                required
               />
             </div>
 
@@ -85,7 +84,6 @@ export default function AddProductModal({
                 <select
                   name="categoryId"
                   className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
-                  required
                 >
                   <option value="">Pilih kategori</option>
                   {categories.map((cat) => (
@@ -112,7 +110,6 @@ export default function AddProductModal({
                 type="number"
                 name="price"
                 className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
-                required
               />
             </div>
 

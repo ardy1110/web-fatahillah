@@ -3,7 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
-// CREATE
+// CREATE PRODUCT
 export async function addProduct(formData: FormData) {
   try {
     const name = formData.get("name") as string;
@@ -11,8 +11,8 @@ export async function addProduct(formData: FormData) {
     const categoryId = Number(formData.get("categoryId"));
     const storeId = Number(formData.get("storeId"));
 
-    if (!name || !price || !categoryId || !storeId) {
-      throw new Error("Data tidak lengkap");
+    if (!name || !price || !categoryId) {
+      return { success: false, message: "Data tidak Lengkap" };
     }
 
     await prisma.product.create({
@@ -24,40 +24,98 @@ export async function addProduct(formData: FormData) {
       },
     });
 
-    // Refresh data tanpa reload page
     revalidatePath(`/admin/${storeId}`);
 
     return { success: true, message: "Produk berhasil ditambahkan!" };
   } catch (error) {
-    console.error("❌ Error addProduct:", error);
-    return { success: false, message: "Gagal menambah produk" };
+    console.error("❌ Gagal menambah produk:", error);
+    return {
+      success: false,
+      message: "Terjadi kesalahan saat menambah produk",
+    };
   }
 }
 
-// UPDATE
-export async function updateProductAction(
-  storeId: number,
-  data: { id: number; name: string; price: number; categoryId: number }
-) {
+// UPDATE PRODUCT
+export async function editProduct(id: number, formData: FormData) {
   try {
+    const name = formData.get("name") as string;
+    const price = Number(formData.get("price"));
+    const categoryId = Number(formData.get("categoryId"));
+    const storeId = Number(formData.get("storeId"));
+
+    if (!name || !price || !categoryId) {
+      return { success: false, message: "Data tidak Lengkap" };
+    }
+
     await prisma.product.update({
-      where: { id: data.id },
-      data,
+      where: { id },
+      data: {
+        name,
+        price,
+        categoryId,
+        storeId,
+      },
     });
+
     revalidatePath(`/admin/${storeId}`);
+
+    return { success: true, message: "Produk berhasil di update!" };
   } catch (error) {
-    console.error("❌ Gagal Mengupdate produk:", error);
-    throw new Error("Gagal update produk");
+    console.error("❌ Gagal mengedit produk:", error);
+    return {
+      success: false,
+      message: "Terjadi kesalahan saat mengedit produk",
+    };
   }
 }
 
-// DELETE
+// DELETE PRODUCT
 export async function deleteProductAction(storeId: number, id: number) {
   try {
     await prisma.product.delete({ where: { id } });
     revalidatePath(`/admin/${storeId}`);
   } catch (error) {
     console.error("❌ Gagal menghapus produk:", error);
-    throw new Error("Gagal menghapus produk");
+    return {
+      success: false,
+      message: "Terjadi kesalahan saat menghapus produk",
+    };
+  }
+}
+
+//CREATE CATEGORY
+export async function addCategory(formData: FormData) {
+  try {
+    const name = formData.get("name") as string;
+    const storeId = Number(formData.get("storeId"));
+
+    if (!name) {
+      return {
+        success: false,
+        message: "Nama kategori tidak valid",
+      };
+    }
+
+    const newCategory = await prisma.category.create({
+      data: {
+        name,
+        storeId,
+      },
+    });
+
+    revalidatePath(`/admin/${storeId}`);
+
+    return {
+      success: true,
+      data: newCategory,
+      message: "Kategori berhasil di tambah!",
+    };
+  } catch (error) {
+    console.error("❌ Gagal menambah kategori:", error);
+    return {
+      success: false,
+      message: "Terjadi kesalahan saat menambah kategori",
+    };
   }
 }

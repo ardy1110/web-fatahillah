@@ -3,9 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { Categories, Product } from "@/lib/types";
 import { PlusCircle, X } from "lucide-react";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
 import SubmitButton from "./SubmitButton";
+import { editProduct } from "./actions";
+import { toast } from "sonner";
 
 const EditProductModal = ({
   open,
@@ -18,43 +19,8 @@ const EditProductModal = ({
   categories: Categories[];
   product: Product;
 }) => {
-  // Ambil default category ID dari produk yang sedang diedit
-  const [categoryId, setCategoryId] = useState<number>(product.categoryId);
-  const [name, setName] = useState(product.name);
-  const [price, setPrice] = useState(String(product.price));
-  const router = useRouter();
-
-  // Ambil storeId dari kategori pertama (anggap semua kategori dari store yang sama)
-  // const storeId = categories[0]?.storeId;
-  // console.log(categories);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!categoryId) {
-      alert("Pilih kategori terlebih dahulu");
-      return;
-    }
-
-    const res = await fetch(`/api/product/${product.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-        price: Number(price),
-        categoryId,
-        // storeId,
-      }),
-    });
-
-    if (res.ok) {
-      alert("Produk berhasil diperbarui!");
-      onClose();
-      router.refresh();
-    } else {
-      alert("Gagal memperbarui produk");
-    }
-  };
+  const storeId = categories[0]?.storeId;
+  const id = product.id;
 
   if (!open) return null;
 
@@ -80,14 +46,28 @@ const EditProductModal = ({
           Edit Produk
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form
+          action={async (formData) => {
+            const result = await editProduct(id, formData);
+
+            if (result.success) {
+              toast.success(result.message);
+              onClose();
+            } else {
+              toast.error(result.message);
+            }
+          }}
+          className="space-y-4"
+        >
+          <input type="hidden" name="storeId" value={storeId} />
+
           {/* Nama Produk */}
           <div>
             <label className="block text-sm mb-1">Nama Produk</label>
             <input
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              name="name"
+              defaultValue={product.name}
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
               required
             />
@@ -98,8 +78,8 @@ const EditProductModal = ({
             <label className="block text-sm mb-1">Kategori</label>
             <div className="flex items-center gap-2">
               <select
-                value={categoryId}
-                onChange={(e) => setCategoryId(Number(e.target.value))}
+                name="categoryId"
+                defaultValue={product.categoryId}
                 className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
                 required
               >
@@ -110,13 +90,14 @@ const EditProductModal = ({
                   </option>
                 ))}
               </select>
-              <button
+              <Button
                 type="button"
+                // onClick={() => setOpenCategoryModal(true)}
                 title="Tambah kategori baru"
-                className="p-2 bg-amber-600 text-white rounded-md hover:bg-amber-700 cursor-pointer"
+                className="bg-amber-600 text-white rounded-md hover:bg-amber-700 cursor-pointer"
               >
                 <PlusCircle size={18} />
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -125,8 +106,8 @@ const EditProductModal = ({
             <label className="block text-sm mb-1">Harga</label>
             <input
               type="number"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              name="price"
+              defaultValue={product.price}
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
               required
             />
