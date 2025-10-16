@@ -50,7 +50,7 @@ export async function editStore(id: number, formData: FormData) {
       where: { id },
       data: {
         name,
-        description
+        description,
       },
     });
 
@@ -65,7 +65,6 @@ export async function editStore(id: number, formData: FormData) {
     };
   }
 }
-
 
 // CREATE PRODUCT
 export async function addProduct(formData: FormData) {
