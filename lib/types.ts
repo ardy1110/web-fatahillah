@@ -1,8 +1,9 @@
 export interface Store {
   id: number;
   name: string;
-  description: string;
-  categories: Categories[];
+  description: string | null;
+  categories?: Categories[];
+  products?: Product[];
 }
 
 export interface Categories {
@@ -17,5 +18,5 @@ export interface Product {
   name: string;
   price: number;
   storeId: number;
-  categoryId: number;
+  categoryId: number | null;
 }

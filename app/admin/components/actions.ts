@@ -66,6 +66,20 @@ export async function editStore(id: number, formData: FormData) {
   }
 }
 
+//DELETE STORE
+export async function deleteToko(id: number) {
+  try {
+    await prisma.store.delete({ where: { id } });
+    revalidatePath("/admin");
+  } catch (error) {
+    console.error("❌ Gagal menghapus toko:", error);
+    return {
+      success: false,
+      message: "Terjadi kesalahan saat menghapus toko",
+    };
+  }
+}
+
 // CREATE PRODUCT
 export async function addProduct(formData: FormData) {
   try {
