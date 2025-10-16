@@ -63,7 +63,6 @@ const AddStore = ({
               type="text"
               name="description"
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
-              
             />
           </div>
 

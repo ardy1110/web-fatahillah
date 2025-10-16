@@ -3,7 +3,7 @@ import React from 'react'
 
 const DeleteStore = ({store}: {store: Store}) => {
   return (
-    <div>DeleteStore</div>
+    <div></div>
   )
 }
 

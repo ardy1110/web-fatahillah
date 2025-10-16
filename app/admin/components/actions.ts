@@ -56,12 +56,12 @@ export async function editStore(id: number, formData: FormData) {
 
     revalidatePath(`/admin`);
 
-    return { success: true, message: "Store berhasil di update!" };
+    return { success: true, message: "Toko berhasil di update!" };
   } catch (error) {
-    console.error("❌ Gagal mengedit store:", error);
+    console.error("❌ Gagal mengedit toko:", error);
     return {
       success: false,
-      message: "Terjadi kesalahan saat mengedit store",
+      message: "Terjadi kesalahan saat mengedit toko",
     };
   }
 }

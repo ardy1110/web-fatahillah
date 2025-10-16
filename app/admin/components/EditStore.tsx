@@ -6,7 +6,7 @@ import { editStore } from "./actions";
 import { toast } from "sonner";
 import { Store } from "@/lib/types";
 
-const EditStore = async ({
+const EditStore = ({
   store,
   open,
   onClose,
@@ -15,7 +15,8 @@ const EditStore = async ({
   open: boolean;
   onClose: () => void;
 }) => {
-     if (!open) return null;
+  if (!open) return null;
+
   return (
     <div
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"

@@ -12,31 +12,29 @@ const ListStores = ({ stores }: { stores: Store[] }) => {
 
   return (
     <nav className="flex-1 px-4 py-4 overflow-auto scrollbar-none">
-      
       {stores && stores.length ? (
         stores.map((store) => {
           const isActive = pathname.startsWith(`/admin/${store.id}`);
 
           return (
-            <>
-              <Link
-                key={store.id}
-                href={`/admin/${store.id}`}
-                className={`group flex items-center justify-between gap-2 p-3 rounded-md mb-2 transition-all duration-150 ${
-                  isActive
-                    ? "bg-amber-600 text-white"
-                    : "bg-white hover:bg-amber-100 text-black"
-                }`}
-              >
+            <div
+              key={store.id}
+              className={`group flex items-center justify-between gap-2 p-3 rounded-md mb-2 transition-all duration-150 ${
+                isActive
+                  ? "bg-amber-600 text-white"
+                  : "bg-white hover:bg-amber-100 text-black"
+              }`}
+            >
+              <Link href={`/admin/${store.id}`}>
                 <span className="flex-1 text-sm font-medium leading-tight break-words">
                   {store.name}
                 </span>
               </Link>
               <div className="flex items-center shrink-0">
-                <EditButtonStore store={store} />
-                <DeleteButtonStore store={store} />
+                <EditButtonStore store={store} isActive={isActive} />
+                <DeleteButtonStore store={store} isActive={isActive} />
               </div>
-            </>
+            </div>
           );
         })
       ) : (
