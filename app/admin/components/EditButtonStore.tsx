@@ -16,7 +16,7 @@ const EditButtonStore = ({
   const [openModal, setOpenModal] = useState(false);
 
   return (
-    <div>
+    <>
       <Button
         variant="ghost"
         size="icon"
@@ -34,7 +34,7 @@ const EditButtonStore = ({
         open={openModal}
         onClose={() => setOpenModal(false)}
       />
-    </div>
+    </>
   );
 };
 

@@ -19,7 +19,7 @@ const ListStores = ({ stores }: { stores: Store[] }) => {
           return (
             <div
               key={store.id}
-              className={`group flex items-center justify-between gap-2 p-3 rounded-md mb-2 transition-all duration-150 ${
+              className={`group flex items-center justify-between p-3 rounded-md mb-2 transition-all duration-150 ${
                 isActive
                   ? "bg-amber-600 text-white"
                   : "bg-white hover:bg-amber-100 text-black"

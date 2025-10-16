@@ -23,7 +23,7 @@ const EditStore = ({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl w-80 p-6 shadow-xl relative"
+        className="bg-white text-gray-800 rounded-2xl w-80 p-6 shadow-xl relative"
         onClick={(e) => e.stopPropagation()}
       >
         <Button
@@ -34,9 +34,7 @@ const EditStore = ({
           <X size={20} />
         </Button>
 
-        <h2 className="text-lg text-center font-semibold mb-4 text-gray-800">
-          Tambah Toko
-        </h2>
+        <h2 className="text-lg text-center font-semibold mb-4 ">Tambah Toko</h2>
 
         <form
           action={async (formData) => {
