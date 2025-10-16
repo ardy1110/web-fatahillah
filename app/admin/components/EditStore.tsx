@@ -34,7 +34,7 @@ const EditStore = ({
           <X size={20} />
         </Button>
 
-        <h2 className="text-lg text-center font-semibold mb-4 ">Tambah Toko</h2>
+        <h2 className="text-lg text-center font-semibold mb-4 ">Edit Toko</h2>
 
         <form
           action={async (formData) => {
