@@ -36,6 +36,37 @@ export async function addStore(formData: FormData) {
   }
 }
 
+// UPDATE STORE
+export async function editStore(id: number, formData: FormData) {
+  try {
+    const name = formData.get("name") as string;
+    const description = formData.get("description") as string;
+
+    if (!name || !description) {
+      return { success: false, message: "Data tidak Lengkap" };
+    }
+
+    await prisma.store.update({
+      where: { id },
+      data: {
+        name,
+        description
+      },
+    });
+
+    revalidatePath(`/admin`);
+
+    return { success: true, message: "Store berhasil di update!" };
+  } catch (error) {
+    console.error("❌ Gagal mengedit store:", error);
+    return {
+      success: false,
+      message: "Terjadi kesalahan saat mengedit store",
+    };
+  }
+}
+
+
 // CREATE PRODUCT
 export async function addProduct(formData: FormData) {
   try {
