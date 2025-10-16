@@ -66,6 +66,7 @@ export async function editStore(id: number, formData: FormData) {
   }
 }
 
+
 // CREATE PRODUCT
 export async function addProduct(formData: FormData) {
   try {
