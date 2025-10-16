@@ -17,20 +17,7 @@ const DeleteButton = ({ product }: { product: Product }) => {
       setOpen(false);
     });
   };
-
-  // const handelDelete = async () => {
-  //   const confirmed = window.confirm(
-  //     `Yakin mau hapus produk "${product.name}"?`
-  //   );
-  //   if (!confirmed) return;
-  //   const res = await fetch(`/api/product/${product.id}`, {
-  //     method: "DELETE",
-  //   });
-  //   if (res.ok) {
-  //     alert("product berhasil dihapus");
-  //   }
-  // };
-
+  
   return (
     <div>
       <Button

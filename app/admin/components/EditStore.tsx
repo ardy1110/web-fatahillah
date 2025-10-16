@@ -55,6 +55,7 @@ const EditStore = ({
             <input
               type="text"
               name="name"
+              defaultValue={store.name}
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
             />
           </div>
@@ -63,6 +64,7 @@ const EditStore = ({
             <input
               type="text"
               name="description"
+              defaultValue={store.description}
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
             />
           </div>
