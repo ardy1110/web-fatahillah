@@ -1,6 +1,7 @@
 // "use client";
 
 import { Store } from "@/lib/types";
+import Image from "next/image";
 
 export default function MenuClient({ stores }: { stores: Store[] }) {
   // const [selectedToko, setSelectedToko] = useState<Toko | null>(
@@ -60,13 +61,13 @@ export default function MenuClient({ stores }: { stores: Store[] }) {
                 key={store.id}
                 className="relative bg-white w-16 h-16 rounded-xl text-sm shadow-md shrink-0 hover:scale-105 transition-transform duration-300 cursor-pointer"
               >
-                {store.name}
-                {/* <Image
-                  src={`/${store.name}.jpg`}
+                
+                <Image
+                  src={store.imageUrl}
                   alt="Logo Toko"
                   fill
                   className="object-cover rounded-xl"
-                /> */}
+                />
               </div>
             ))}
           </div>
