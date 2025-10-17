@@ -22,6 +22,7 @@ model Store {
   description String?
   address     String?
   phoneNumber String?
+  imageUrl    String?
   // Relasi: Satu toko memiliki banyak kategori
   categories  Category[]
   // Relasi: Satu toko memiliki banyak produk (jika produk tidak harus terikat kategori)

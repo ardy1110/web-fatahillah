@@ -68,6 +68,14 @@ const EditStore = ({
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
             />
           </div>
+          <div>
+            <label className="block text-sm mb-1">Gambar Toko</label>
+            <input
+              type="file"
+              name="image"
+              className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
+            />
+          </div>
 
           <SubmitButton />
         </form>

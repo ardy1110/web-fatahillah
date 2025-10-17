@@ -1,8 +1,9 @@
 export interface Store {
   id: number;
   name: string;
-  description: string | null;
-  categories?: Categories[];
+  description: string ;
+  imageUrl: string
+  categories: Categories[];
   products?: Product[];
 }
 

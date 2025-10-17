@@ -22,7 +22,7 @@ export async function TableDemo({ stores }: { stores: Store }) {
           {/* Image with Checkbox overlay */}
           <div className="relative">
             <Image
-              src="/IconBlack.jpeg"
+              src={`${stores.imageUrl}`}
               alt="Store image"
               width={120}
               height={120}

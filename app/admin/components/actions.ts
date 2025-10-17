@@ -2,6 +2,8 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { writeFile } from "fs/promises";
+import path from "path";
 
 // CREATE STORE
 export async function addStore(formData: FormData) {
@@ -9,14 +11,28 @@ export async function addStore(formData: FormData) {
     const name = formData.get("name") as string;
     const description = formData.get("description") as string;
 
+    const file = formData.get("image") as File | null;
+    let imageUrl: string | null = null;
+
     if (!name || !description) {
       return { success: false, message: "Data tidak Lengkap" };
+    }
+    if (file && file.size > 0) {
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+
+      const fileName = `${Date.now()}-${file.name}`;
+      const filePath = path.join(process.cwd(), "public/uploads", fileName);
+      await writeFile(filePath, buffer);
+
+      imageUrl = `/uploads/${fileName}`;
     }
 
     const newStore = await prisma.store.create({
       data: {
         name,
         description,
+        imageUrl
       },
     });
 
@@ -42,6 +58,20 @@ export async function editStore(id: number, formData: FormData) {
     const name = formData.get("name") as string;
     const description = formData.get("description") as string;
 
+    const file = formData.get("image") as File | null;
+    let imageUrl: string | null = null;
+
+    if (file && file.size > 0) {
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+
+      const fileName = `${Date.now()}-${file.name}`;
+      const filePath = path.join(process.cwd(), "public/uploads", fileName);
+      await writeFile(filePath, buffer);
+
+      imageUrl = `/uploads/${fileName}`;
+    }
+
     if (!name || !description) {
       return { success: false, message: "Data tidak Lengkap" };
     }
@@ -51,6 +81,7 @@ export async function editStore(id: number, formData: FormData) {
       data: {
         name,
         description,
+        imageUrl
       },
     });
 
