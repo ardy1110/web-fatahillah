@@ -1,6 +1,7 @@
+import { Store } from "@/lib/types";
 import React from "react";
 
-const MenuList = () => {
+const MenuList = ({ store }: { store: Store }) => {
   return (
     <section className="border-t-2 border-amber-600 pt-6 grid grid-cols-3 gap-x-6 text-center">
       {/* {categories.map((category) => (

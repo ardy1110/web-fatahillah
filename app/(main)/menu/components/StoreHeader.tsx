@@ -1,12 +1,9 @@
+import { Store } from "@/lib/types";
 import React from "react";
 
-const StoreHeader = () => {
+const StoreHeader = ({ store }: { store: Store }) => {
   return (
     <>
-      <header className="text-center py-6">
-        <h1 className="text-3xl font-bold text-black">Nama Toko</h1>
-      </header>
-
       {/* Bagian Menu */}
       <div className="text-white pb-6">
         <div className="border-2 border-white overflow-hidden mb-6 px-12">
