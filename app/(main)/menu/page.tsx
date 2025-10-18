@@ -1,4 +1,4 @@
-import { getStore } from "./actions";
+import { getStore } from "./components/actions";
 import MenuClient from "./MenuClient";
 
 export default async function PageMenu() {
