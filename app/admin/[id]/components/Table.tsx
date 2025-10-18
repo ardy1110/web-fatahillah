@@ -100,6 +100,7 @@ export async function TableDemo({ stores }: { stores: Store }) {
                     </TableCell>
                     <TableCell className="px-6 py-3 flex justify-center space-x-4">
                       <EditButton
+                      store={stores}
                         categories={stores.categories}
                         product={product}
                       />

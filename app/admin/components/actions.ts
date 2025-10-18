@@ -197,6 +197,19 @@ export async function addCategory(formData: FormData) {
   try {
     const name = formData.get("name") as string;
     const storeId = Number(formData.get("storeId"));
+    const file = formData.get("image") as File | null;
+    let imageUrl: string | null = null;
+
+    if (file && file.size > 0) {
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+
+      const fileName = `${Date.now()}-${file.name}`;
+      const filePath = path.join(process.cwd(), "public/uploads", fileName);
+      await writeFile(filePath, buffer);
+
+      imageUrl = `/uploads/${fileName}`;
+    }
 
     if (!name) {
       return {
@@ -209,6 +222,7 @@ export async function addCategory(formData: FormData) {
       data: {
         name,
         storeId,
+        imageUrl
       },
     });
 
@@ -227,3 +241,5 @@ export async function addCategory(formData: FormData) {
     };
   }
 }
+
+

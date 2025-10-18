@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import SubmitButton from "../../components/SubmitButton";
 import { toast } from "sonner";
 import { Categories } from "@/lib/types";
+import { useState } from "react";
 
 export default function AddCategoryModal({
   open,
@@ -18,6 +19,8 @@ export default function AddCategoryModal({
   onAdd: (newCategory: Categories) => void;
   storeId: number;
 }) {
+    const [fileName, setFileName] = useState("Belum ada file dipilih");
+  
   if (!open) return null;
 
   return (
@@ -66,6 +69,33 @@ export default function AddCategoryModal({
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
               
             />
+          </div>
+          <div className="text-sm">
+            <label className="block text-sm mb-1">Gambar Kategori</label>
+
+            {/* Tombol upload custom */}
+            <label
+              htmlFor="image"
+              className="block text-center bg-amber-600 text-white py-2 rounded-md cursor-pointer hover:bg-amber-700 transition"
+            >
+              Pilih Gambar
+            </label>
+
+            <input
+              id="image"
+              type="file"
+              name="image"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) =>
+                setFileName(e.target.files?.[0]?.name || "Belum ada file dipilih")
+              }
+            />
+
+            {/* Teks nama file */}
+            <p className="mt-1 text-xs text-gray-600 italic truncate">
+              {fileName}
+            </p>
           </div>
 
           <SubmitButton />

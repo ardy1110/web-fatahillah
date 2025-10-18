@@ -34,6 +34,8 @@ model Store {
 model Category {
   id        Int        @id @default(autoincrement())
   name      String
+  imageUrl  String?
+
   // Kategori terikat pada satu Toko
   storeId   Int
   store     Store      @relation(fields: [storeId], references: [id], onDelete: Cascade)

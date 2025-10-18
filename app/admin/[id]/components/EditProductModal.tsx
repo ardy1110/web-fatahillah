@@ -1,30 +1,42 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Categories, Product } from "@/lib/types";
+import { Categories, Product, Store } from "@/lib/types";
 import { PlusCircle, X } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import SubmitButton from "../../components/SubmitButton";
 import { editProduct } from "../../components/actions";
 import { toast } from "sonner";
+import AddCategoryModal from "./AddCategory";
 
 const EditProductModal = ({
   open,
   onClose,
+  store,
   categories,
   product,
 }: {
   open: boolean;
   onClose: () => void;
+  store: Store
   categories: Categories[];
   product: Product;
 }) => {
+    const [openCategoryModal, setOpenCategoryModal] = useState(false);
+    const [category, setCategories] = useState<Categories[]>(
+        store.categories || []
+      );
   const storeId = categories[0]?.storeId;
   const id = product.id;
+
+  const handleAddCategory = (newCategory: Categories) => {
+      setCategories((prev) => [...prev, newCategory]);
+    };
 
   if (!open) return null;
 
   return (
+    <>
     <div
       className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 transition-opacity duration-200"
       onClick={onClose}
@@ -82,7 +94,7 @@ const EditProductModal = ({
                 className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
               >
                 <option value="">Pilih kategori</option>
-                {categories.map((cat) => (
+                {category.map((cat) => (
                   <option key={cat.id} value={cat.id}>
                     {cat.name}
                   </option>
@@ -90,7 +102,7 @@ const EditProductModal = ({
               </select>
               <Button
                 type="button"
-                // onClick={() => setOpenCategoryModal(true)}
+                onClick={() => setOpenCategoryModal(true)}
                 title="Tambah kategori baru"
                 className="bg-amber-600 text-white rounded-md hover:bg-amber-700 cursor-pointer"
               >
@@ -114,6 +126,13 @@ const EditProductModal = ({
         </form>
       </div>
     </div>
+    <AddCategoryModal
+            open={openCategoryModal}
+            onClose={() => setOpenCategoryModal(false)}
+            onAdd={handleAddCategory}
+            storeId={store.id}
+          />
+          </>
   );
 };
 

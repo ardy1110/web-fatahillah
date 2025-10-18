@@ -1,6 +1,8 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "sonner";
 import SubmitButton from "./SubmitButton";
 import { addStore } from "./actions";
@@ -12,6 +14,8 @@ const AddStore = ({
   open: boolean;
   onClose: () => void;
 }) => {
+  const [fileName, setFileName] = useState("Belum ada file dipilih");
+
   if (!open) return null;
 
   return (
@@ -41,7 +45,6 @@ const AddStore = ({
 
             if (result.success) {
               toast.success(result.message);
-
               onClose();
             } else {
               toast.error(result.message);
@@ -49,14 +52,18 @@ const AddStore = ({
           }}
           className="space-y-4"
         >
+          {/* Nama Toko */}
           <div>
             <label className="block text-sm mb-1">Nama Toko</label>
             <input
               type="text"
               name="name"
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
+              required
             />
           </div>
+
+          {/* Deskripsi */}
           <div>
             <label className="block text-sm mb-1">Deskripsi</label>
             <input
@@ -65,13 +72,34 @@ const AddStore = ({
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
             />
           </div>
-          <div>
+
+          {/* Gambar Toko - Custom Upload */}
+          <div className="text-sm">
             <label className="block text-sm mb-1">Gambar Toko</label>
+
+            {/* Tombol upload custom */}
+            <label
+              htmlFor="image"
+              className="block text-center bg-amber-600 text-white py-2 rounded-md cursor-pointer hover:bg-amber-700 transition"
+            >
+              Pilih Gambar
+            </label>
+
             <input
+              id="image"
               type="file"
               name="image"
-              className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) =>
+                setFileName(e.target.files?.[0]?.name || "Belum ada file dipilih")
+              }
             />
+
+            {/* Teks nama file */}
+            <p className="mt-1 text-xs text-gray-600 italic truncate">
+              {fileName}
+            </p>
           </div>
 
           <SubmitButton />
