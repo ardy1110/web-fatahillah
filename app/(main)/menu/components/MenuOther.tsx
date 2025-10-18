@@ -29,11 +29,11 @@ export const MenuOther = ({ store }: { store: Store }) => {
     <>
       {/* --- BAGIAN MENU ANDALAN --- */}
       {(menuAndalanProducts || []).length > 0 && (
-        <div className="mb-10">
+        <div className="mb-10 md:mx-24">
           <h2 className="text-2xl font-bold mb-4 text-center text-amber-600">
             Menu Andalan
           </h2>
-          <div className="border-2 border-gray-300 rounded-xl overflow-hidden shadow-lg bg-neutral-900 text-white">
+          <div className="border-2 border-gray-200 rounded-xl overflow-hidden shadow-lg bg-white text-black">
             <div className="relative h-64">
               {/* <Image
                 src={menuAndalanProducts[0].imageUrl || "/placeholder-image.jpg"}
@@ -42,7 +42,7 @@ export const MenuOther = ({ store }: { store: Store }) => {
                 className="object-cover"
               /> */}
             </div>
-            <div className="p-4 text-center justify-center bg-neutral-950 border-t-2 border-gray-300">
+            <div className="p-4 text-center justify-center bg-white border-t-2 border-gray-200">
               <p className="font-semibold text-lg">
                 {menuAndalanProducts?.[0].name}
               </p>
