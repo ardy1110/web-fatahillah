@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { X, PlusCircle } from "lucide-react";
+import { X } from "lucide-react";
 import { Categories, Store } from "@/lib/types";
-import AddCategoryModal from "./AddCategory";
 import { addProduct } from "../../components/actions";
 import SubmitButton from "../../components/SubmitButton";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { CategoryActions } from "./CategoryActions";
 
 export default function AddProductModal({
   open,
@@ -18,7 +18,6 @@ export default function AddProductModal({
   onClose: () => void;
   store: Store;
 }) {
-  const [openCategoryModal, setOpenCategoryModal] = useState(false);
   const [categories, setCategories] = useState<Categories[]>(
     store.categories || []
   );
@@ -92,14 +91,8 @@ export default function AddProductModal({
                     </option>
                   ))}
                 </select>
-                <Button
-                  type="button"
-                  onClick={() => setOpenCategoryModal(true)}
-                  title="Tambah kategori baru"
-                  className="bg-amber-600 text-white rounded-md hover:bg-amber-700 cursor-pointer"
-                >
-                  <PlusCircle size={18} />
-                </Button>
+                <CategoryActions onAddCategory={handleAddCategory}  storeId={store.id}/>
+                
               </div>
             </div>
 
@@ -117,13 +110,6 @@ export default function AddProductModal({
           </form>
         </div>
       </div>
-
-      <AddCategoryModal
-        open={openCategoryModal}
-        onClose={() => setOpenCategoryModal(false)}
-        onAdd={handleAddCategory}
-        storeId={store.id}
-      />
     </>
   );
 }

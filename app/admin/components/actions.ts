@@ -242,4 +242,69 @@ export async function addCategory(formData: FormData) {
   }
 }
 
+//UPDATE CATEGORY
+export async function updateCategory(id: number, formData: FormData ) {
+  try {
+    const name = formData.get("name") as string;
+    const storeId = Number(formData.get("storeId"));
+    const file = formData.get("image") as File | null;
+    let imageUrl: string | null = null;
+
+    if (file && file.size > 0) {
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+
+      const fileName = `${Date.now()}-${file.name}`;
+      const filePath = path.join(process.cwd(), "public/uploads", fileName);
+      await writeFile(filePath, buffer);
+
+      imageUrl = `/uploads/${fileName}`;
+    }
+
+    if (!name) {
+      return {
+        success: false,
+        message: "Nama kategori tidak valid",
+      };
+    }
+
+    const newCategory = await prisma.category.update({
+      where: {id},
+      data: {
+        name,
+        storeId,
+        imageUrl
+      },
+    });
+
+    revalidatePath(`/admin/${storeId}`);
+
+    return {
+      success: true,
+      data: newCategory,
+      message: "Kategori berhasil di edit!",
+    };
+  } catch (error) {
+    console.error("❌ Gagal edit kategori:", error);
+    return {
+      success: false,
+      message: "Terjadi kesalahan saat edit kategori",
+    };
+  }
+}
+
+// DELETE CATEGORY
+export async function deleteCategory(storeId: number, id: number) {
+  try {
+    await prisma.category.delete({ where: { id } });
+    revalidatePath(`/admin/${storeId}`);
+  } catch (error) {
+    console.error("❌ Gagal menghapus kategori:", error);
+    return {
+      success: false,
+      message: "Terjadi kesalahan saat menghapus kategori",
+    };
+  }
+}
+
 
