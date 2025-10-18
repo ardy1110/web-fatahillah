@@ -61,9 +61,8 @@ export default function MenuClient({ stores }: { stores: Store[] }) {
                 key={store.id}
                 className="relative bg-white w-16 h-16 rounded-xl text-sm shadow-md shrink-0 hover:scale-105 transition-transform duration-300 cursor-pointer"
               >
-                
                 <Image
-                  src={store.imageUrl}
+                  src={store.imageUrl || "IconBlack.jpeg"}
                   alt="Logo Toko"
                   fill
                   className="object-cover rounded-xl"

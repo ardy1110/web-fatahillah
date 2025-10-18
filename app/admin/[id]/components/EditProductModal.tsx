@@ -69,7 +69,6 @@ const EditProductModal = ({
               name="name"
               defaultValue={product.name}
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
-              
             />
           </div>
 
@@ -79,9 +78,8 @@ const EditProductModal = ({
             <div className="flex items-center gap-2">
               <select
                 name="categoryId"
-                defaultValue={product.categoryId}
+                defaultValue={product.categoryId || 0}
                 className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
-                
               >
                 <option value="">Pilih kategori</option>
                 {categories.map((cat) => (
@@ -109,7 +107,6 @@ const EditProductModal = ({
               name="price"
               defaultValue={product.price}
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
-              
             />
           </div>
 
