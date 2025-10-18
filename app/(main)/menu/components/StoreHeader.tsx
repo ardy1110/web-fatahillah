@@ -8,7 +8,7 @@ const StoreHeader = () => {
       </header>
 
       {/* Bagian Menu */}
-      <div className="px-12 text-white">
+      <div className="text-white pb-6">
         <div className="border-2 border-white overflow-hidden mb-6 px-12">
           <div className="h-64 flex items-center justify-center bg-neutral-800 rounded-t-xl">
             Image Menu Andalan
