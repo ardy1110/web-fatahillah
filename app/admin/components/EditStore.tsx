@@ -64,7 +64,7 @@ const EditStore = ({
             <input
               type="text"
               name="description"
-              defaultValue={store.description}
+              defaultValue={store.description || 'Makanan' }
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
             />
           </div>
