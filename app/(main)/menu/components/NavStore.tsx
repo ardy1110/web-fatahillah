@@ -21,7 +21,7 @@ const NavStore = ({
               key={store.id}
               onClick={() => onStoreSelect(store.id)}
               className={clsx(
-                "relative bg-white w-16 h-16 rounded-xl text-sm shadow-md shrink-0 hover:scale-105 transition-all duration-300 cursor-pointer",
+                "relative bg-white w-16 h-16 rounded-xl text-sm shadow-md shrink-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer",
                 {
                   "ring-4 ring-amber-400 ring-offset-2 ring-offset-black":
                     store.id === activeStoreId,

@@ -25,17 +25,16 @@ export const MenuOther = ({ store }: { store: Store }) => {
   );
 
   return (
-    // Kita gunakan div kosong sebagai root jika ada beberapa bagian level atas
     <div className="w-full">
       {/* --- BAGIAN MENU ANDALAN --- */}
       {(menuAndalanProducts || []).length > 0 && (
-        <div className="mb-10 px-4 md:px-24">
+        <div className="mb-10 px-6 md:px-32">
           <h2 className="text-2xl font-bold mb-4 text-center text-amber-600">
             Menu Andalan
           </h2>
-          <div className="border-2 border-gray-200 rounded-xl overflow-hidden shadow-lg bg-white text-black">
+          <div className="border-2 border-gray-300 rounded-xl overflow-hidden shadow-lg bg-white text-black">
             <div className="relative h-64 bg-neutral-200"></div>
-            <div className="p-4 text-center justify-center bg-white border-t-2 border-gray-200">
+            <div className="p-4 text-center justify-center bg-white border-t-2 border-gray-300">
               <p className="font-semibold text-lg">
                 {menuAndalanProducts?.[0].name}
               </p>

@@ -12,7 +12,7 @@ const MainNavBar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const halfScreen = window.innerHeight * 0.5; // Setengah Layar
+      const halfScreen = window.innerHeight * 0.2;
       setIsSolid(window.scrollY > halfScreen);
     };
 
@@ -44,10 +44,7 @@ const MainNavBar = () => {
             className={`flex flex-col items-center text-xl font-bold transition-all duration-200 ${
               !isSolid && pathname !== "/menu" ? "text-white" : "text-black"
             }`}
-          >
-            {/* <h1>Warkop</h1>
-            <h1>Fatahillah</h1> */}
-          </div>
+          ></div>
         </Link>
         {pathname === "/" && <ButtonMenu />}
       </div>
