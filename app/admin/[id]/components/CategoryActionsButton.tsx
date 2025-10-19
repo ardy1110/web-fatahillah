@@ -130,17 +130,9 @@ const CategoryActionsButton = ({
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center overflow-hidden">
-                        {category.imageUrl ? (
-                          <Image 
-                            src={category.imageUrl} 
-                            alt={category.name}
-                            width={200}
-                            height={200}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
+                    
                           <FolderOpen size={20} className="text-amber-600" />
-                        )}
+                        
                       </div>
                       <span className="font-medium text-gray-700">
                         {category.name}
