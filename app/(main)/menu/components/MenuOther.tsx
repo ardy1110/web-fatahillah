@@ -14,10 +14,8 @@ export const MenuOther = ({ store }: { store: Store }) => {
     (cat) => cat.name === "Menu Lainnya"
   )?.id;
 
-  //Ngambil Gambar
-  const andalanGambar = store.categories.find(
-    (cat) => cat.name === "Menu Andalan"
-  )?.imageUrl;
+  console.log(store);
+  
 
   // Filter daftar produk berdasarkan ID kategori yang sudah ditemukan
   const menuAndalanProducts = store.products?.filter(
@@ -41,7 +39,7 @@ export const MenuOther = ({ store }: { store: Store }) => {
           <div className="border-2 border-gray-300 rounded-xl overflow-hidden shadow-lg bg-white text-black">
             <div className="relative h-64 md:h-96 bg-neutral-200">
               <Image
-                src={andalanGambar || "/IconBlack.jpeg"}
+                src={menuAndalanProducts?.[0].imageUrl || "/IconBlack.jpeg"}
                 alt="Menu Andalan"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
