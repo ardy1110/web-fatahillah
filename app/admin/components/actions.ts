@@ -119,6 +119,20 @@ export async function addProduct(formData: FormData) {
     const categoryId = Number(formData.get("categoryId"));
     const storeId = Number(formData.get("storeId"));
 
+    const file = formData.get("image") as File | null;
+    let imageUrl: string | null = null;
+
+    if (file && file.size > 0) {
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+
+      const fileName = `${Date.now()}-${file.name}`;
+      const filePath = path.join(process.cwd(), "public/uploads", fileName);
+      await writeFile(filePath, buffer);
+
+      imageUrl = `/uploads/${fileName}`;
+    }
+
     if (!name || !price || !categoryId) {
       return { success: false, message: "Data tidak Lengkap" };
     }
@@ -129,6 +143,7 @@ export async function addProduct(formData: FormData) {
         price,
         categoryId,
         storeId,
+        imageUrl,
       },
     });
 
@@ -152,6 +167,20 @@ export async function editProduct(id: number, formData: FormData) {
     const categoryId = Number(formData.get("categoryId"));
     const storeId = Number(formData.get("storeId"));
 
+    const file = formData.get("image") as File | null;
+    let imageUrl: string | null = null;
+
+    if (file && file.size > 0) {
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+
+      const fileName = `${Date.now()}-${file.name}`;
+      const filePath = path.join(process.cwd(), "public/uploads", fileName);
+      await writeFile(filePath, buffer);
+
+      imageUrl = `/uploads/${fileName}`;
+    }
+
     if (!name || !price || !categoryId) {
       return { success: false, message: "Data tidak Lengkap" };
     }
@@ -163,6 +192,7 @@ export async function editProduct(id: number, formData: FormData) {
         price,
         categoryId,
         storeId,
+        imageUrl,
       },
     });
 

@@ -1,11 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
+import { Upload, X } from "lucide-react";
 import React, { useState } from "react";
 import { toast } from "sonner";
 import SubmitButton from "./SubmitButton";
 import { addStore } from "./actions";
+import Image from "next/image";
 
 const AddStore = ({
   open,
@@ -14,7 +15,18 @@ const AddStore = ({
   open: boolean;
   onClose: () => void;
 }) => {
-  const [fileName, setFileName] = useState("Belum ada file dipilih");
+    const [previewImage, setPreviewImage] = useState<string | null>(null);
+  
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   if (!open) return null;
 
@@ -73,34 +85,52 @@ const AddStore = ({
             />
           </div>
 
-          {/* Gambar Toko - Custom Upload */}
-          <div className="text-sm">
-            <label className="block text-sm mb-1">Gambar Toko</label>
-
-            {/* Tombol upload custom */}
-            <label
-              htmlFor="image"
-              className="block text-center bg-amber-600 text-white py-2 rounded-md cursor-pointer hover:bg-amber-700 transition"
-            >
-              Pilih Gambar
-            </label>
-
-            <input
-              id="image"
-              type="file"
-              name="image"
-              accept="image/*"
-              className="hidden"
-              onChange={(e) =>
-                setFileName(e.target.files?.[0]?.name || "Belum ada file dipilih")
-              }
-            />
-
-            {/* Teks nama file */}
-            <p className="mt-1 text-xs text-gray-600 italic truncate">
-              {fileName}
-            </p>
-          </div>
+          {/* Image Upload */}
+                      <div>
+                        <label
+                          htmlFor="edit-category-image"
+                          className="block text-sm font-medium mb-2"
+                        >
+                          Gambar Menu
+                        </label>
+          
+                        {/* Preview Image */}
+                        {previewImage && (
+                          <div className="mb-3 relative w-32 h-32 mx-auto">
+                            <Image
+                              src={previewImage}
+                              width={200}
+                              height={200}
+                              alt="Preview"
+                              className="w-full h-full object-cover rounded-lg border-2 border-gray-200"
+                            />
+                          </div>
+                        )}
+          
+                        {/* Upload Button */}
+                        <div className="relative">
+                          <input
+                            id="edit-category-image"
+                            type="file"
+                            name="image"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="hidden"
+                          />
+                          <label
+                            htmlFor="edit-category-image"
+                            className="flex items-center justify-center gap-2 w-full border-2 border-dashed rounded-md p-3 cursor-pointer hover:bg-gray-50 transition-colors"
+                          >
+                            <Upload size={18} className="text-gray-500" />
+                            <span className="text-sm text-gray-600">
+                              {previewImage ? "Ganti Gambar" : "Upload Gambar"}
+                            </span>
+                          </label>
+                        </div>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Format: JPG, PNG, GIF (Maks. 5MB)
+                        </p>
+                      </div>
 
           <SubmitButton />
         </form>

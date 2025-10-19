@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
-import React from "react";
+import { Upload, X } from "lucide-react";
+import React, { useState } from "react";
 import SubmitButton from "./SubmitButton";
 import { editStore } from "./actions";
 import { toast } from "sonner";
 import { Store } from "@/lib/types";
+import Image from "next/image";
 
 const EditStore = ({
   store,
@@ -15,6 +16,18 @@ const EditStore = ({
   open: boolean;
   onClose: () => void;
 }) => {
+      const [previewImage, setPreviewImage] = useState<string | null>(null);
+  
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setPreviewImage(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+      }
+    };
   if (!open) return null;
 
   return (
@@ -68,14 +81,52 @@ const EditStore = ({
               className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
             />
           </div>
-          <div>
-            <label className="block text-sm mb-1">Gambar Toko</label>
-            <input
-              type="file"
-              name="image"
-              className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
-            />
-          </div>
+          {/* Image Upload */}
+                      <div>
+                        <label
+                          htmlFor="edit-category-image"
+                          className="block text-sm font-medium mb-2"
+                        >
+                          Gambar Menu
+                        </label>
+          
+                        {/* Preview Image */}
+                        {previewImage && (
+                          <div className="mb-3 relative w-32 h-32 mx-auto">
+                            <Image
+                              src={previewImage}
+                              width={200}
+                              height={200}
+                              alt="Preview"
+                              className="w-full h-full object-cover rounded-lg border-2 border-gray-200"
+                            />
+                          </div>
+                        )}
+          
+                        {/* Upload Button */}
+                        <div className="relative">
+                          <input
+                            id="edit-category-image"
+                            type="file"
+                            name="image"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="hidden"
+                          />
+                          <label
+                            htmlFor="edit-category-image"
+                            className="flex items-center justify-center gap-2 w-full border-2 border-dashed rounded-md p-3 cursor-pointer hover:bg-gray-50 transition-colors"
+                          >
+                            <Upload size={18} className="text-gray-500" />
+                            <span className="text-sm text-gray-600">
+                              {previewImage ? "Ganti Gambar" : "Upload Gambar"}
+                            </span>
+                          </label>
+                        </div>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Format: JPG, PNG, GIF (Maks. 5MB)
+                        </p>
+                      </div>
 
           <SubmitButton />
         </form>

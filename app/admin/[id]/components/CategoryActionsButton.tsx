@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { FolderOpen, PencilIcon, X, Upload, Trash2 } from "lucide-react";
+import { FolderOpen, PencilIcon, X, Trash2 } from "lucide-react";
 import { Categories } from "@/lib/types";
 import { toast } from "sonner";
-import Image from "next/image";
+// import Image from "next/image";
 import { deleteCategory, updateCategory } from "../../components/actions";
 import SubmitButton from "../../components/SubmitButton";
 
@@ -21,7 +21,7 @@ const CategoryActionsButton = ({
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<Categories | null>(null);
-  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  // const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   // Filter categories berdasarkan storeId
   const filteredCategories = categories.filter(
@@ -30,25 +30,25 @@ const CategoryActionsButton = ({
 
   const handleEdit = (category: Categories) => {
     setSelectedCategory(category);
-    setPreviewImage(category.imageUrl || null);
+    // setPreviewImage(category.imageUrl || null);
     setIsEditModalOpen(true);
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewImage(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  // const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setPreviewImage(reader.result as string);
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
   const handleCloseEditModal = () => {
     setIsEditModalOpen(false);
     setSelectedCategory(null);
-    setPreviewImage(null);
+    // setPreviewImage(null);
   };
 
   const handleDelete = (category: Categories) => {
@@ -78,7 +78,7 @@ const CategoryActionsButton = ({
     <>
       <Button
         onClick={() => setIsModalOpen(true)}
-        className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded"
+        className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded cursor-pointer"
       >
         <FolderOpen size={18} />
         Kelola Kategori
@@ -108,7 +108,7 @@ const CategoryActionsButton = ({
               <Button
                 variant="ghost"
                 onClick={() => setIsModalOpen(false)}
-                className="text-gray-500 hover:text-gray-800"
+                className="text-gray-500 hover:text-gray-800 cursor-pointer"
                 aria-label="Tutup modal"
               >
                 <X size={20} />
@@ -145,7 +145,7 @@ const CategoryActionsButton = ({
                         variant="ghost"
                         size="sm"
                         onClick={() => handleEdit(category)}
-                        className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                        className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 cursor-pointer"
                       >
                         <PencilIcon size={16} />
                       </Button>
@@ -154,7 +154,7 @@ const CategoryActionsButton = ({
                         variant="ghost"
                         size="sm"
                         onClick={() => handleDelete(category)}
-                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                        className="text-red-600 hover:text-red-700 hover:bg-red-50 cursor-pointer"
                       >
                         <Trash2 size={16} />
                       </Button>
@@ -238,12 +238,11 @@ const CategoryActionsButton = ({
               </div>
 
               {/* Image Upload */}
-              <div>
+              {/* <div>
                 <label htmlFor="edit-category-image" className="block text-sm font-medium mb-2">
                   Gambar Kategori
                 </label>
                 
-                {/* Preview Image */}
                 {previewImage && (
                   <div className="mb-3 relative w-32 h-32 mx-auto">
                     <Image
@@ -256,7 +255,6 @@ const CategoryActionsButton = ({
                   </div>
                 )}
 
-                {/* Upload Button */}
                 <div className="relative">
                   <input
                     id="edit-category-image"
@@ -279,7 +277,7 @@ const CategoryActionsButton = ({
                 <p className="text-xs text-gray-500 mt-1">
                   Format: JPG, PNG, GIF (Maks. 5MB)
                 </p>
-              </div>
+              </div> */}
 
               {/* Submit Button */}
               <SubmitButton />
@@ -312,7 +310,7 @@ const CategoryActionsButton = ({
               <Button
                 variant="ghost"
                 onClick={handleCloseDeleteModal}
-                className="text-gray-500 hover:text-gray-800"
+                className="text-gray-500 hover:text-gray-800 cursor-pointer"
                 aria-label="Tutup modal"
               >
                 <X size={20} />
@@ -345,13 +343,13 @@ const CategoryActionsButton = ({
               <Button
                 variant="outline"
                 onClick={handleCloseDeleteModal}
-                className="flex-1"
+                className="flex-1 cursor-pointer"
               >
                 Batal
               </Button>
               <Button
                 onClick={confirmDelete}
-                className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+                className="flex-1 bg-red-600 hover:bg-red-700 text-white cursor-pointer"
               >
                 Hapus
               </Button>
