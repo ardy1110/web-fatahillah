@@ -23,7 +23,7 @@ export default function MenuClient({ stores }: { stores: Store[] }) {
 
   return (
     <main className="flex flex-col h-dvh pb-24">
-      <div className="flex-1 overflow-y-auto scrollbar-none">
+      <div className="flex-1 overflow-y-auto scrollbar-none pt-12 md:pt-6">
         <header className="text-center py-6 px-4">
           <h1 className="text-3xl font-bold text-black">{activeStore.name}</h1>
         </header>
