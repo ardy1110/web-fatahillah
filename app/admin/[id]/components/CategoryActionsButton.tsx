@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { FolderOpen, PencilIcon, X, Upload } from "lucide-react";
+import { FolderOpen, PencilIcon, X, Upload, Trash2 } from "lucide-react";
 import { Categories } from "@/lib/types";
 import { toast } from "sonner";
 import Image from "next/image";
-import { updateCategory } from "../../components/actions";
+import { deleteCategory, updateCategory } from "../../components/actions";
 import SubmitButton from "../../components/SubmitButton";
 
 interface CategoryActionsButtonProps {
@@ -19,6 +19,7 @@ const CategoryActionsButton = ({
 }: CategoryActionsButtonProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<Categories | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
@@ -32,8 +33,6 @@ const CategoryActionsButton = ({
     setPreviewImage(category.imageUrl || null);
     setIsEditModalOpen(true);
   };
-  console.log(previewImage);
-  
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -50,6 +49,29 @@ const CategoryActionsButton = ({
     setIsEditModalOpen(false);
     setSelectedCategory(null);
     setPreviewImage(null);
+  };
+
+  const handleDelete = (category: Categories) => {
+    setSelectedCategory(category);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleCloseDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+    setSelectedCategory(null);
+  };
+
+  const confirmDelete = async () => {
+    if (selectedCategory) {
+      const result = await deleteCategory(storeId, selectedCategory.id);
+      if (result?.success === false) {
+        toast.error(result.message);
+      } else {
+        toast.success("Kategori berhasil dihapus!");
+        handleCloseDeleteModal();
+        setIsModalOpen(false);
+      }
+    }
   };
 
   return (
@@ -112,6 +134,8 @@ const CategoryActionsButton = ({
                           <Image 
                             src={category.imageUrl} 
                             alt={category.name}
+                            width={200}
+                            height={200}
                             className="w-full h-full object-cover"
                           />
                         ) : (
@@ -122,15 +146,27 @@ const CategoryActionsButton = ({
                         {category.name}
                       </span>
                     </div>
-                    {/* EDIT KATEGORI */}
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleEdit(category)}
-                      className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
-                    >
-                      <PencilIcon size={16} />
-                    </Button>
+                    {/* Action Buttons */}
+                    <div className="flex items-center gap-2">
+                      {/* Edit Button */}
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleEdit(category)}
+                        className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                      >
+                        <PencilIcon size={16} />
+                      </Button>
+                      {/* Delete Button */}
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleDelete(category)}
+                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                      >
+                        <Trash2 size={16} />
+                      </Button>
+                    </div>
                   </div>
                 ))
               )}
@@ -256,6 +292,78 @@ const CategoryActionsButton = ({
               {/* Submit Button */}
               <SubmitButton />
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Modal Delete Category */}
+      {isDeleteModalOpen && selectedCategory && (
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60] transition-opacity duration-200"
+          onClick={handleCloseDeleteModal}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="delete-category-modal-title"
+        >
+          <div
+            className="bg-white rounded-2xl w-full max-w-md p-6 shadow-xl relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between mb-4">
+              <h2
+                id="delete-category-modal-title"
+                className="text-lg font-semibold text-gray-800"
+              >
+                Hapus Kategori
+              </h2>
+              <Button
+                variant="ghost"
+                onClick={handleCloseDeleteModal}
+                className="text-gray-500 hover:text-gray-800"
+                aria-label="Tutup modal"
+              >
+                <X size={20} />
+              </Button>
+            </div>
+
+            {/* Content */}
+            <div className="mb-6">
+              <div className="flex items-center gap-3 p-4 bg-red-50 rounded-lg mb-4">
+                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                  <Trash2 size={24} className="text-red-600" />
+                </div>
+                <div>
+                  <p className="font-medium text-gray-800">
+                    {selectedCategory.name}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Kategori ini akan dihapus
+                  </p>
+                </div>
+              </div>
+              
+              <p className="text-sm text-gray-600">
+                Apakah Anda yakin ingin menghapus kategori ini? Tindakan ini tidak dapat dibatalkan.
+              </p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                onClick={handleCloseDeleteModal}
+                className="flex-1"
+              >
+                Batal
+              </Button>
+              <Button
+                onClick={confirmDelete}
+                className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+              >
+                Hapus
+              </Button>
+            </div>
           </div>
         </div>
       )}
