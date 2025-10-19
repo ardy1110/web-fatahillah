@@ -12,8 +12,10 @@ import { Store } from "@/lib/types";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
 import AddButtonProduct from "./AddButtonProduct";
+import CategoryActionsButton from "./CategoryActionsButton";
 
-export async function TableDemo({ stores }: { stores: Store }) {
+
+export async function TableMenu({ stores }: { stores: Store }) {
   return (
     <main className="p-12">
       <div className="flex items-start justify-between p-4">
@@ -44,8 +46,9 @@ export async function TableDemo({ stores }: { stores: Store }) {
         </div>
       </div>
       {/* Right Section: Button */}
-      <div className="flex justify-end  ">
-        <AddButtonProduct stores={stores} />
+      <div className="flex justify-end items-center  ">
+        <CategoryActionsButton storeId={stores.id} categories={stores.categories}/>
+        <AddButtonProduct stores={stores} categories={stores.categories} />
       </div>
 
       <div className="border border-gray-200 rounded-xl shadow-sm">
@@ -100,7 +103,7 @@ export async function TableDemo({ stores }: { stores: Store }) {
                     </TableCell>
                     <TableCell className="px-6 py-3 flex justify-center space-x-4">
                       <EditButton
-                      store={stores}
+                        store={stores}
                         categories={stores.categories}
                         product={product}
                       />

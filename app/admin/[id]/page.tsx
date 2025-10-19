@@ -1,5 +1,5 @@
 import React from "react";
-import { TableDemo } from "./components/Table";
+import { TableMenu } from "./components/Table";
 
 async function DetailStore({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -16,7 +16,7 @@ async function DetailStore({ params }: { params: Promise<{ id: string }> }) {
 
   return (
     <main className="flex-1 ml-64">
-      <TableDemo stores={stores} />
+      <TableMenu stores={stores} />
     </main>
   );
 }

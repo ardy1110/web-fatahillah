@@ -11,6 +11,7 @@ export interface Categories {
   id: number;
   name: string;
   storeId: number;
+  imageUrl: string | null;
   products?: Product[];
 }
 
