@@ -32,7 +32,7 @@ export async function addStore(formData: FormData) {
       data: {
         name,
         description,
-        imageUrl
+        imageUrl,
       },
     });
 
@@ -81,7 +81,7 @@ export async function editStore(id: number, formData: FormData) {
       data: {
         name,
         description,
-        imageUrl
+        imageUrl,
       },
     });
 
@@ -222,7 +222,7 @@ export async function addCategory(formData: FormData) {
       data: {
         name,
         storeId,
-        imageUrl
+        imageUrl,
       },
     });
 
@@ -243,7 +243,7 @@ export async function addCategory(formData: FormData) {
 }
 
 //UPDATE CATEGORY
-export async function updateCategory(id: number, formData: FormData ) {
+export async function updateCategory(id: number, formData: FormData) {
   try {
     const name = formData.get("name") as string;
     const storeId = Number(formData.get("storeId"));
@@ -269,11 +269,11 @@ export async function updateCategory(id: number, formData: FormData ) {
     }
 
     const newCategory = await prisma.category.update({
-      where: {id},
+      where: { id },
       data: {
         name,
         storeId,
-        imageUrl
+        imageUrl,
       },
     });
 
@@ -306,5 +306,3 @@ export async function deleteCategory(storeId: number, id: number) {
     };
   }
 }
-
-
