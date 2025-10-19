@@ -1,4 +1,5 @@
 import { Store } from "@/lib/types";
+import Image from "next/image";
 
 export const MenuOther = ({ store }: { store: Store }) => {
   // Cari ID untuk setiap kategori yang kita butuhkan
@@ -12,6 +13,11 @@ export const MenuOther = ({ store }: { store: Store }) => {
   const lainnyaCategoryId = store.categories.find(
     (cat) => cat.name === "Menu Lainnya"
   )?.id;
+
+  //Ngambil Gambar
+  const andalanGambar = store.categories.find(
+    (cat) => cat.name === "Menu Andalan"
+  )?.imageUrl;
 
   // Filter daftar produk berdasarkan ID kategori yang sudah ditemukan
   const menuAndalanProducts = store.products?.filter(
@@ -33,7 +39,14 @@ export const MenuOther = ({ store }: { store: Store }) => {
             Menu Andalan
           </h2>
           <div className="border-2 border-gray-300 rounded-xl overflow-hidden shadow-lg bg-white text-black">
-            <div className="relative h-64 bg-neutral-200"></div>
+            <div className="relative h-64 bg-neutral-200">
+              <Image
+                src={andalanGambar || "/IconBlack.jpeg"}
+                alt="Menu Andalan"
+                fill
+                className="object-cover"
+              />
+            </div>
             <div className="p-4 text-center justify-center bg-white border-t-2 border-gray-300">
               <p className="font-semibold text-lg">
                 {menuAndalanProducts?.[0].name}
