@@ -8,7 +8,7 @@ export default function mainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex flex-col gap-12">
+    <main className="flex flex-col">
       {/* Navbar  */}
       <MainNavBar />
       {children}

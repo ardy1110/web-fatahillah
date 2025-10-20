@@ -10,43 +10,53 @@ const MainNavBar = () => {
   const pathname = usePathname();
   const [isSolid, setIsSolid] = useState(false);
 
+  const isHome = pathname === "/";
+
   useEffect(() => {
+    if (!isHome) return; // efek scroll hanya untuk homepage
+
     const handleScroll = () => {
-      const halfScreen = window.innerHeight * 0.2;
+      const halfScreen = window.innerHeight * 0.8;
       setIsSolid(window.scrollY > halfScreen);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHome]);
 
   return (
     <nav
-      className={`fixed py-5 px-10 top-0 left-0 w-full z-50 duration-500 bg-transparent ${
-        isSolid ? "bg-white/90 shadow-md backdrop-blur-sm" : "bg-transparent"
-      }`}
+      className={`
+        ${isHome ? "fixed top-0 left-0 z-50" : "relative"}
+        w-full py-5 px-10 transition-all duration-500
+        ${
+          isHome
+            ? isSolid
+              ? "bg-white/90 shadow-md backdrop-blur-sm"
+              : "bg-transparent"
+            : "bg-white shadow-md"
+        }
+      `}
     >
       <div className="flex items-start justify-between">
+        {/* === LOGO === */}
         <Link href="/" className="flex items-center space-x-4">
-          <div className="relative w-[168] h-[52]">
+          <div className="relative w-[168px] h-[52px]">
             <Image
               src="/wf.png"
               alt="Logo Fatahillah"
               fill
-              className={`transition-all duration-200 ${
-                !isSolid && pathname !== "/menu"
+              className={`transition-all duration-300 ${
+                !isSolid && isHome
                   ? "invert brightness-0"
                   : "invert brightness-200"
               }`}
             />
           </div>
-          <div
-            className={`flex flex-col items-center text-xl font-bold transition-all duration-200 ${
-              !isSolid && pathname !== "/menu" ? "text-white" : "text-black"
-            }`}
-          ></div>
         </Link>
-        {pathname === "/" && <ButtonMenu />}
+
+        {/* === BUTTON MENU (hanya di halaman utama) === */}
+        {isHome && <ButtonMenu />}
       </div>
     </nav>
   );
