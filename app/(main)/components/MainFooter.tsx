@@ -28,26 +28,25 @@ const MainFooter = () => {
         {/* Kolom 2: Toko-toko Penjual*/}
         <div>
           <h3 className="text-lg font-semibold mb-3">Penjual Makanan</h3>
-          <div className="text-sm grid grid-cols-2 gap-2">
+          <ul className="space-y-1 text-sm" >
             {/* Suseaikan lagi  */}
-            <p>Mie Bangladesh Costa</p>
-            <p>Soto Dapur Rini</p>
-            <p>Lala Kitchen</p>
-            <p>Martabak Durian</p>
-            <p>Minang saiyo</p>
-            <p>Jajanan Warkop Fatahillah</p>
-            <p>Sate Matang Bang Bass</p>
-            <p>Pecel Lele Abiyu</p>
-
-
-            
-          </div>
+            <li>Mie Bangladesh Costa</li>
+            <li>Soto Dapur Rini</li>
+            <li>Lala Kitchen</li>
+            <li>Martabak Durian</li>
+            <li>Minang saiyo</li>
+            <li>Sate Matang Bang Bass</li>
+            <li>Jajanan Warkop Fatahillah</li>
+            <li>Pecel Lele Abiyu</li>
+          </ul>
         </div>
 
         {/* Kolom 3: Contact */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Hubungi Kami</h3>
-          <p className="text-sm">Jl. Fatahillah Geuceu Kayee Jato, Kec. Banda Raya, Kota Banda Aceh</p>
+          <p className="text-sm">
+            Jl. Fatahillah Geuceu Kayee Jato, Kec. Banda Raya, Kota Banda Aceh
+          </p>
           <p className="text-sm">warkopfatahillah@gmail.com</p>
           <p className="text-sm">0821-6064-4668</p>
         </div>
