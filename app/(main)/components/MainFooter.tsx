@@ -19,16 +19,37 @@ const MainFooter = () => {
           </p>
           {/* Brand/Sponsor  */}
           <div className="flex gap-4 mt-4">
-            <SiFacebook size={25} />
-            <SiInstagram size={25} />
-            <SiTiktok size={25} />
+            <a
+              href="https://www.facebook.com/share/14LKPhRcfaM/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition"
+            >
+              <SiFacebook size={25} />
+            </a>
+            <a
+              href="https://www.instagram.com/warkop_fatahillah?igsh=Z2ZiZGdxdXNqZndj"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition"
+            >
+              <SiInstagram size={25} />
+            </a>
+            <a
+              href="https://www.tiktok.com/@warkop_fatahillah?_t=ZS-90hvcipGjk0&_r=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-80 transition"
+            >
+              <SiTiktok size={25} />
+            </a>
           </div>
         </div>
 
         {/* Kolom 2: Toko-toko Penjual*/}
         <div>
           <h3 className="text-lg font-semibold mb-3">Penjual Makanan</h3>
-          <ul className="space-y-1 text-sm" >
+          <ul className="space-y-1 text-sm">
             {/* Suseaikan lagi  */}
             <li>Mie Bangladesh Costa</li>
             <li>Soto Dapur Rini</li>
@@ -53,9 +74,9 @@ const MainFooter = () => {
 
         {/* Kolom 4: Jam Buka */}
         <div>
-          <h3 className="text-lg font-semibold mb-3">Buka pada jam</h3>
-          <p className="text-sm">Monday - Friday: 7 AM - 10 PM</p>
-          <p className="text-sm">Saturday - Sunday: 8 AM - 11 PM</p>
+          <h3 className="text-lg font-semibold mb-3">Buka</h3>
+          <p className="text-sm">Setiap hari 05.30 - 23.59</p>
+          {/* <p className="text-sm">Saturday - Sunday: 8 AM - 11 PM</p> */}
         </div>
       </div>
 

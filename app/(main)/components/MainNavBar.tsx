@@ -16,7 +16,7 @@ const MainNavBar = () => {
     if (!isHome) return; // efek scroll hanya untuk homepage
 
     const handleScroll = () => {
-      const halfScreen = window.innerHeight * 0.8;
+      const halfScreen = window.innerHeight * 0.1;
       setIsSolid(window.scrollY > halfScreen);
     };
 
@@ -32,7 +32,7 @@ const MainNavBar = () => {
         ${
           isHome
             ? isSolid
-              ? "bg-white/90 shadow-md backdrop-blur-sm"
+              ? "bg-white/50 shadow-md backdrop-blur-sm"
               : "bg-transparent"
             : "bg-white shadow-md"
         }

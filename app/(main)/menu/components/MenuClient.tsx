@@ -25,7 +25,7 @@ export default function MenuClient({ stores }: { stores: Store[] }) {
     <main className="flex flex-col min-h-screen">
       <div className="flex-1">
         <header className="text-center py-6 px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-amber-600 mb-2">
+          <h1 className="text-xl md:text-3xl font-bold text-amber-600 mb-2">
             {activeStore.name}
           </h1>
           <div className="w-24 h-1 bg-amber-600 mx-auto rounded-full"></div>

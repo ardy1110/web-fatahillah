@@ -37,7 +37,10 @@ export const MenuOther = ({ store }: { store: Store }) => {
               quality={90}
               priority
             />
-            <div className="absolute inset-0 bg-black/40 flex items-end justify-center p-6">
+            <div className="absolute inset-0 bg-black/40 flex flex-col items-start justify-end p-6">
+              <h2 className="text-md md:text-xl font-bold text-white drop-shadow-lg">
+                Menu Andalan
+              </h2>
               <h2 className="text-2xl md:text-3xl font-bold text-white drop-shadow-lg">
                 {menuAndalanProducts?.[0].name || "Menu Andalan"}
               </h2>
@@ -47,7 +50,7 @@ export const MenuOther = ({ store }: { store: Store }) => {
           {/* --- MENU FAVORITE --- */}
           {(menuFavoriteProducts || []).length > 0 && (
             <div className="flex flex-col items-center w-full">
-              <h2 className="text-2xl font-bold mb-4 text-amber-500">
+              <h2 className="text-xl font-bold mb-4 text-amber-500">
                 Menu Favorite
               </h2>
 
@@ -132,7 +135,7 @@ export const MenuOther = ({ store }: { store: Store }) => {
       {/* ===== MENU LAINNYA ===== */}
       {(menuLainnyaProducts || []).length > 0 && (
         <div className="bg-white/5 border border-amber-400/20 rounded-2xl p-8">
-          <h2 className="text-2xl font-bold mb-6 text-center text-amber-600">
+          <h2 className="text-xl font-bold mb-6 text-center text-amber-600">
             Menu Lainnya
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
