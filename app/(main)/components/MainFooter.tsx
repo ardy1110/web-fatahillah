@@ -15,8 +15,7 @@ const MainFooter = () => {
             <Image src="/wf.png" alt="Logo Footer" fill />
           </div>
           <p className="mt-3 text-sm text-gray-100">
-            Your neighborhood coffee stall, serving the best coffee and snacks
-            since 2005.
+            Kopi Nikmat, Maknan Enak, Harga Bersahabat!
           </p>
           {/* Brand/Sponsor  */}
           <div className="flex gap-4 mt-4">
@@ -29,22 +28,28 @@ const MainFooter = () => {
         {/* Kolom 2: Toko-toko Penjual*/}
         <div>
           <h3 className="text-lg font-semibold mb-3">Penjual Makanan</h3>
-          <ul className="space-y-1 text-sm">
+          <div className="text-sm grid grid-cols-2 gap-2">
             {/* Suseaikan lagi  */}
-            <li>Mie Bangladesh Costa</li>
-            <li>Soto Dapur Rini</li>
-            <li>Lala Kitchen</li>
-            <li>Martabak Durian</li>
-            <li>Minang saiyo</li>
-          </ul>
+            <p>Mie Bangladesh Costa</p>
+            <p>Soto Dapur Rini</p>
+            <p>Lala Kitchen</p>
+            <p>Martabak Durian</p>
+            <p>Minang saiyo</p>
+            <p>Jajanan Warkop Fatahillah</p>
+            <p>Sate Matang Bang Bass</p>
+            <p>Pecel Lele Abiyu</p>
+
+
+            
+          </div>
         </div>
 
         {/* Kolom 3: Contact */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Hubungi Kami</h3>
-          <p className="text-sm">Jl. Merdeka No. 123, Jakarta</p>
-          <p className="text-sm">warkopjaya@email.com</p>
-          <p className="text-sm">+62 812 3456 7890</p>
+          <p className="text-sm">Jl. Fatahillah Geuceu Kayee Jato, Kec. Banda Raya, Kota Banda Aceh</p>
+          <p className="text-sm">warkopfatahillah@gmail.com</p>
+          <p className="text-sm">0821-6064-4668</p>
         </div>
 
         {/* Kolom 4: Jam Buka */}

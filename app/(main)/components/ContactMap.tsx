@@ -2,7 +2,7 @@ import React from "react";
 
 const ContactMap = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch justify-between px-6 md:px-12 mb-24">
+    <div id="lokasi" className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch justify-between px-6 md:px-12 mb-24 scroll-mt-26">
       <div className="flex flex-col justify-between">
         <div>
           <h2 className="text-center md:text-start pb-4 font-bold text-2xl">
@@ -17,15 +17,15 @@ const ContactMap = () => {
         <address className="text-center md:text-start text-md space-y-2 not-italic">
           <p>
             <span className="font-semibold">Email:</span>{" "}
-            <span>info@warkopfatahillah.com</span>
+            <span>warkopfatahillah@gmail.com</span>
           </p>
           <p>
             <span className="font-semibold">Telepon:</span>{" "}
-            <span>(081) 234-5678</span>
+            <span>0821-6064-4668</span>
           </p>
           <p>
             <span className="font-semibold">Alamat:</span>{" "}
-            <span>Jl. Contoh No. 123, Banda Aceh</span>
+            <span>Jl. Fatahillah Geuceu Kayee Jato, Kec. Banda Raya, Kota Banda Aceh</span>
           </p>
         </address>
       </div>
