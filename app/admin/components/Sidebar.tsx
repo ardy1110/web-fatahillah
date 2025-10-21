@@ -2,11 +2,12 @@ import React from "react";
 import { LogOut } from "lucide-react";
 import ListStores from "./NavButton";
 import AddButtonStore from "./AddButtonStore";
+import { getStore } from "./actions";
 
 const SidebarAdmin = async () => {
-  const res = await fetch("http://localhost:3000/api/store");
+  const res = await getStore();
 
-  const stores = await res.json();
+  const stores = res.data;
 
   return (
     <aside className="fixed top-0 left-0 w-64 h-dvh bg-white shadow-md flex flex-col">
@@ -15,7 +16,7 @@ const SidebarAdmin = async () => {
         <AddButtonStore />
       </div>
 
-      <ListStores stores={stores} />
+      <ListStores stores={stores || []} />
 
       <div className="p-4 border-t">
         <button className="flex items-center gap-2 text-red-500 hover:text-red-800 cursor-pointer">

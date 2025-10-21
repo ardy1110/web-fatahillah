@@ -6,6 +6,78 @@ import { supabase } from "@/lib/supabase";
 import { writeFile } from "fs/promises";
 import path from "path";
 
+//GET STORES
+export async function getStore() {
+  try {
+    const Store = await prisma.store.findMany({
+      include: {
+        categories: true,
+        products: true,
+      },
+    });
+
+    if (!Store) {
+      return { success: false, data: [], message: "Data Toko Kosong!" };
+    }
+
+    return {
+      success: true,
+      data: Store,
+      message: "Fecthing Successfully",
+    };
+  } catch (error) {
+    console.error("❌ Gagal Memuat toko:", error);
+    return {
+      success: false,
+      message: "Terjadi kesalahan saat memuat toko",
+    };
+  }
+}
+
+//GET STORE BY ID
+export async function getStoreById(id: number) {
+  try {
+    // Validasi ID
+    if (isNaN(id)) {
+      return {
+        success: false,
+        message: "ID toko tidak valid",
+      };
+    }
+
+    // Ambil data toko beserta relasinya
+    const store = await prisma.store.findUnique({
+      where: { id },
+      include: {
+        categories: {
+          include: {
+            products: true, // ambil produk di tiap kategori
+          },
+        },
+        products: true, // produk langsung di toko
+      },
+    });
+
+    if (!store) {
+      return {
+        success: false,
+        message: "Toko tidak ditemukan",
+      };
+    }
+
+    return {
+      success: true,
+      data: store,
+    };
+  } catch (error) {
+    console.error("❌ Error fetching store detail:", error);
+    return {
+      success: false,
+      message: "Gagal mengambil detail toko",
+    };
+  }
+}
+
 // CREATE STORE
 export async function addStore(formData: FormData) {
   try {
