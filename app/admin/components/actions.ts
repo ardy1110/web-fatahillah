@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { supabase } from "@/lib/supabase";
 import { writeFile } from "fs/promises";
 import path from "path";
 
@@ -21,11 +22,25 @@ export async function addStore(formData: FormData) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
 
-      const fileName = `${Date.now()}-${file.name}`;
-      const filePath = path.join(process.cwd(), "public/uploads", fileName);
-      await writeFile(filePath, buffer);
+      const fileName = `store/${Date.now()}-${file.name}`;
 
-      imageUrl = `/uploads/${fileName}`;
+      const { data: uploadData, error } = await supabase.storage
+        .from("stores")
+        .upload(fileName, buffer, { contentType: file.type, upsert: false });
+
+      if (error) {
+        console.error("error", error);
+        return {
+          success: false,
+          message: "gagal",
+        };
+      }
+
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from("stores").getPublicUrl(uploadData.path);
+
+      imageUrl = publicUrl
     }
 
     const newStore = await prisma.store.create({
