@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getStore } from "./components/actions";
 import MenuClient from "./components/MenuClient";
 

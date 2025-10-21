@@ -59,10 +59,10 @@ const DeleteButtonStore = ({
           onClick={() => setOpen(false)}
         >
           <div
-            className="bg-white rounded-2xl p-6 w-80 shadow-xl"
+            className="bg-white text-gray-800 rounded-2xl p-6 w-80 shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="text-lg font-semibold text-gray-800 text-center mb-4">
+            <h2 className="text-lg font-semibold text-center mb-4">
               Hapus Toko?
             </h2>
             <p className="text-sm text-gray-600 text-center mb-6">

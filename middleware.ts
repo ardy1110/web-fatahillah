@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 import { Store } from "./lib/types";
 
 export async function middleware(req: NextRequest) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const token = req.cookies.get("admin_token");
 
   if (req.nextUrl.pathname.startsWith("/admin") && !token) {
@@ -11,7 +12,7 @@ export async function middleware(req: NextRequest) {
 
   if (req.nextUrl.pathname === "/admin") {
     try {
-      const res = await fetch("http://localhost:3000/api/store", {
+      const res = await fetch(`${baseUrl}/api/store`, {
         cache: "no-store", // Penting agar data selalu fresh
       });
 
