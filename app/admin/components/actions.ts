@@ -11,8 +11,8 @@ export async function addStore(formData: FormData) {
   try {
     const name = formData.get("name") as string;
     const description = formData.get("description") as string;
-
     const file = formData.get("image") as File | null;
+
     let imageUrl: string | null = null;
 
     if (!name || !description) {
@@ -29,10 +29,10 @@ export async function addStore(formData: FormData) {
         .upload(fileName, buffer, { contentType: file.type, upsert: false });
 
       if (error) {
-        console.error("error", error);
+        console.error("❌ Error:", error);
         return {
           success: false,
-          message: "gagal",
+          message: "Gagal Membuat Toko!",
         };
       }
 
@@ -40,7 +40,7 @@ export async function addStore(formData: FormData) {
         data: { publicUrl },
       } = supabase.storage.from("stores").getPublicUrl(uploadData.path);
 
-      imageUrl = publicUrl
+      imageUrl = publicUrl;
     }
 
     const newStore = await prisma.store.create({
