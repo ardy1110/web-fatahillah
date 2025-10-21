@@ -11,7 +11,7 @@ const ButtonMenu = () => {
     <Link
       href="/menu"
       onClick={() => setIsLoading(true)}
-      className={`flex items-center gap-2 px-6 py-1 rounded-sm bg-amber-600 hover:bg-amber-700 text-white text-lg transition cursor-pointer ${
+      className={`flex items-center gap-2 px-4 md:px-6 py-1 rounded-sm bg-amber-600 hover:bg-amber-700 text-white text-sm md:text-lg transition cursor-pointer ${
         isLoading ? "opacity-50 pointer-events-none" : ""
       }`}
     >

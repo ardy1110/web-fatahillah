@@ -40,13 +40,18 @@ export default function AddProductModal({
     }
   };
 
+  const handleClose = () => {
+    setPreviewImage(null);
+    onClose();
+  };
+
   if (!open) return null;
 
   return (
     <>
       <div
         className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 transition-opacity duration-200"
-        onClick={onClose}
+        onClick={handleClose}
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
@@ -57,7 +62,7 @@ export default function AddProductModal({
         >
           <Button
             variant="ghost"
-            onClick={onClose}
+            onClick={handleClose}
             className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 cursor-pointer"
             aria-label="Tutup modal"
           >
@@ -74,7 +79,7 @@ export default function AddProductModal({
               const result = await addProduct(formData);
               if (result.success) {
                 toast.success(result.message);
-                onClose();
+                handleClose();
               } else {
                 toast.error(result.message);
               }
@@ -105,28 +110,27 @@ export default function AddProductModal({
               </label>
               <div className="flex items-center gap-2">
                 <select
-                id="product-category"
-                name="categoryId"
-                required
-                className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
-              >
-                <option value="">Pilih kategori</option>
-                {category.map((cat) => (
-                  <option key={cat.id} value={cat.id}>
-                    {cat.name}
-                  </option>
-                ))}
-              </select>
-              <Button
-                type="button"
-                onClick={() => setOpenCategoryModal(true)}
-                title="Tambah kategori baru"
-                className="bg-amber-600 text-white rounded-md hover:bg-amber-700 cursor-pointer"
-              >
-                <PlusCircle size={18} />
-              </Button>
+                  id="product-category"
+                  name="categoryId"
+                  required
+                  className="w-full border rounded-md p-2 focus:ring-2 focus:ring-amber-500 outline-none"
+                >
+                  <option value="">Pilih kategori</option>
+                  {category.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name}
+                    </option>
+                  ))}
+                </select>
+                <Button
+                  type="button"
+                  onClick={() => setOpenCategoryModal(true)}
+                  title="Tambah kategori baru"
+                  className="bg-amber-600 text-white rounded-md hover:bg-amber-700 cursor-pointer"
+                >
+                  <PlusCircle size={18} />
+                </Button>
               </div>
-              
             </div>
 
             {/* Harga */}

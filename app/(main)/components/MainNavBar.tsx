@@ -28,7 +28,7 @@ const MainNavBar = () => {
     <nav
       className={`
         ${isHome ? "fixed top-0 left-0 z-50" : "relative"}
-        w-full py-5 px-10 transition-all duration-500
+        w-full py-4 px-4 md:px-10 transition-all duration-500
         ${
           isHome
             ? isSolid
@@ -41,7 +41,7 @@ const MainNavBar = () => {
       <div className="flex items-start justify-between">
         {/* === LOGO === */}
         <Link href="/" className="flex items-center space-x-4">
-          <div className="relative w-[168px] h-[52px]">
+          <div className="relative w-[134.4] h-[41.6] md:w-[168px] md:h-[52px]">
             <Image
               src="/wf.png"
               alt="Logo Fatahillah"

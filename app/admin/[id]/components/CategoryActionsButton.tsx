@@ -20,7 +20,9 @@ const CategoryActionsButton = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<Categories | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<Categories | null>(
+    null
+  );
   // const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   // Filter categories berdasarkan storeId
@@ -94,7 +96,7 @@ const CategoryActionsButton = ({
           aria-labelledby="category-modal-title"
         >
           <div
-            className="bg-white rounded-2xl w-full max-w-md p-6 shadow-xl relative max-h-[80vh] overflow-auto"
+            className="bg-white rounded-2xl w-full max-w-md p-6 shadow-xl relative max-h-[80vh] overflow-auto scrollbar-none"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
@@ -130,9 +132,7 @@ const CategoryActionsButton = ({
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center overflow-hidden">
-                    
-                          <FolderOpen size={20} className="text-amber-600" />
-                        
+                        <FolderOpen size={20} className="text-amber-600" />
                       </div>
                       <span className="font-medium text-gray-700">
                         {category.name}
@@ -208,7 +208,10 @@ const CategoryActionsButton = ({
             {/* Form */}
             <form
               action={async (formData) => {
-                const result = await updateCategory(selectedCategory.id, formData);
+                const result = await updateCategory(
+                  selectedCategory.id,
+                  formData
+                );
                 if (result.success) {
                   toast.success(result.message);
                   handleCloseEditModal();
@@ -223,7 +226,10 @@ const CategoryActionsButton = ({
 
               {/* Nama Kategori */}
               <div>
-                <label htmlFor="edit-category-name" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="edit-category-name"
+                  className="block text-sm font-medium mb-2"
+                >
                   Nama Kategori
                 </label>
                 <input
@@ -332,9 +338,10 @@ const CategoryActionsButton = ({
                   </p>
                 </div>
               </div>
-              
+
               <p className="text-sm text-gray-600">
-                Apakah Anda yakin ingin menghapus kategori ini? Tindakan ini tidak dapat dibatalkan.
+                Apakah Anda yakin ingin menghapus kategori ini? Tindakan ini
+                tidak dapat dibatalkan.
               </p>
             </div>
 
