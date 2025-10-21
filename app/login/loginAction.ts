@@ -4,10 +4,12 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function loginAction(formData: FormData) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
   const username = formData.get("username") as string;
   const password = formData.get("password") as string;
 
-  const res = await fetch("http://localhost:3000/api/user", {
+  const res = await fetch(`${baseUrl}/api/user`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
@@ -26,7 +28,7 @@ export async function loginAction(formData: FormData) {
     httpOnly: true,
     sameSite: "lax",
   });
-  const storeRes = await fetch("http://localhost:3000/api/store", {});
+  const storeRes = await fetch(`${baseUrl}/api/user`, {});
 
   const stores = await storeRes.json();
 
