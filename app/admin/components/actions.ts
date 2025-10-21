@@ -90,6 +90,7 @@ export async function addStore(formData: FormData) {
     if (!name || !description) {
       return { success: false, message: "Data tidak Lengkap" };
     }
+
     if (file && file.size > 0) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
@@ -144,23 +145,33 @@ export async function editStore(id: number, formData: FormData) {
   try {
     const name = formData.get("name") as string;
     const description = formData.get("description") as string;
-
     const file = formData.get("image") as File | null;
+
     let imageUrl: string | null = null;
 
     if (file && file.size > 0) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
 
-      const fileName = `${Date.now()}-${file.name}`;
-      const filePath = path.join(process.cwd(), "public/uploads", fileName);
-      await writeFile(filePath, buffer);
+      const fileName = `store/${Date.now()}-${file.name}`;
 
-      imageUrl = `/uploads/${fileName}`;
-    }
+      const { data: uploadData, error } = await supabase.storage
+        .from("stores")
+        .upload(fileName, buffer, { contentType: file.type, upsert: false });
 
-    if (!name || !description) {
-      return { success: false, message: "Data tidak Lengkap" };
+      if (error) {
+        console.error("❌ Error:", error);
+        return {
+          success: false,
+          message: "Gagal Membuat Toko!",
+        };
+      }
+
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from("stores").getPublicUrl(uploadData.path);
+
+      imageUrl = publicUrl;
     }
 
     await prisma.store.update({
@@ -205,23 +216,33 @@ export async function addProduct(formData: FormData) {
     const price = Number(formData.get("price"));
     const categoryId = Number(formData.get("categoryId"));
     const storeId = Number(formData.get("storeId"));
-
     const file = formData.get("image") as File | null;
+
     let imageUrl: string | null = null;
 
     if (file && file.size > 0) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
 
-      const fileName = `${Date.now()}-${file.name}`;
-      const filePath = path.join(process.cwd(), "public/uploads", fileName);
-      await writeFile(filePath, buffer);
+      const fileName = `product/${Date.now()}-${file.name}`;
 
-      imageUrl = `/uploads/${fileName}`;
-    }
+      const { data: uploadData, error } = await supabase.storage
+        .from("stores")
+        .upload(fileName, buffer, { contentType: file.type, upsert: false });
 
-    if (!name || !price || !categoryId) {
-      return { success: false, message: "Data tidak Lengkap" };
+      if (error) {
+        console.error("❌ Error:", error);
+        return {
+          success: false,
+          message: "Gagal Membuat Toko!",
+        };
+      }
+
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from("stores").getPublicUrl(uploadData.path);
+
+      imageUrl = publicUrl;
     }
 
     await prisma.product.create({
@@ -253,19 +274,33 @@ export async function editProduct(id: number, formData: FormData) {
     const price = Number(formData.get("price"));
     const categoryId = Number(formData.get("categoryId"));
     const storeId = Number(formData.get("storeId"));
-
     const file = formData.get("image") as File | null;
+
     let imageUrl: string | null = null;
 
     if (file && file.size > 0) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
 
-      const fileName = `${Date.now()}-${file.name}`;
-      const filePath = path.join(process.cwd(), "public/uploads", fileName);
-      await writeFile(filePath, buffer);
+      const fileName = `product/${Date.now()}-${file.name}`;
 
-      imageUrl = `/uploads/${fileName}`;
+      const { data: uploadData, error } = await supabase.storage
+        .from("stores")
+        .upload(fileName, buffer, { contentType: file.type, upsert: false });
+
+      if (error) {
+        console.error("❌ Error:", error);
+        return {
+          success: false,
+          message: "Gagal Membuat Toko!",
+        };
+      }
+
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from("stores").getPublicUrl(uploadData.path);
+
+      imageUrl = publicUrl;
     }
 
     if (!name || !price || !categoryId) {
