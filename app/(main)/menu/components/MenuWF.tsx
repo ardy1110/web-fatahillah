@@ -1,5 +1,10 @@
 import { Store } from "@/lib/types";
 
+interface MenuItemProps {
+  name: string;
+  price?: string;
+}
+
 export const MenuWF = ({ store }: { store: Store }) => {
   if (!store || !store.categories) return null;
 
@@ -7,31 +12,16 @@ export const MenuWF = ({ store }: { store: Store }) => {
   const remainingCategories = store.categories.slice(2);
 
   return (
-    <section className="w-full py-10 px-4 md:px-12">
-      {/* ===== Bagian Atas ====== */}
-      <div className="relative bg-white/5 border border-amber-400/20 rounded-2xl p-6 mb-12 overflow-hidden">
-        {/* Gambar Kiri — terpotong di luar container */}
-        {/* <div className="absolute -top-20 -left-20 w-56 h-56 rounded-full overflow-hidden border-4 border-amber-400/30 z-0">
-          <Image
-            src="/iconBlack.jpeg"
-            alt="Left decor"
-            fill
-            className="object-cover opacity-80"
-          />
-        </div> */}
+    <section className="min-h-screen bg-gradient-to-br from-amber-50 via-stone-100 to-amber-100 py-10 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Header dengan Dekorasi */}
+        <div className="relative mb-8">
+          <div className="absolute -top-4 -left-4 text-6xl">🌿</div>
+        </div>
 
-        {/* Gambar Kanan — terpotong di luar container */}
-        {/* <div className="absolute -bottom-20 -right-20 w-56 h-56 rounded-full overflow-hidden border-4 border-amber-400/30 z-0">
-          <Image
-            src="/img-right.png"
-            alt="Right decor"
-            fill
-            className="object-cover opacity-80"
-          />
-        </div> */}
-
-        {/* Grid 2 Kolom */}
-        <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 z-10">
+        {/* ===== Bagian Atas - 2 Kategori Pertama ====== */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           {firstTwoCategories.map((category) => {
             const categoryProducts = (store.products || []).filter(
               (product) => product.categoryId === category.id
@@ -40,34 +30,49 @@ export const MenuWF = ({ store }: { store: Store }) => {
             if (categoryProducts.length === 0) return null;
 
             return (
-              <div
-                key={category.id}
-                className="bg-white/10 border border-amber-200/30 rounded-xl p-5 shadow-sm"
-              >
-                <div className="bg-amber-600 text-white font-semibold text-center rounded-md py-2 mb-4">
-                  {category.name}
+              <div key={category.id} className="space-y-6">
+                
+                {/* Card Kategori */}
+                <div className="bg-white rounded-3xl shadow-lg overflow-hidden">
+                  {/* Header dengan warna merah marun */}
+                  <div className="bg-gradient-to-r from-red-900 to-red-800 px-6 py-4">
+                    <h2 className="text-white text-2xl font-bold tracking-wide uppercase">
+                      {category.name}
+                    </h2>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <div className="space-y-2">
+                      {categoryProducts.map((product) => (
+                        <MenuItem
+                          key={product.id}
+                          name={product.name}
+                          price={product.price?.toString()}
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                <div className="space-y-2">
-                  {categoryProducts.map((product) => (
-                    <div
-                      key={product.id}
-                      className="bg-amber-50/90 hover:bg-amber-100 text-center text-gray-800 py-2 px-3 rounded-md border border-amber-100 transition-all"
-                    >
-                      {product.name}
-                    </div>
-                  ))}
-                </div>
+                
+
+                {/* Label Dekoratif untuk kolom kedua */}
+                {/* {idx === 1 && (
+                  <div className="bg-gradient-to-r from-red-900 to-red-800 px-8 py-6 rounded-full shadow-lg">
+                    <h2 className="text-white text-3xl font-bold tracking-wide text-center uppercase">
+                      {category.name}
+                    </h2>
+                  </div>
+                )} */}
               </div>
             );
           })}
         </div>
-      </div>
 
-      {/* ===== Bagian Bawah ====== */}
-      {remainingCategories.length > 0 && (
-        <div className="bg-white/5 border border-amber-400/20 rounded-2xl p-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* ===== Bagian Bawah - Kategori Sisanya ====== */}
+        {remainingCategories.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {remainingCategories.map((category) => {
               const categoryProducts = (store.products || []).filter(
                 (product) => product.categoryId === category.id
@@ -78,28 +83,45 @@ export const MenuWF = ({ store }: { store: Store }) => {
               return (
                 <div
                   key={category.id}
-                  className="bg-white/10 border border-amber-200/30 rounded-xl p-5 shadow-sm"
+                  className="bg-white rounded-3xl shadow-lg overflow-hidden"
                 >
-                  <div className="bg-amber-600 text-white font-semibold text-center rounded-md py-2 mb-4">
-                    {category.name}
+                  {/* Header */}
+                  <div className="bg-gradient-to-r from-red-900 to-red-800 px-6 py-4">
+                    <h2 className="text-white text-xl font-bold tracking-wide uppercase">
+                      {category.name}
+                    </h2>
                   </div>
 
-                  <div className="space-y-2">
-                    {categoryProducts.map((product) => (
-                      <div
-                        key={product.id}
-                        className="bg-amber-50/90 hover:bg-amber-100 text-center text-gray-800 py-2 px-3 rounded-md border border-amber-100 transition-all"
-                      >
-                        {product.name}
-                      </div>
-                    ))}
+                  {/* Content */}
+                  <div className="p-6">
+                    <div className="space-y-2">
+                      {categoryProducts.map((product) => (
+                        <MenuItem
+                          key={product.id}
+                          name={product.name}
+                          price={product.price?.toString()}
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
               );
             })}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </section>
   );
 };
+
+// Component untuk item menu
+function MenuItem({ name, price }: MenuItemProps) {
+  return (
+    <div className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+      <span className="text-gray-800 font-medium text-sm">{name}</span>
+      {price && (
+        <span className="font-bold text-gray-900 text-sm ml-4">{price}</span>
+      )}
+    </div>
+  );
+}
