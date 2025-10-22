@@ -47,9 +47,11 @@ const NavStore = ({
             {stores.map((store) => (
               <button
                 key={store.id}
+                title={store.name}
                 onClick={() => onStoreSelect(store.id)}
-                className="relative shrink-0 group scroll-snap-align-start"
+                className="relative shrink-0 group scroll-snap-align-start focus:outline-none"
               >
+                {/* Gambar toko */}
                 <div
                   className={clsx(
                     "w-14 h-14 md:w-16 md:h-16 rounded-2xl overflow-hidden transition-all duration-300",
@@ -66,7 +68,7 @@ const NavStore = ({
                   />
                 </div>
 
-                {/* Bottom bar indicator */}
+                {/* Indicator bawah */}
                 <div
                   className={clsx(
                     "absolute -bottom-1 left-1/2 -translate-x-1/2 h-1 rounded-full transition-all duration-300",
