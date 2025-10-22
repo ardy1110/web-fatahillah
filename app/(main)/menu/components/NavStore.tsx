@@ -39,29 +39,41 @@ const NavStore = ({
       )}
     >
       <div className="flex justify-center">
-        <div className="flex items-center justify-center px-3 sm:px-5 md:px-8 py-2 md:py-3 rounded-3xl shadow-lg backdrop-blur-md bg-amber-500/30 border border-white/20 max-w-[92vw] md:max-w-[75vw] overflow-hidden">
+        <div className="flex items-center justify-center px-3 sm:px-5 md:px-8 py-3 md:py-4 pb-4 md:pb-5 rounded-3xl shadow-lg backdrop-blur-md bg-amber-500/30 border border-white/20 max-w-[92vw] md:max-w-[75vw] overflow-hidden">
           <div
-            className="flex gap-3 md:gap-4 overflow-x-auto scrollbar-none scroll-smooth px-1"
+            className="flex gap-3 md:gap-4 overflow-x-auto scrollbar-none scroll-smooth px-1 py-1"
             style={{ scrollSnapType: "x mandatory" }}
           >
             {stores.map((store) => (
               <button
                 key={store.id}
                 onClick={() => onStoreSelect(store.id)}
-                className={clsx(
-                  // Ukuran disesuaikan (lebih kecil di desktop)
-                  "relative bg-transparent w-14 h-14 sm:w-16 sm:h-16 md:w-[72px] md:h-[72px] rounded-2xl shrink-0 transition-all duration-300 ease-out scroll-snap-align-start",
-                  "hover:scale-110 hover:shadow-lg focus:outline-none",
-                  store.id === activeStoreId &&
-                    "scale-110 shadow-md"
-                )}
+                className="relative shrink-0 group scroll-snap-align-start"
               >
-                <Image
-                  src={store.imageUrl || "/IconBlack.jpeg"}
-                  alt={`Logo ${store.name}`}
-                  fill
-                  // sizes="(max-width: 768px) 64px, (max-width: 1200px) 80px, 96px"
-                  className="object-cover rounded-xl p-[6px] md:p-2 cursor-pointer"
+                <div
+                  className={clsx(
+                    "w-14 h-14 md:w-16 md:h-16 rounded-2xl overflow-hidden transition-all duration-300",
+                    store.id === activeStoreId
+                      ? "scale-110 shadow-lg bg-transparent"
+                      : "hover:scale-105 hover:shadow-md"
+                  )}
+                >
+                  <Image
+                    src={store.imageUrl || "/IconBlack.jpeg"}
+                    alt={`Logo ${store.name}`}
+                    fill
+                    className="object-cover p-[6px] md:p-2 cursor-pointer"
+                  />
+                </div>
+
+                {/* Bottom bar indicator */}
+                <div
+                  className={clsx(
+                    "absolute -bottom-1 left-1/2 -translate-x-1/2 h-1 rounded-full transition-all duration-300",
+                    store.id === activeStoreId
+                      ? "w-8 bg-gradient-to-r from-amber-400 to-orange-500"
+                      : "w-0 bg-amber-400"
+                  )}
                 />
               </button>
             ))}
