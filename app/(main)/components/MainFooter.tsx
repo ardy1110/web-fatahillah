@@ -60,7 +60,6 @@ const MainFooter = () => {
         <div>
           <h3 className="text-lg font-semibold mb-6">Penjual Makanan</h3>
           <ul className="space-y-1 text-sm">
-            {/* Suseaikan lagi  */}
             <li>Mie Bangladesh Costa</li>
             <li>Soto Dapur Rini</li>
             <li>Lala Kitchen</li>
