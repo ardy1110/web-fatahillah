@@ -31,7 +31,7 @@ export default function MenuClient({ stores }: { stores: Store[] }) {
           <div className="w-24 h-1 bg-amber-600 mx-auto rounded-full"></div>
         </header>
 
-        <div className="px-4 pb-48">
+        <div className="pb-48">
           {activeStore.name === "Warkop Fatahillah" ? (
             <MenuWF store={activeStore} />
           ) : (

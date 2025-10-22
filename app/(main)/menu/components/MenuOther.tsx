@@ -143,21 +143,23 @@ export const MenuOther = ({ store }: { store: Store }) => {
 
       {/* ===== MENU LAINNYA ===== */}
       {(menuLainnyaProducts || []).length > 0 && (
-        <div className="bg-white/5 border border-amber-400/20 rounded-2xl p-8">
-          <h2 className="text-xl font-bold mb-6 text-center text-amber-600">
-            Menu Lainnya
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {(menuLainnyaProducts || []).map((menu) => (
-              <div
-                key={menu.id}
-                className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg p-4 text-center border-2 border-amber-200 transition-all hover:shadow-md flex items-center justify-center"
-              >
-                <p className="text-base font-semibold text-gray-800 break-words">
-                  {menu.name}
-                </p>
-              </div>
-            ))}
+        <div className="px-6">
+          <div className="bg-white/5 border border-amber-400/20 rounded-2xl p-8">
+            <h2 className="text-xl font-bold mb-6 text-center text-amber-500">
+              Menu Lainnya
+            </h2>
+            <div className="flex flex-wrap justify-center gap-4">
+              {(menuLainnyaProducts || []).map((menu) => (
+                <div
+                  key={menu.id}
+                  className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg p-4 text-center border-2 border-amber-200 transition-all hover:shadow-md flex items-center justify-center w-[45%] md:w-[30%]"
+                >
+                  <p className="text-sm md:text-md font-medium md:font-semibold text-gray-800 break-words">
+                    {menu.name}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
