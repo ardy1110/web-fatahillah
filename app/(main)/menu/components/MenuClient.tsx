@@ -22,13 +22,13 @@ export default function MenuClient({ stores }: { stores: Store[] }) {
   }
 
   return (
-    <main className="flex flex-col min-h-screen">
+    <main className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 via-stone-100 to-amber-100">
       <div className="flex-1">
         <header className="text-center py-6 px-4">
-          <h1 className="text-xl md:text-3xl font-bold text-amber-600 mb-2">
+          <h1 className="text-xl md:text-3xl font-bold text-amber-700 mb-2">
             {activeStore.name}
           </h1>
-          <div className="w-24 h-1 bg-amber-600 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-red-900 to-red-800 mx-auto rounded-full"></div>
         </header>
 
         <div className="pb-48">
