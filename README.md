@@ -1,3 +1,38 @@
+# ☕ Web Fatahillah
+
+Website **Web Fatahillah** menampilkan **landing page warkop (warung kopi)** dan daftar **menu dari berbagai stand toko** yang ada di dalamnya.  
+Dibangun dengan teknologi modern menggunakan **Next.js 15**, **React**, dan **Supabase** untuk memberikan pengalaman cepat, responsif, dan mudah dikelola.
+
+---
+
+## 🌐 Live Demo
+👉 [https://web-fatahillah.vercel.app](https://web-fatahillah.vercel.app)
+
+---
+
+## ✨ Fitur Utama
+
+- 🏠 **Landing Page Interaktif** — Tampilan utama yang memperkenalkan Warkop Fatahillah dengan desain modern dan ringan.  
+- 🍴 **Menu Digital Multi-Stand** — Setiap stand memiliki kategori dan daftar menu masing-masing.  
+- 🔍 **Filter & Navigasi Dinamis** — Pengguna dapat memilih kategori atau stand dengan mudah.  
+- 🖼️ **Upload Gambar Produk** — Mendukung upload gambar menu langsung ke Supabase Storage.  
+- ⚡ **Performa Cepat & Responsif** — Optimal di perangkat mobile dan desktop.  
+
+---
+
+## 🧰 Teknologi yang Digunakan
+
+| Kategori | Teknologi |
+|-----------|------------|
+| Framework | [Next.js 15](https://nextjs.org/) |
+| Library Frontend | [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) |
+| Styling | [Tailwind CSS](https://tailwindcss.com/) + [Shadcn/UI](https://ui.shadcn.com/) |
+| Ikon | [Lucide React](https://lucide.dev/) |
+| Backend & Storage | [Supabase](https://supabase.com/) |
+| Deployment | [Vercel](https://vercel.com/) |
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
