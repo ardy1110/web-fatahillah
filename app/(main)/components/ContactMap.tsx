@@ -1,8 +1,12 @@
+import { MapPinned, UserRoundPen } from "lucide-react";
 import React from "react";
 
 const ContactMap = () => {
   return (
-    <div id="lokasi" className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch justify-between px-6 md:px-12 mb-24 scroll-mt-26">
+    <div
+      id="lokasi"
+      className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch justify-between px-6 md:px-12 mb-24 scroll-mt-26"
+    >
       <div className="flex flex-col justify-between">
         <div>
           <h2 className="text-center md:text-start pb-4 font-bold text-2xl">
@@ -14,20 +18,37 @@ const ContactMap = () => {
             dengan senang hati.
           </p>
         </div>
-        <address className="text-center md:text-start text-md space-y-2 not-italic">
-          <p>
-            <span className="font-semibold">Email:</span>{" "}
-            <span>warkopfatahillah@gmail.com</span>
-          </p>
-          <p>
-            <span className="font-semibold">Telepon:</span>{" "}
-            <span>0821-6064-4668</span>
-          </p>
-          <p>
-            <span className="font-semibold">Alamat:</span>{" "}
-            <span>Jl. Fatahillah Geuceu Kayee Jato, Kec. Banda Raya, Kota Banda Aceh</span>
-          </p>
-        </address>
+
+        <div className="text-center md:text-start text-md space-y-2">
+          {/* Card Kontak */}
+          <div className="flex justify-center md:justify-start">
+            <div className="bg-white border border-gray-200 shadow-sm rounded-xl p-4 flex items-center gap-4 w-fit">
+              <div className="bg-amber-50 p-3 rounded-full">
+                <UserRoundPen className="text-amber-500" size={24} />
+              </div>
+
+              <div className="flex flex-col">
+                <span className="font-medium text-gray-800">
+                  warkopfatahillah@gmail.com
+                </span>
+                <span className="text-sm text-gray-500">0821-6064-4668</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card Alamat */}
+          <div className="flex justify-center md:justify-start">
+            <div className="bg-white border border-gray-200 shadow-sm rounded-xl p-4 flex items-center gap-4 w-fit">
+              <div className="bg-amber-50 p-3 rounded-full">
+                <MapPinned className="text-amber-500" size={24} />
+              </div>
+              <span>
+                Jl. Fatahillah Geuceu Kayee Jato, Kec. Banda Raya, Kota Banda
+                Aceh
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div>

@@ -6,8 +6,8 @@ const MainFooter = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="min-h-[50dvh] bg-amber-600 text-white p-10">
-      <div className="mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+    <footer className="min-h-[50dvh] bg-amber-600 text-white py-6 px-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:px-32 py-2">
         {/* Kolom 1  */}
         <div>
           {/* Ganti jadi logo kita  */}
@@ -15,7 +15,7 @@ const MainFooter = () => {
             <Image src="/wf.png" alt="Logo Footer" fill />
           </div>
           <p className="mt-3 text-sm text-gray-100">
-            Kopi Nikmat, Maknan Enak, Harga Bersahabat!
+            Kopi Nikmat, Makanan Enak, Harga Bersahabat!
           </p>
           {/* Brand/Sponsor  */}
           <div className="flex gap-4 mt-4">
@@ -46,9 +46,19 @@ const MainFooter = () => {
           </div>
         </div>
 
-        {/* Kolom 2: Toko-toko Penjual*/}
+        {/* Kolom 2: Contact */}
         <div>
-          <h3 className="text-lg font-semibold mb-3">Penjual Makanan</h3>
+          <h3 className="text-lg font-semibold mb-6">Hubungi Kami</h3>
+          <p className="text-sm">
+            Jl. Fatahillah Geuceu Kayee Jato, Kec. Banda Raya, Kota Banda Aceh
+          </p>
+          <p className="text-sm">warkopfatahillah@gmail.com</p>
+          <p className="text-sm">0821-6064-4668</p>
+        </div>
+
+        {/* Kolom 3: Toko-toko Penjual*/}
+        <div>
+          <h3 className="text-lg font-semibold mb-6">Penjual Makanan</h3>
           <ul className="space-y-1 text-sm">
             {/* Suseaikan lagi  */}
             <li>Mie Bangladesh Costa</li>
@@ -62,20 +72,11 @@ const MainFooter = () => {
           </ul>
         </div>
 
-        {/* Kolom 3: Contact */}
-        <div>
-          <h3 className="text-lg font-semibold mb-3">Hubungi Kami</h3>
-          <p className="text-sm">
-            Jl. Fatahillah Geuceu Kayee Jato, Kec. Banda Raya, Kota Banda Aceh
-          </p>
-          <p className="text-sm">warkopfatahillah@gmail.com</p>
-          <p className="text-sm">0821-6064-4668</p>
-        </div>
-
         {/* Kolom 4: Jam Buka */}
         <div>
-          <h3 className="text-lg font-semibold mb-3">Buka</h3>
-          <p className="text-sm">Setiap hari 05.30 - 23.59</p>
+          <h3 className="text-lg font-semibold mb-6">Buka</h3>
+          <p className="text-sm">Setiap hari</p>
+          <p className="text-sm">( 05.30 - 23.59 )</p>
           {/* <p className="text-sm">Saturday - Sunday: 8 AM - 11 PM</p> */}
         </div>
       </div>

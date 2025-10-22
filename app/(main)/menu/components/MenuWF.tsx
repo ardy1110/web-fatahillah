@@ -52,7 +52,7 @@ export const MenuWF = ({ store }: { store: Store }) => {
                   {categoryProducts.map((product) => (
                     <div
                       key={product.id}
-                      className="bg-amber-50/90 hover:bg-amber-100 text-gray-800 py-2 px-3 rounded-md border border-amber-100 transition-all"
+                      className="bg-amber-50/90 hover:bg-amber-100 text-center text-gray-800 py-2 px-3 rounded-md border border-amber-100 transition-all"
                     >
                       {product.name}
                     </div>
@@ -64,9 +64,7 @@ export const MenuWF = ({ store }: { store: Store }) => {
         </div>
       </div>
 
-      {/* ========================= */}
       {/* ===== Bagian Bawah ====== */}
-      {/* ========================= */}
       {remainingCategories.length > 0 && (
         <div className="bg-white/5 border border-amber-400/20 rounded-2xl p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -90,7 +88,7 @@ export const MenuWF = ({ store }: { store: Store }) => {
                     {categoryProducts.map((product) => (
                       <div
                         key={product.id}
-                        className="bg-amber-50/90 hover:bg-amber-100 text-gray-800 py-2 px-3 rounded-md border border-amber-100 transition-all"
+                        className="bg-amber-50/90 hover:bg-amber-100 text-center text-gray-800 py-2 px-3 rounded-md border border-amber-100 transition-all"
                       >
                         {product.name}
                       </div>

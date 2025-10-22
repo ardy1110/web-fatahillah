@@ -37,7 +37,7 @@ export default function Landing() {
             Kopi Enak, <br /> Suasana Asik!
           </h1>
           <h2 className="text-sm md:text-2xl font-medium text-[#e8c39e] mb-6">
-            Kopi Nikmat, Maknan Enak, Harga Bersahabat!
+            Kopi Nikmat, Makanan Enak, Harga Bersahabat!
           </h2>
           <p className="text-gray-200 text-sm md:text-lg mb-10 leading-relaxed">
             Dari pagi sampai malam, Warkop Fatahillah selalu siap nyajikan cita

@@ -1,4 +1,5 @@
 import { Store } from "@/lib/types";
+import { Star } from "lucide-react";
 import Image from "next/image";
 
 export const MenuOther = ({ store }: { store: Store }) => {
@@ -28,22 +29,30 @@ export const MenuOther = ({ store }: { store: Store }) => {
       {(menuAndalanProducts || []).length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 md:px-20 items-center">
           {/* --- MENU ANDALAN --- */}
-          <div className="relative w-full aspect-[4/3] md:aspect-[16/9] rounded-2xl overflow-hidden shadow-lg border-4 border-amber-500/50">
-            <Image
-              src={menuAndalanProducts?.[0].imageUrl || "/IconBlack.jpeg"}
-              alt={menuAndalanProducts?.[0].name || "Menu Andalan"}
-              fill
-              className="object-cover"
-              quality={90}
-              priority
-            />
-            <div className="absolute inset-0 bg-black/40 flex flex-col items-start justify-end p-6">
-              <h2 className="text-md md:text-xl font-bold text-white drop-shadow-lg">
+          <div className="flex flex-col items-center w-full">
+            <div className="flex space-x-2 mb-2 items-center">
+              <h2 className="text-xl font-bold text-amber-500">
+                {menuAndalanProducts?.[0].name || ""}
+              </h2>
+              <Star size={16} className="text-amber-500" fill="currentColor" />
+            </div>
+            <div className="relative w-full aspect-[4/3] md:aspect-[16/9] rounded-2xl overflow-hidden shadow-lg border-4 border-amber-500/50">
+              <Image
+                src={menuAndalanProducts?.[0].imageUrl || "/IconBlack.jpeg"}
+                alt={menuAndalanProducts?.[0].name || "Menu Andalan"}
+                fill
+                className="object-cover"
+                quality={90}
+                priority
+              />
+              {/* <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
+              <h2 className="text-md md:text-xl font-bold text-black drop-shadow-lg">
                 Menu Andalan
               </h2>
-              <h2 className="text-2xl md:text-3xl font-bold text-white drop-shadow-lg">
-                {menuAndalanProducts?.[0].name || "Menu Andalan"}
+              <h2 className="text-2xl md:text-3xl font-bold text-black drop-shadow-lg">
+                {menuAndalanProducts?.[0].name || ""}
               </h2>
+            </div> */}
             </div>
           </div>
 
