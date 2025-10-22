@@ -73,14 +73,14 @@ const DeleteButtonStore = ({
               <Button
                 variant="outline"
                 onClick={() => setOpen(false)}
-                className="w-[48%]"
+                className="w-[48%] cursor-pointer"
               >
                 Batal
               </Button>
               <Button
                 variant="destructive"
                 onClick={handleDelete}
-                className="w-[48%]"
+                className="w-[48%] cursor-pointer"
                 disabled={isPending}
               >
                 {isPending ? <Loader2 className="animate-spin" /> : "Hapus"}

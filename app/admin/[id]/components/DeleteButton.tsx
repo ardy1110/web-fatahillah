@@ -6,6 +6,7 @@ import React, { useState, useTransition } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { deleteProductAction } from "../../components/actions";
 import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 const DeleteButton = ({ product }: { product: Product }) => {
   const [open, setOpen] = useState(false);
@@ -13,11 +14,20 @@ const DeleteButton = ({ product }: { product: Product }) => {
 
   const handleDelete = () => {
     startTransition(async () => {
-      await deleteProductAction(product.storeId, product.id);
-      setOpen(false);
+      try {
+        await deleteProductAction(product.storeId, product.id);
+
+        toast.success(`"${product.name}" berhasil dihapus`);
+
+        setOpen(false);
+      } catch (error) {
+        console.error(error);
+
+        toast.error("Gagal menghapus produk. Silakan coba lagi");
+      }
     });
   };
-  
+
   return (
     <div>
       <Button
@@ -50,14 +60,14 @@ const DeleteButton = ({ product }: { product: Product }) => {
               <Button
                 variant="outline"
                 onClick={() => setOpen(false)}
-                className="w-[48%]"
+                className="w-[48%] cursor-pointer"
               >
                 Batal
               </Button>
               <Button
                 variant="destructive"
                 onClick={handleDelete}
-                className="w-[48%]"
+                className="w-[48%] cursor-pointer"
                 disabled={isPending}
               >
                 {isPending ? <Loader2 className="animate-spin" /> : "Hapus"}
